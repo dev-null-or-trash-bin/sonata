@@ -1,6 +1,7 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
     #- { resource: sonata_block.yml }
     #- { resource: '@ViaProductBundle/Resources/config/admin.xml' }
 
@@ -59,11 +60,11 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        #auto_mapping: true
-        mappings:
-                FOSUserBundle: ~
-                ViaUserBundle: ~
-                ViaGroupBundle: ~
+        auto_mapping: true
+        #mappings:
+         #       FOSUserBundle: ~
+          #      ViaUserBundle: ~
+           #     ViaGroupBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -88,3 +89,10 @@ fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
     firewall_name: main
     user_class: Via\Bundle\UserBundle\Entity\User
+    
+a2lix_translation_form:
+    locales: [en, de]       # [1]
+    default_required: true      # [2]
+    manager_registry: doctrine      # [3]
+    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
+    

@@ -22,12 +22,14 @@ security:
             context:            user
             form_login:
                 provider:       fos_userbundle
-                login_path:     /admin/login
-                use_forward:    false
+                login_path:     /admin/login                
                 check_path:     /admin/login_check
-                failure_path:   null
+                failure_path:   /admin/login
+                use_forward:    false
+                use_referer:    true
             logout:
                 path:           /admin/logout
+                target:         /admin/login                
             anonymous:          true
 
         # -> end custom configuration
@@ -44,6 +46,7 @@ security:
                 use_forward:    false
                 check_path:     /login_check
                 failure_path:   null
+                default_target_path: /admin/dashboard
             logout:             true
             anonymous:          true
 

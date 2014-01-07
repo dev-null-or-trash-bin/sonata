@@ -1,3 +1,10 @@
+homepage:
+    path: /    
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect      
+        route: sonata_admin_dashboard
+        permanent: true
+
 admin:
     resource: '@SonataAdminBundle/Resources/config/routing/sonata_admin.xml'
     prefix: /admin

@@ -2,22 +2,25 @@
 namespace Via\Bundle\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="Via\ProductBundle\Entity\Repository\Product")
+ * @ORM\Entity(repositoryClass="Via\Bundle\ProductBundle\Entity\Repository\Product")
  */
 
 class Product
 {
+    use ORMBehaviors\Translatable\Translatable,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    protected $id;    
     
     /**
      * @var integer
@@ -55,61 +58,10 @@ class Product
     private $ean;
     
     /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="created_at", type="datetime", nullable=false)
-     */
-    private $createdAt;
-    
-    /**
-     * @var \DateTime
-     *
-     * @ORM\Column(name="updated_at", type="datetime", nullable=false)
-     */
-    private $updatedAt;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=80, nullable=false)
-     */
-    private $name;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
-     */
-    private $description;
-    
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="short_description", type="string", length=255, nullable=false)
-     */
-    private $shortDescription;
-    
-    /**
      * Constructor
      */
     public function __construct()
-    {}
-    
-    /**
-     * Now we tell doctrine that before we persist or update we call the updatedTimestamps() function.
-     *
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function updatedTimestamps()
     {
-        $this->setUpdatedAt(new \DateTime(date('Y-m-d H:i:s')));
-    
-        if($this->getCreatedAt() == null)
-        {
-            $this->getCreatedAt(new \DateTime(date('Y-m-d H:i:s')));
-        }
-        return $this;
     }
     
     
@@ -268,34 +220,35 @@ class Product
 
     public function getName()
     {
-        return $this->name;
+        return $this->translate()->getName();
     }
 
-    public function setName(string $name)
+    public function setName($name)
     {
-        $this->name = $name;
+        $this->translate()->setName($name);
         return $this;
     }
 
     public function getDescription()
     {
-        return $this->description;
+        return $this->translate()->getDescription();
     }
 
-    public function setDescription(string $description)
+    public function setDescription($description)
     {
-        $this->description = $description;
+        $this->translate()->setDescription($description);
         return $this;
     }
 
     public function getShortDescription()
     {
-        return $this->shortDescription;
+        return $this->translate()->getShortDescription();
     }
 
-    public function setShortDescription(string $shortDescription)
+    public function setShortDescription($shortDescription)
     {
-        $this->shortDescription = $shortDescription;
+        $this->translate()->setShortDescription($shortDescription);
         return $this;
     }
+    
 }

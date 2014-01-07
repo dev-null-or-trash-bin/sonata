@@ -10,7 +10,7 @@
 	},
 	"require" : {
 		"php" : ">=5.3.3",
-		"symfony/symfony" : "~2.4",
+		"symfony/symfony" : ">=2.2,<=2.4",
 		"doctrine/orm" : "~2.2,>=2.2.3",
 		"doctrine/doctrine-bundle" : "~1.2",
 		"twig/extensions" : "~1.0",
@@ -22,11 +22,13 @@
 		"sensio/generator-bundle" : "~2.3",
 		"incenteev/composer-parameter-handler" : "~2.0",
 		"sonata-project/core-bundle" : "dev-master",
-		"sonata-project/admin-bundle" : "dev-master",		
+		"sonata-project/admin-bundle" : "dev-master",
 		"knplabs/knp-menu" : "2.0.*@dev",
 		"knplabs/knp-menu-bundle" : "2.0.*@dev",
-		"sonata-project/user-bundle": "dev-master",
-		"sonata-project/doctrine-orm-admin-bundle": "dev-master"
+		"sonata-project/user-bundle" : "dev-master",
+		"sonata-project/doctrine-orm-admin-bundle" : "dev-master",
+		"knplabs/doctrine-behaviors" : "dev-master",
+		"a2lix/translation-form-bundle" : "dev-master"		
 	},
 	"scripts" : {
 		"post-install-cmd" : [
@@ -54,7 +56,7 @@
 			"file" : "app/config/parameters.yml"
 		},
 		"branch-alias" : {
-			"dev-master" : "2.4-dev"
+			"dev-master" : "2.4"
 		}
 	}
 }

@@ -33,6 +33,9 @@ class AppKernel extends Kernel
             
             new Sonata\UserBundle\SonataUserBundle(),
             
+            #new Prezent\Doctrine\TranslatableBundle\PrezentDoctrineTranslatableBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            
             #new Via\Bundle\WebBundle\ViaWebBundle(),
             new Via\Bundle\ProductBundle\ViaProductBundle(),
             new Via\Bundle\UserBundle\ViaUserBundle(),
