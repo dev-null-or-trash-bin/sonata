@@ -1,0 +1,17 @@
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+       <service id="sonata.admin.product" class="Via\Bundle\ProductBundle\Admin\ProductAdmin">
+          <tag name="sonata.admin" manager_type="orm" 
+                group="Content" 
+                label="Product"/>
+          <argument />
+          <argument>Via\Bundle\ProductBundle\Entity\Product</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>ViaProductBundle</argument>
+          </call>
+      </service>
+   </services>
+</container>

@@ -1,6 +1,8 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
+    #- { resource: sonata_block.yml }
+    #- { resource: '@ViaProductBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
@@ -31,6 +33,7 @@ twig:
 assetic:
     debug:          "%kernel.debug%"
     use_controller: false
+    #bundles:        ['ViaWebBundle']
     bundles:        [ ]
     #java: /usr/bin/java
     filters:
@@ -56,7 +59,11 @@ doctrine:
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
-        auto_mapping: true
+        #auto_mapping: true
+        mappings:
+                FOSUserBundle: ~
+                ViaUserBundle: ~
+                ViaGroupBundle: ~
 
 # Swiftmailer Configuration
 swiftmailer:
@@ -65,3 +72,19 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+sonata_block:
+    default_contexts: [cms]
+    blocks:
+        # Enable the SonataAdminBundle block
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+            
+#sonata_admin:
+#    security:
+#        handler: sonata.admin.security.handler.role
+        
+fos_user:
+    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    firewall_name: main
+    user_class: Via\Bundle\UserBundle\Entity\User
