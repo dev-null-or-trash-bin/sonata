@@ -1,11 +1,12 @@
 imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
-    - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
+    - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
+    - { resource: '@ViaProductBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
-    #translator:      { fallback: "%locale%" }
+    translator:      { fallback: "%locale%" }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -98,4 +99,8 @@ parameters:
     sonata.user.admin.user.entity: Via\Bundle\UserBundle\Entity\User
     sonata.user.admin.user.class: Via\Bundle\UserBundle\Admin\UserAdmin
     sonata.user.admin.group.entity: Via\Bundle\GroupBundle\Entity\Group
-    
+ 
+jms_i18n_routing:
+    default_locale: '%locale%'
+    locales: '%locales%'
+    strategy: prefix   

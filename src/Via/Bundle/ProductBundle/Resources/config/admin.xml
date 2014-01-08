@@ -10,7 +10,7 @@
           <argument>Via\Bundle\ProductBundle\Entity\Product</argument>
           <argument />
           <call method="setTranslationDomain">
-              <argument>ViaProductBundle</argument>
+              <argument>messages</argument>
           </call>
       </service>
    </services>
