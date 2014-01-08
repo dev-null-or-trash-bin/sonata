@@ -16,31 +16,29 @@ class ProductAdmin extends Admin
             ->add('ean', 'text', array('label' => 'via.form.product.ean'))
             ->add('price', 'money', array('label' => 'via.form.product.price'))
             ->add('articleNumber', 'text', array('label' => 'via.form.product.article_number'))
-            ->add('vatPercent', 'text', array('label' => 'via.form.product.vat_percent'))
-            ->add('name', 'text', array('label' => 'via.form.product.name'))
-            ->add('shortDescription', 'text', array('label' => 'via.form.product.short_description'))
-            ->add('description', 'textarea', array('label' => 'via.form.product.description')) 
+            ->add('vatPercent', 'number', array('label' => 'via.form.product.vat_percent'))
             //if no type is specified, SonataAdminBundle tries to guess it
         ;
          $formMapper
                 ->add('translations', 'a2lix_translations', array(
                     'by_reference' => false,
                     'locales' => array('en', 'de'),
-                    'required' => false,                    // [2]
-                    'fields' => array(                      // [3]
-                        'description' => array(                   // [3.a]
-                            'field_type' => 'textarea',                 // [4]
-                            'label' => 'descript.',                     // [4]
-                            'locale_options' => array(            // [3.b]
-                                'en' => array(
-                                    'label' => 'descripción'            // [4]
-                                ),
-                                'de' => array(
-                                    'label' => 'beschreibung'            // [4]
-                                )
-                            )
-                        )
-                    )
+                    'required' => false,
+                    'label' => 'via.form.product.translations',
+                    'fields' => array(
+                        'name' => array(
+                            'field_type' => 'text',
+                            'label' => 'via.form.product.name',
+                        ),
+                        'shortDescription' => array(
+                            'field_type' => 'text',
+                            'label' => 'via.form.product.short_description',
+                        ),
+                        'description' => array(
+                            'field_type' => 'textarea',
+                            'label' => 'via.form.product.description',
+                        ),
+                    ),
                 ));
     }
 
@@ -61,6 +59,6 @@ class ProductAdmin extends Admin
             ->add('name')
             ->add('price')
         ;
-    }   
+    }
     
 }
