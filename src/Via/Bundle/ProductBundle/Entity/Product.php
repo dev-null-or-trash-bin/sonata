@@ -20,7 +20,7 @@ class Product
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;    
+    protected $id;
     
     /**
      * @var integer
@@ -64,6 +64,10 @@ class Product
     {
     }
     
+    public function __toString()
+    {
+        return ($this->getName()) ? : '';
+    }
     
     /**
      * Get id
