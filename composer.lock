@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9a73ba6b147862a6395ac5aba741049a",
+    "hash": "e91f9cec93c9ab0aae732a5ecbe00f08",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -1248,17 +1248,17 @@
         },
         {
             "name": "lunetics/locale-bundle",
-            "version": "v2.2.1",
+            "version": "dev-master",
             "target-dir": "Lunetics/LocaleBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/lunetics/LocaleBundle.git",
-                "reference": "4d52d101cb3fa9548fbc24d6f44f9824ad84ad5e"
+                "reference": "5a5bf2f79370f0e6bc6d68a26a17e27e79990e6f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/lunetics/LocaleBundle/zipball/4d52d101cb3fa9548fbc24d6f44f9824ad84ad5e",
-                "reference": "4d52d101cb3fa9548fbc24d6f44f9824ad84ad5e",
+                "url": "https://api.github.com/repos/lunetics/LocaleBundle/zipball/5a5bf2f79370f0e6bc6d68a26a17e27e79990e6f",
+                "reference": "5a5bf2f79370f0e6bc6d68a26a17e27e79990e6f",
                 "shasum": ""
             },
             "require": {
@@ -1312,7 +1312,7 @@
                 "multilanguage",
                 "router"
             ],
-            "time": "2013-09-13 09:35:29"
+            "time": "2013-12-09 21:12:59"
         },
         {
             "name": "monolog/monolog",
@@ -2678,7 +2678,8 @@
         "sonata-project/doctrine-orm-admin-bundle": 20,
         "knplabs/doctrine-behaviors": 20,
         "a2lix/translation-form-bundle": 20,
-        "jms/i18n-routing-bundle": 20
+        "jms/i18n-routing-bundle": 20,
+        "lunetics/locale-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

@@ -41,6 +41,8 @@ class AppKernel extends Kernel
             // not required, but recommended for better extraction
             new JMS\TranslationBundle\JMSTranslationBundle(),
             
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
+            
             new Via\Bundle\WebBundle\ViaWebBundle(),
             new Via\Bundle\ProductBundle\ViaProductBundle(),
             new Via\Bundle\UserBundle\ViaUserBundle(),
