@@ -2,8 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: ../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml }
-    #- { resource: sonata_block.yml }
-    #- { resource: '@ViaProductBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
@@ -91,8 +89,13 @@ fos_user:
     user_class: Via\Bundle\UserBundle\Entity\User
     
 a2lix_translation_form:
-    locales: [en, de]       # [1]
-    default_required: true      # [2]
-    manager_registry: doctrine      # [3]
-    templating: "A2lixTranslationFormBundle::default.html.twig"      # [4]
+    locales: '%locales%'      
+    default_required: true      
+    manager_registry: doctrine      
+    templating: "A2lixTranslationFormBundle::default.html.twig"    
+
+parameters:
+    sonata.user.admin.user.entity: Via\Bundle\UserBundle\Entity\User
+    sonata.user.admin.user.class: Via\Bundle\UserBundle\Admin\UserAdmin
+    sonata.user.admin.group.entity: Via\Bundle\GroupBundle\Entity\Group
     
