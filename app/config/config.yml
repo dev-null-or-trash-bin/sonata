@@ -80,9 +80,9 @@ sonata_block:
         sonata.admin.block.admin_list:
             contexts:   [admin]
             
-#sonata_admin:
-#    security:
-#        handler: sonata.admin.security.handler.role
+sonata_admin:
+    security:
+        handler: sonata.admin.security.handler.noop
         
 fos_user:
     db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
