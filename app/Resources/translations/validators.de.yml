@@ -1,0 +1,46 @@
+fos_user:
+    email:
+        # Desc: fos_user.email.already_used
+        already_used: fos_user.email.already_used   # FIXME
+
+        # Desc: fos_user.email.blank
+        blank: fos_user.email.blank   # FIXME
+
+        # Desc: fos_user.email.invalid
+        invalid: fos_user.email.invalid   # FIXME
+
+        # Desc: fos_user.email.long
+        long: fos_user.email.long   # FIXME
+
+        # Desc: fos_user.email.short
+        short: fos_user.email.short   # FIXME
+
+    group:
+        # Desc: fos_user.group.blank
+        blank: fos_user.group.blank   # FIXME
+
+        # Desc: fos_user.group.long
+        long: fos_user.group.long   # FIXME
+
+        # Desc: fos_user.group.short
+        short: fos_user.group.short   # FIXME
+
+    password:
+        # Desc: fos_user.password.blank
+        blank: fos_user.password.blank   # FIXME
+
+        # Desc: fos_user.password.short
+        short: fos_user.password.short   # FIXME
+
+    username:
+        # Desc: fos_user.username.already_used
+        already_used: fos_user.username.already_used   # FIXME
+
+        # Desc: fos_user.username.blank
+        blank: fos_user.username.blank   # FIXME
+
+        # Desc: fos_user.username.long
+        long: fos_user.username.long   # FIXME
+
+        # Desc: fos_user.username.short
+        short: fos_user.username.short   # FIXME
