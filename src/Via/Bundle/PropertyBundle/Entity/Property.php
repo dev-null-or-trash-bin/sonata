@@ -48,7 +48,7 @@ class Property implements PropertyInterface
      */
     public function __construct()
     {
-        $this->products = ArrayCollection();
+        $this->products = new ArrayCollection();
     }
     
     public function __toString()
