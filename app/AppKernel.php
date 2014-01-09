@@ -33,15 +33,14 @@ class AppKernel extends Kernel
             
             new Sonata\UserBundle\SonataUserBundle(),
             
-            #new Prezent\Doctrine\TranslatableBundle\PrezentDoctrineTranslatableBundle(),
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             
-            #new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             
             // not required, but recommended for better extraction
-            #new JMS\TranslationBundle\JMSTranslationBundle(),
+            new JMS\TranslationBundle\JMSTranslationBundle(),
             
-            #new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             
             new Via\Bundle\WebBundle\ViaWebBundle(),
             new Via\Bundle\ProductBundle\ViaProductBundle(),
