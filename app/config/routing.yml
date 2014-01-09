@@ -1,3 +1,7 @@
+via_property:
+    resource: "@ViaPropertyBundle/Resources/config/routing.xml"
+    prefix:   /
+
 homepage:
     path: /    
     defaults:
