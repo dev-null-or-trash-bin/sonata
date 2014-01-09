@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "e91f9cec93c9ab0aae732a5ecbe00f08",
+    "hash": "b1772011c19fefc09f2a90c93583424e",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -982,7 +982,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "https://github.com/schmittjoh",
+                    "homepage": "http://jmsyst.com",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1606,16 +1606,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "217a3f3b7c13d3e582a4161ca566386ec218c6f7"
+                "reference": "e46820b992b68d8025b9f7d4de182f659a01610b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/217a3f3b7c13d3e582a4161ca566386ec218c6f7",
-                "reference": "217a3f3b7c13d3e582a4161ca566386ec218c6f7",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/e46820b992b68d8025b9f7d4de182f659a01610b",
+                "reference": "e46820b992b68d8025b9f7d4de182f659a01610b",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
+                "knplabs/knp-menu": ">=1.1.0,<3.0.0",
+                "knplabs/knp-menu-bundle": ">=1.1.0,<3.0.0",
                 "sensio/generator-bundle": "~2.2",
                 "sonata-project/block-bundle": "~2.2,>=2.2.7",
                 "sonata-project/core-bundle": "~2.2@dev",
@@ -1676,7 +1678,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-01-07 11:44:39"
+            "time": "2014-01-09 16:25:21"
         },
         {
             "name": "sonata-project/block-bundle",
@@ -1747,12 +1749,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataCoreBundle.git",
-                "reference": "fadf268d4b2c23220b27c33389b6a6132085159e"
+                "reference": "0c72b6b0212014c5b5e015b4bf3811bf42fb3728"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/fadf268d4b2c23220b27c33389b6a6132085159e",
-                "reference": "fadf268d4b2c23220b27c33389b6a6132085159e",
+                "url": "https://api.github.com/repos/sonata-project/SonataCoreBundle/zipball/0c72b6b0212014c5b5e015b4bf3811bf42fb3728",
+                "reference": "0c72b6b0212014c5b5e015b4bf3811bf42fb3728",
                 "shasum": ""
             },
             "require": {
@@ -1796,7 +1798,7 @@
             "keywords": [
                 "sonata"
             ],
-            "time": "2014-01-07 11:35:59"
+            "time": "2014-01-09 14:35:33"
         },
         {
             "name": "sonata-project/doctrine-extensions",
