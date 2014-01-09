@@ -2,6 +2,8 @@
 namespace Via\Bundle\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
@@ -11,7 +13,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Entity(repositoryClass="Via\Bundle\ProductBundle\Entity\Repository\Product")
  */
 
-class Product
+class Product implements ProductInterface
 {
     use ORMBehaviors\Translatable\Translatable,
         ORMBehaviors\Timestampable\Timestampable;
@@ -58,10 +60,18 @@ class Product
     private $ean;
     
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Via\Bundle\ProductBundle\Entity\ProductProperty", mappedBy="product")
+     */
+    protected $properties;
+    
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->properties = new ArrayCollection();
     }
     
     public function __toString()
@@ -255,4 +265,85 @@ class Product
         return $this;
     }
     
+    /**
+     * {@inheritdoc}
+     */
+    public function getProperties()
+    {
+        return $this->properties;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function setProperties(Collection $properties)
+    {
+        foreach ($properties as $property) {
+            $this->addProperty($property);
+        }
+    
+        return $this;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function addProperty(ProductPropertyInterface $property)
+    {
+        if (!$this->hasProperty($property)) {
+            $property->setProduct($this);
+            $this->properties->add($property);
+        }
+    
+        return $this;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function removeProperty(ProductPropertyInterface $property)
+    {
+        if ($this->hasProperty($property)) {
+            $property->setProduct(null);
+            $this->properties->removeElement($property);
+        }
+    
+        return $this;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function hasProperty(ProductPropertyInterface $property)
+    {
+        return $this->properties->contains($property);
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function hasPropertyByName($propertyName)
+    {
+        foreach ($this->properties as $property) {
+            if ($property->getName() === $propertyName) {
+                return true;
+            }
+        }
+    
+        return false;
+    }
+    
+    /**
+     * {@inheritdoc}
+     */
+    public function getPropertyByName($propertyName)
+    {
+        foreach ($this->properties as $property) {
+            if ($property->getName() === $propertyName) {
+                return $property;
+            }
+        }
+    
+        return null;
+    }
 }
