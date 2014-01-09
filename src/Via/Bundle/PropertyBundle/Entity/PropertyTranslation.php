@@ -6,7 +6,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="product_property_translation")
+ * @ORM\Table(name="property_translation")
  */
 class PropertyTranslation
 {

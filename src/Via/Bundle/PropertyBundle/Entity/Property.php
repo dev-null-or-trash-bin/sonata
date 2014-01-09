@@ -2,18 +2,20 @@
 namespace Via\Bundle\PropertyBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="product_property")
+ * @ORM\Table(name="property")
  * @ORM\Entity(repositoryClass="Via\Bundle\PropertyBundle\Entity\Repository\Property")
  */
-class Property
-{
+class Property implements PropertyInterface
+{   
     use ORMBehaviors\Translatable\Translatable,
-    ORMBehaviors\Timestampable\Timestampable;
+        ORMBehaviors\Timestampable\Timestampable;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -35,10 +37,18 @@ class Property
     protected $type;
     
     /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\OneToMany(targetEntity="Via\Bundle\ProductBundle\Entity\ProductProperty", mappedBy="property")
+     */
+    protected $products;
+    
+    /**
      * Constructor
      */
     public function __construct()
     {
+        $this->products = new ArrayCollection();
     }
     
     public function __toString()

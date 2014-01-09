@@ -3,6 +3,7 @@ imports:
     - { resource: security.yml }
     - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
     - { resource: '@ViaProductBundle/Resources/config/admin.xml' }
+    - { resource: '@ViaPropertyBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
