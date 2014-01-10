@@ -2,9 +2,10 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     <services>
+    
        <service id="sonata.admin.product" class="Via\Bundle\ProductBundle\Admin\ProductAdmin">
           <tag name="sonata.admin" manager_type="orm" 
-                group="ViA-eBay" 
+                group="Content" 
                 label="via.admin.header.product"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
            />
@@ -15,5 +16,22 @@
               <argument>messages</argument>
           </call>
       </service>
+      
+      <service id="sonata.admin.product_property" class="Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin">
+          <tag name="sonata.admin" manager_type="orm" 
+                group="Content" 
+                label="via.admin.header.product_property"
+           		label_translator_strategy="sonata.admin.label.strategy.noop"     
+           />
+          <argument />
+          <argument>Via\Bundle\ProductBundle\Entity\ProductProperty</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>messages</argument>
+          </call>
+      </service>
+      
    </services>
+   
+   
 </container>

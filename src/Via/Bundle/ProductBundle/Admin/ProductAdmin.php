@@ -56,7 +56,75 @@ class ProductAdmin extends Admin
             ))
         ;
          
-        #$formMapper->with('Images');
+        $formMapper->with('Property')
+        /* ->add('properties', 'sonata_type_collection',
+                array(
+                    'by_reference' => false,
+                ),
+                array(
+                    'edit' => 'inline',
+                    'inline' => 'table',
+                    'sortable' => 'position',
+                    'allow_add' => true,
+                    'allow_delete' => true,
+                    'targetEntity' => 'Via\Bundle\PropertyBundle\Entity\Property',
+                )) */
+        
+        /* ->add('properties',
+            'collection',
+            array(
+                'type' => 'entity',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'by_reference' => false,
+                'label' => false,
+                'options' => array(
+                    'class' => 'ViaPropertyBundle:Property',
+                    'property' => 'name',
+                    'label' => false
+                )
+            )
+        ) */
+        
+        ->add( 'properties', 'collection', array(
+            'type' => new \Via\Bundle\ProductBundle\Form\Type\ProductPropertyType(),
+            'allow_add' => true,
+            'allow_delete' => true,
+            'by_reference' => false ))
+        
+        /* ->add('properties', 'sonata_type_collection',
+            array(
+                'by_reference' => false,
+            ),
+            array(
+                'edit' => 'inline',
+                'inline' => 'table',
+                'allow_add' => true,
+                'allow_delete' => true,
+                'admin_code' => 'sonata.admin.product_property' # each has custom form configuration
+            ))*/
+        #->add('properties', 'via_property_choice')
+       
+        
+        
+        ->end()
+        ;
+    }
+    
+    /**
+     * Kinda Hackish methods to fix potential bug with SonataAdminBundle. I have not
+     * confirmed this is necessary but I've seen this implemented more than once.
+     */
+    public function prePersist($product)
+    {
+        #throw new \Exception('__METHOD__');
+        $product->setProperties($product->getProperties());
+    }
+    
+    public function preUpdate($product)
+    {
+        #throw new \Exception('__METHOD__');
+        $product->setProperties($product->getProperties());
     }
 
     // Fields to be shown on filter forms

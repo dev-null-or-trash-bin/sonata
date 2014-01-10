@@ -2,12 +2,14 @@
 namespace Via\Bundle\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Via\Bundle\PropertyBundle\Entity\Property;
+use Via\Bundle\PropertyBundle\Entity\PropertyTypes;
 
 /**
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
- * @ORM\Table(name="product_property") 
- *  
+ * @ORM\Table(name="product_property")
+ *
  */
 class ProductProperty implements ProductPropertyInterface
 {
@@ -41,13 +43,13 @@ class ProductProperty implements ProductPropertyInterface
     /**
      * Property value.
      *
-     * @var mixed
+     * @ORM\Column(name="value", type="string", length=255, nullable=false)
      */
     protected $value;
     
     public function __toString()
     {
-        return $this->value;
+        return ($this->getValue()) ? : '';
     }
     
     /**
@@ -69,7 +71,7 @@ class ProductProperty implements ProductPropertyInterface
     /**
      * {@inheritdoc}
      */
-    public function setProduct(ProductInterface $product = null)
+    public function setProduct(Product $product = null)
     {
         $this->product = $product;
     
@@ -87,7 +89,7 @@ class ProductProperty implements ProductPropertyInterface
     /**
      * {@inheritdoc}
      */
-    public function setProperty(PropertyInterface $property)
+    public function setProperty(Property $property)
     {
         $this->property = $property;
     

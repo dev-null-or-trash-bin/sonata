@@ -5,11 +5,18 @@
 
     <parameters>
         <parameter key="via.form.type.product_property.class">Via\Bundle\PropertyBundle\Form\Type\ProductPropertyType</parameter>
+        <parameter key="via.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>
+        <parameter key="via.form.type.property_choice.class">Via\Bundle\PropertyBundle\Form\Type\PropertyEntityChoiceType</parameter>
     </parameters>
 
     <services>        
         <service id="via.form.type.product_property" class="%via.form.type.product_property.class%">
             <tag name="form.type" alias="via_product_property" />
+        </service>
+        
+        <service id="via.form.type.property_choice" class="%via.form.type.property_choice.class%">
+            <argument>%via.entity.property.class%</argument>
+            <tag name="form.type" alias="via_property_choice" />
         </service>
     </services>
 
