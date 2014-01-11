@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b1772011c19fefc09f2a90c93583424e",
+    "hash": "e0a5a4f830cf1029e44b6f7aff923089",
     "packages": [
         {
             "name": "a2lix/translation-form-bundle",
@@ -689,6 +689,61 @@
             "time": "2013-11-12 12:40:13"
         },
         {
+            "name": "elao/web-profiler-extra-bundle",
+            "version": "dev-master",
+            "target-dir": "Elao/WebProfilerExtraBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Elao/WebProfilerExtraBundle.git",
+                "reference": "82061e8b00060db91bd6b76e405184f417f56c09"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Elao/WebProfilerExtraBundle/zipball/82061e8b00060db91bd6b76e405184f417f56c09",
+                "reference": "82061e8b00060db91bd6b76e405184f417f56c09",
+                "shasum": ""
+            },
+            "require": {
+                "symfony/framework-bundle": "~2.1",
+                "symfony/twig-bundle": "~2.0",
+                "twig/twig": "~1.12"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Elao\\WebProfilerExtraBundle": "."
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Elao Team",
+                    "homepage": "http://www.elao.com"
+                },
+                {
+                    "name": "Contributors",
+                    "homepage": "http://github.com/Elao/WebProfilerExtraBundle/contributors"
+                }
+            ],
+            "description": "Add routing, container, assetic & twig information inside the profiler",
+            "homepage": "http://github.com/Elao/WebProfilerExtraBundle",
+            "keywords": [
+                "bundle",
+                "elao",
+                "extra",
+                "profiler"
+            ],
+            "time": "2013-11-06 19:40:03"
+        },
+        {
             "name": "friendsofsymfony/user-bundle",
             "version": "v1.3.3",
             "target-dir": "FOS/UserBundle",
@@ -755,6 +810,98 @@
                 "User management"
             ],
             "time": "2013-09-23 08:24:12"
+        },
+        {
+            "name": "guzzle/guzzle",
+            "version": "v3.8.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/guzzle/guzzle.git",
+                "reference": "b4a3ce8c05e777fa18b802956d5d0e38ad338a69"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/guzzle/guzzle/zipball/b4a3ce8c05e777fa18b802956d5d0e38ad338a69",
+                "reference": "b4a3ce8c05e777fa18b802956d5d0e38ad338a69",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "php": ">=5.3.3",
+                "symfony/event-dispatcher": ">=2.1"
+            },
+            "replace": {
+                "guzzle/batch": "self.version",
+                "guzzle/cache": "self.version",
+                "guzzle/common": "self.version",
+                "guzzle/http": "self.version",
+                "guzzle/inflection": "self.version",
+                "guzzle/iterator": "self.version",
+                "guzzle/log": "self.version",
+                "guzzle/parser": "self.version",
+                "guzzle/plugin": "self.version",
+                "guzzle/plugin-async": "self.version",
+                "guzzle/plugin-backoff": "self.version",
+                "guzzle/plugin-cache": "self.version",
+                "guzzle/plugin-cookie": "self.version",
+                "guzzle/plugin-curlauth": "self.version",
+                "guzzle/plugin-error-response": "self.version",
+                "guzzle/plugin-history": "self.version",
+                "guzzle/plugin-log": "self.version",
+                "guzzle/plugin-md5": "self.version",
+                "guzzle/plugin-mock": "self.version",
+                "guzzle/plugin-oauth": "self.version",
+                "guzzle/service": "self.version",
+                "guzzle/stream": "self.version"
+            },
+            "require-dev": {
+                "doctrine/cache": "*",
+                "monolog/monolog": "1.*",
+                "phpunit/phpunit": "3.7.*",
+                "psr/log": "1.0.*",
+                "symfony/class-loader": "*",
+                "zendframework/zend-cache": "2.0.*",
+                "zendframework/zend-log": "2.0.*"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "3.8-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Guzzle\\Tests": "tests/",
+                    "Guzzle": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Dowling",
+                    "email": "mtdowling@gmail.com",
+                    "homepage": "https://github.com/mtdowling"
+                },
+                {
+                    "name": "Guzzle Community",
+                    "homepage": "https://github.com/guzzle/guzzle/contributors"
+                }
+            ],
+            "description": "Guzzle is a PHP HTTP client library and framework for building RESTful web service clients",
+            "homepage": "http://guzzlephp.org/",
+            "keywords": [
+                "client",
+                "curl",
+                "framework",
+                "http",
+                "http client",
+                "rest",
+                "web service"
+            ],
+            "time": "2013-12-05 23:39:20"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1419,6 +1566,61 @@
                 "php"
             ],
             "time": "2012-04-23 22:52:11"
+        },
+        {
+            "name": "playbloom/guzzle-bundle",
+            "version": "dev-master",
+            "target-dir": "Playbloom/Bundle/GuzzleBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ludofleury/GuzzleBundle.git",
+                "reference": "b7a8d799d60f60aaca4b0d192084d66f29c60392"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ludofleury/GuzzleBundle/zipball/b7a8d799d60f60aaca4b0d192084d66f29c60392",
+                "reference": "b7a8d799d60f60aaca4b0d192084d66f29c60392",
+                "shasum": ""
+            },
+            "require": {
+                "guzzle/guzzle": "3.*",
+                "php": ">=5.3.0",
+                "symfony/config": "~2.1",
+                "symfony/dependency-injection": "~2.1",
+                "symfony/http-foundation": "~2.1",
+                "symfony/http-kernel": "~2.1",
+                "symfony/web-profiler-bundle": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Playbloom\\Bundle\\GuzzleBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ludovic Fleury",
+                    "email": "ludo.fleury@gmail.com",
+                    "homepage": "https://github.com/ludofleury"
+                }
+            ],
+            "description": "Provide Symfony2 web profiler for Guzzle",
+            "homepage": "https://github.com/ludofleury/GuzzleBundle",
+            "keywords": [
+                "Guzzle",
+                "Symfony2",
+                "profiler"
+            ],
+            "time": "2013-12-18 13:54:56"
         },
         {
             "name": "psr/log",
@@ -2121,12 +2323,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataUserBundle.git",
-                "reference": "b6ad6833c05eff79c53e68e8be7b2b427dd80c49"
+                "reference": "13b3f69408ffa45a6543a10e90b5b6f793fe907d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/b6ad6833c05eff79c53e68e8be7b2b427dd80c49",
-                "reference": "b6ad6833c05eff79c53e68e8be7b2b427dd80c49",
+                "url": "https://api.github.com/repos/sonata-project/SonataUserBundle/zipball/13b3f69408ffa45a6543a10e90b5b6f793fe907d",
+                "reference": "13b3f69408ffa45a6543a10e90b5b6f793fe907d",
                 "shasum": ""
             },
             "require": {
@@ -2177,7 +2379,7 @@
                 "sonata",
                 "user"
             ],
-            "time": "2014-01-06 13:23:04"
+            "time": "2014-01-10 17:03:46"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -2680,8 +2882,10 @@
         "sonata-project/doctrine-orm-admin-bundle": 20,
         "knplabs/doctrine-behaviors": 20,
         "a2lix/translation-form-bundle": 20,
+        "lunetics/locale-bundle": 20,
         "jms/i18n-routing-bundle": 20,
-        "lunetics/locale-bundle": 20
+        "playbloom/guzzle-bundle": 20,
+        "elao/web-profiler-extra-bundle": 20
     },
     "platform": {
         "php": ">=5.3.3"

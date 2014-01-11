@@ -30,7 +30,9 @@
 		"knplabs/doctrine-behaviors" : "dev-master",
 		"a2lix/translation-form-bundle" : "dev-master",
 		"lunetics/locale-bundle" : "dev-master",
-		"jms/i18n-routing-bundle" : "dev-master"		
+		"jms/i18n-routing-bundle" : "dev-master",
+		"playbloom/guzzle-bundle": "dev-master",
+		"elao/web-profiler-extra-bundle": "~2.3@dev"		
 	},
 	"scripts" : {
 		"post-install-cmd" : [

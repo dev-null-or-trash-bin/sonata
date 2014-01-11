@@ -2,7 +2,7 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
-    - { resource: '@ViaProductBundle/Resources/config/admin.xml' }
+    - { resource: '@ViaProductBundle/Resources/config/admin.xml' }    
     - { resource: '@ViaPropertyBundle/Resources/config/admin.xml' }
 
 framework:
@@ -112,7 +112,7 @@ fos_user:
 # A2LixTranslationFormBundle
 a2lix_translation_form:
     locales: '%locales%'      
-    default_required: true      
+    default_required: false      
     manager_registry: doctrine      
     templating: "A2lixTranslationFormBundle::default.html.twig"    
 
