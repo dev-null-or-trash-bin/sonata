@@ -6,7 +6,7 @@
        <service id="sonata.admin.product" class="Via\Bundle\ProductBundle\Admin\ProductAdmin">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.admin.header.product"
+                label="via.admin.dashboard.product"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
            />
           <argument />
@@ -20,7 +20,7 @@
       <service id="sonata.admin.product_property" class="Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.admin.header.product_property"
+                label="via.admin.dashboard.product_property"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
            />
           <argument />

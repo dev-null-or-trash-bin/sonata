@@ -12,7 +12,7 @@ class ProductPropertyAdmin extends Admin
     
     protected function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper
+        /* $formMapper
             ->add('property', 'entity', array(
                 'class' => 'ViaPropertyBundle:Property',
                 'property' => 'presentation',
@@ -30,7 +30,16 @@ class ProductPropertyAdmin extends Admin
                 'property' => 'name',
                 'label' => 'via.form.product_property.product'
             ));
-        }
+        } */
+        
+        $formMapper
+        ->add('property', 'sonata_type_model_list', array(), array(
+            'link_parameters' => array('context' => 'default')
+        ))
+        ->add('value', 'text', array(
+            'label' => 'via.form.product_property.value'
+        ))        
+        ;
     }
     
     protected function configureRoutes(RouteCollection $routes)
