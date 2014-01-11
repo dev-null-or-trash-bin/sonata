@@ -12,25 +12,29 @@ class ProductPropertyAdmin extends Admin
     
     protected function configureFormFields(FormMapper $formMapper)
     {
-        /* $formMapper
-            ->add('property', 'entity', array(
+        $formMapper->add('property', 'entity', array(
                 'class' => 'ViaPropertyBundle:Property',
                 'property' => 'presentation',
-                'label' => 'via.form.product_property.property'
+                'label' => 'via.form.label.product_property.property',            
+        ), array(
+            'edit' => 'inline',
+            'inline' => 'table',
+            'allow_add' => true,
+            'allow_delete' => true,
         ))
         ->add('value', 'text', array(
-            'label' => 'via.form.product_property.value'
+            'label' => 'via.form.label.product_property.value'
         ))
         ;
-            
-        if (!$this->isChild()) {
-            $formMapper
-            ->add('product', 'entity', array(
+
+        // hide in Product Entity form
+        if (!$this->isChild() && !$this->hasParentFieldDescription()) {
+            $formMapper->add('product', 'entity', array(
                 'class' => 'ViaProductBundle:Product',
                 'property' => 'name',
-                'label' => 'via.form.product_property.product'
+                'label' => 'via.form.label.product_property.product'
             ));
-        } */
+        }
         
         $formMapper
         ->add('property', 'sonata_type_model_list', array(), array(
@@ -38,7 +42,17 @@ class ProductPropertyAdmin extends Admin
         ))
         ->add('value', 'text', array(
             'label' => 'via.form.product_property.value'
-        ))        
+        )) 
+
+        /* $formMapper->add('property', 'sonata_type_admin', array(
+            'required' => false,
+        ), array(
+            'edit' => 'inline',
+            'inline' => 'table',
+        ), array(
+        
+        )) */
+        
         ;
     }
     
@@ -56,8 +70,8 @@ class ProductPropertyAdmin extends Admin
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
         $datagridMapper
-        ->add('property', null, array('label' => 'via.form.product_property.property'))
-        ->add('value', null, array('label' => 'via.form.product_property.value'))
+        ->add('property', null, array('label' => 'via.form.label.product_property.property'))
+        ->add('value', null, array('label' => 'via.form.label.product_property.value'))
         ;
     }
     
@@ -66,9 +80,17 @@ class ProductPropertyAdmin extends Admin
     {
         $listMapper
         ->addIdentifier('id')
-        ->add('presentation', null, array('label' => 'via.form.product_property.presentation'))
-        ->add('value', null, array('label' => 'via.form.product_property.value'))
-        ->add('product', null, array('label' => 'via.form.product_property.product'))
+        ->add('presentation', null, array('label' => 'via.form.label.product_property.presentation'))
+        ->add('value', null, array('label' => 'via.form.label.product_property.value'))
+        ->add('product', null, array('label' => 'via.form.label.product_property.product'))
+        ->add('_action', 'actions', array(
+            'actions' => array(
+                'view' => array(),
+                'edit' => array(),
+                #'new' => array(),
+            ),
+            'label' => 'via.form.label.custom_action'
+        ))
         ;
     }
 }

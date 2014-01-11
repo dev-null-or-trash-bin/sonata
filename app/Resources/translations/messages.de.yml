@@ -1,33 +1,40 @@
 via:
     form:
+        custom_action: via.form.custom_action   # FIXME
+
         product:
-            # Desc: via.form.product.article_number
-            article_number: Artikelnummer   # FIXME
-
-            # Desc: via.form.product.description
+            articleNumber: via.form.product.articleNumber   # FIXME
+            article_number: Artikelnummer
             description: Beschreibung
+            ean: via.form.product.ean
+            id: via.form.product.id   # FIXME
+            name: via.form.product.name
+            price: via.form.product.price
+            short_description: via.form.product.short_description
+            stockAmount: via.form.product.stockAmount   # FIXME
+            stock_amount: via.form.product.stock_amount
+            translations: via.form.product.translations
+            vat_percent: via.form.product.vat_percent
 
-            # Desc: via.form.product.ean
-            ean: via.form.product.ean   # FIXME
+        product_property:
+            presentation: via.form.product_property.presentation   # FIXME
+            product: via.form.product_property.product   # FIXME
+            property: via.form.product_property.property   # FIXME
+            value: via.form.product_property.value   # FIXME
 
-            # Desc: via.form.product.name
-            name: via.form.product.name   # FIXME
+        property:
+            name: via.form.property.name   # FIXME
+            presentation: via.form.property.presentation   # FIXME
+            type: via.form.property.type   # FIXME
 
-            # Desc: via.form.product.price
-            price: via.form.product.price   # FIXME
+    label:
+        property:
+            name: via.label.property.name   # FIXME
+            presentation: via.label.property.presentation   # FIXME
 
-            # Desc: via.form.product.short_description
-            short_description: via.form.product.short_description   # FIXME
+    tab:
+        label:
+            properties: via.tab.label.properties   # FIXME
 
-            # Desc: via.form.product.stock_amount
-            stock_amount: via.form.product.stock_amount   # FIXME
-
-            # Desc: via.form.product.translations
-            translations: via.form.product.translations   # FIXME
-
-            # Desc: via.form.product.vat_percent
-            vat_percent: via.form.product.vat_percent   # FIXME
-    admin:
-        header:
-            product: Produkte
-            via_ebay: ViA-eBay 
+        product: via.tab.product   # FIXME
+        properties: Property tab   # FIXME

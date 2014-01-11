@@ -4,17 +4,31 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="via_product.example.class">Via\Bundle\ProductBundle\Example</parameter>
+	<parameters>        
+        <parameter key="via.form.type.product_property.class">Via\Bundle\ProductBundle\Form\Type\ProductPropertyType</parameter>
+        <parameter key="via.form.type.product_to_identifier.class">Via\Bundle\ProductBundle\Form\Type\ProductToIdentifierType</parameter>
+        <parameter key="via.entity.product.class">Via\Bundle\ProductBundle\Entity\Product</parameter>
+        <parameter key="via.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>
+        <parameter key="via.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
+        <parameter key="via.repository.product.class">Via\Bundle\ProductBundle\Entity\Repository\Product</parameter>
     </parameters>
 
+    
     <services>
-        <service id="via_product.example" class="%via_product.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
+        <service id="via.form.type.product_property" class="%via.form.type.product_property.class%">
+        	<argument>%via.entity.product_property.class%</argument>
+            <tag name="form.type" alias="via_product_property" />
         </service>
+        
+        <service id="via.repository.product" class="%via.repository.product.class%">            
+            <tag name="form.type" alias="via_repository_product" />
+        </service>
+        
+        <service id="via.form.type.product_to_identifier" class="%via.form.type.product_to_identifier.class%">
+            <argument type="service" id="via.repository.product" />
+            <tag name="form.type" alias="via_product_to_identifier" />
+        </service>
+        
     </services>
-    -->
+    
 </container>

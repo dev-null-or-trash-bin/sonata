@@ -285,6 +285,11 @@ class Product implements ProductInterface
         return $this;
     }
     
+    public function addPropertie (ProductPropertyInterface $property)
+    {
+        $this->addProperty($property);
+    }
+    
     /**
      * {@inheritdoc}
      */
