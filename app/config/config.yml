@@ -83,6 +83,8 @@ sonata_block:
         sonata.block.service.text: ~
         sonata.block.service.action: ~
         sonata.block.service.rss: ~
+        sonata.admin.block.search_result:
+            contexts:   [admin]
       
 
 # SonataAdminBundle
@@ -91,6 +93,7 @@ sonata_admin:
         handler: sonata.admin.security.handler.noop
     templates:
         user_block: 'ViaWebBundle:Backend:menu.html.twig'
+        show:       'SonataAdminBundle:CRUD:show.html.twig'
     dashboard:
         blocks:
             # display a dashboard block

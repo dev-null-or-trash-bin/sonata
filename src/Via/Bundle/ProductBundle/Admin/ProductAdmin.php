@@ -89,16 +89,34 @@ class ProductAdmin extends Admin
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
     {
-        $datagridMapper->add('articleNumber')->add('ean');
+        $datagridMapper->add('articleNumber', null, array(
+            'label' => 'via.form.product.articleNumber'
+        ))
+//         ->add('name', null, array(
+//             'label' => 'via.form.product.name'
+//         ))
+        ->add('ean', null, array(
+            'label' => 'via.form.product.ean'
+        ))
+        ->add('stockAmount', null, array(
+            'label' => 'via.form.product.ean'
+        ));
     }
     
     // Fields to be shown on lists
     protected function configureListFields(ListMapper $listMapper)
     {
-        $listMapper->addIdentifier('id')
-            ->add('name')
-            ->add('price', null, array(
+        $listMapper->addIdentifier('id', null, array(
+            'label' => 'via.form.product.id'
+        ))
+            ->add('name', null, array(
+            'label' => 'via.form.product.name'
+        ))
+        ->add('price', null, array(
             'label' => 'via.form.product.price'
+        ))
+        ->add('stockAmount', null, array(
+            'label' => 'via.form.product.stockAmount'
         ));
     }
 }

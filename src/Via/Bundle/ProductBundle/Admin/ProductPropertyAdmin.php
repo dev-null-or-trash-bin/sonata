@@ -42,7 +42,7 @@ class ProductPropertyAdmin extends Admin
         ;
     }
     
-    protected function configureRoutes(RouteCollection $routes)
+    /* protected function configureRoutes(RouteCollection $routes)
     {
         parent::configureRoutes($routes);
     
@@ -50,7 +50,7 @@ class ProductPropertyAdmin extends Admin
         {
             $routes->remove('create');
         }
-    }
+    } */
     
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)
