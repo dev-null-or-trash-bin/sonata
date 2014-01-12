@@ -42,11 +42,14 @@ class AppKernel extends Kernel
             
             new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             
+            new Misd\GuzzleBundle\MisdGuzzleBundle(),
+            
             new Via\Bundle\WebBundle\ViaWebBundle(),
             new Via\Bundle\ProductBundle\ViaProductBundle(),
             new Via\Bundle\UserBundle\ViaUserBundle(),
             new Via\Bundle\GroupBundle\ViaGroupBundle(),
             new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
+            #new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
@@ -54,6 +57,7 @@ class AppKernel extends Kernel
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();
             $bundles[] = new Elao\WebProfilerExtraBundle\WebProfilerExtraBundle();
+            $bundles[] = new Playbloom\Bundle\GuzzleBundle\PlaybloomGuzzleBundle();
         }
 
         return $bundles;

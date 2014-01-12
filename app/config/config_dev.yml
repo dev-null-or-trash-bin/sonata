@@ -51,3 +51,6 @@ web_profiler_extra:
     twig:
         enabled:        true
         display_in_wdt: true
+        
+playbloom_guzzle:
+    web_profiler: true

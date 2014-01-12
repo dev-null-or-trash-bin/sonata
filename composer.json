@@ -32,7 +32,8 @@
 		"lunetics/locale-bundle" : "dev-master",
 		"jms/i18n-routing-bundle" : "dev-master",
 		"playbloom/guzzle-bundle": "dev-master",
-		"elao/web-profiler-extra-bundle": "~2.3@dev"		
+		"elao/web-profiler-extra-bundle": "~2.3@dev",
+		"misd/guzzle-bundle": "~1.0"		
 	},
 	"scripts" : {
 		"post-install-cmd" : [
