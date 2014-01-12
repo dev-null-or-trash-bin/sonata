@@ -3,34 +3,35 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     
     <parameters>        
-        <parameter key="via.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>
-        <parameter key="via.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>        
+        <parameter key="via_product.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>
+        <parameter key="via_product.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>        
     </parameters>
     
     <services>
     
-       <service id="sonata.admin.product" class="%via.admin.product.class%">
+       <service id="via_product.admin.product" class="%via_product.admin.product.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.admin.dashboard.product"
+                label="via_product.admin.dashboard.product"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
            />
           <argument />
-          <argument>%via.entity.product.class%</argument>
-          <argument />
+          <argument>%via_product.entity.product.class%</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <argument type="service" id="service_container" />
           <call method="setTranslationDomain">
               <argument>messages</argument>
           </call>
       </service>
       
-      <service id="sonata.admin.product_property" class="%via.admin.product_property.class%">
+      <service id="via_product.admin.product_property" class="%via_product.admin.product_property.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.admin.dashboard.product_property"
+                label="via_product.admin.dashboard.product_property"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
-           />
+           />          
           <argument />
-          <argument>%via.entity.product_property.class%</argument>
+          <argument>%via_product.entity.product_property.class%</argument>
           <argument />
           <call method="setTranslationDomain">
               <argument>messages</argument>
