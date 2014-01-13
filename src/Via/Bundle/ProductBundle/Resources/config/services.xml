@@ -11,7 +11,7 @@
         <parameter key="via_product.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>
         <parameter key="via_product.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
         <parameter key="via_product.repository.product.class">Via\Bundle\ProductBundle\Entity\Repository\Product</parameter>
-        <parameter key="via_product.admin.product.extension.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>        
+        <!-- parameter key="via_product.admin.product.extension.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter -->        
     </parameters>
 
     
@@ -30,10 +30,10 @@
             <tag name="form.type" alias="via_product_to_identifier" />
         </service>
         
-        <service id="via_product.admin.product.extension.event" class="%via_product.admin.product.extension.event.class%">     
+        <!-- service id="via_product.admin.product.extension.event" class="%via_product.admin.product.extension.event.class%">     
         	<argument type="service" id="event_dispatcher" />       
             <tag name="sonata.admin.extension" global="true" />
-        </service>
+        </service -->
         
     </services>
     
