@@ -1,3 +1,7 @@
+via_api_user:
+    resource: "@ViaApiUserBundle/Resources/config/routing.xml"
+    prefix:   /
+
 via_api:
     resource: "@ViaApiBundle/Resources/config/routing.xml"
     prefix:   /
