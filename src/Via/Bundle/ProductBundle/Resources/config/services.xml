@@ -30,10 +30,10 @@
             <tag name="form.type" alias="via_product_to_identifier" />
         </service>
         
-        <service id="via_product.admin.product.extension.event" class="%via_product.admin.product.extension.event.class%">     
+        <!-- service id="via_product.admin.product.extension.event" class="%via_product.admin.product.extension.event.class%">     
         	<argument type="service" id="event_dispatcher" />       
             <tag name="sonata.admin.extension" global="true" />
-        </service>
+        </service -->
         
     </services>
     

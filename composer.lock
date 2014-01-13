@@ -957,16 +957,16 @@
         },
         {
             "name": "jdorn/sql-formatter",
-            "version": "v1.2.16",
+            "version": "v1.2.17",
             "source": {
                 "type": "git",
                 "url": "https://github.com/jdorn/sql-formatter.git",
-                "reference": "8859d664737492d313c34796731b35eca851b362"
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/8859d664737492d313c34796731b35eca851b362",
-                "reference": "8859d664737492d313c34796731b35eca851b362",
+                "url": "https://api.github.com/repos/jdorn/sql-formatter/zipball/64990d96e0959dff8e059dfcdc1af130728d92bc",
+                "reference": "64990d96e0959dff8e059dfcdc1af130728d92bc",
                 "shasum": ""
             },
             "require": {
@@ -1003,7 +1003,7 @@
                 "highlight",
                 "sql"
             ],
-            "time": "2013-11-27 22:51:13"
+            "time": "2014-01-12 16:20:24"
         },
         {
             "name": "jms/i18n-routing-bundle",
@@ -1129,7 +1129,7 @@
                 {
                     "name": "Johannes M. Schmitt",
                     "email": "schmittjoh@gmail.com",
-                    "homepage": "http://jmsyst.com",
+                    "homepage": "https://github.com/schmittjoh",
                     "role": "Developer of wrapped JMSSerializerBundle"
                 }
             ],
@@ -1882,12 +1882,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sonata-project/SonataAdminBundle.git",
-                "reference": "e46820b992b68d8025b9f7d4de182f659a01610b"
+                "reference": "ac899038f0073656e5c981de8f31ef01eb778ed1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/e46820b992b68d8025b9f7d4de182f659a01610b",
-                "reference": "e46820b992b68d8025b9f7d4de182f659a01610b",
+                "url": "https://api.github.com/repos/sonata-project/SonataAdminBundle/zipball/ac899038f0073656e5c981de8f31ef01eb778ed1",
+                "reference": "ac899038f0073656e5c981de8f31ef01eb778ed1",
                 "shasum": ""
             },
             "require": {
@@ -1954,7 +1954,7 @@
                 "bootstrap",
                 "sonata"
             ],
-            "time": "2014-01-09 16:25:21"
+            "time": "2014-01-11 21:26:12"
         },
         {
             "name": "sonata-project/block-bundle",

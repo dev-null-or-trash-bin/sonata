@@ -1,7 +1,3 @@
-via_api:
-    resource: "@ViaGuzzleBundle/Resources/config/routing.xml"
-    prefix:   /
-
 via_property:
     resource: "@ViaPropertyBundle/Resources/config/routing.xml"
     prefix:   /
