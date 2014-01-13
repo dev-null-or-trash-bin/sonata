@@ -1,0 +1,25 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    
+    <parameters>
+         <parameter key="via_api.admin.product.class">Via\Bundle\ApiBundle\Admin\ProductAdmin</parameter>      
+    </parameters>
+
+	<services>
+	    <service id="sonata.admin.product" class="%via_api.admin.product.class%">
+	      <tag name="sonata.admin" manager_type="orm" group="Content" label="Post"/>
+	      <argument />
+	      <argument>%via_product.entity.product.class%</argument>
+	      <argument />
+	      <call method="setTemplate">
+	          <argument>list</argument>
+	          <argument>ViaApiBundle:CRUD:list.html.twig</argument>
+	      </call>
+	  	</service>
+	 </services>
+  
+</container>

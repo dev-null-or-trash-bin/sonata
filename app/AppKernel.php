@@ -50,6 +50,7 @@ class AppKernel extends Kernel
             new Via\Bundle\GroupBundle\ViaGroupBundle(),
             new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
             #new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
+            new Via\Bundle\ApiBundle\ViaApiBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
