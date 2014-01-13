@@ -10,14 +10,14 @@
     </parameters>
 
 	<services>
-	    <service id="sonata.admin.product" class="%via_api.admin.product.class%">
+	    <service id="sonata.admin.via_api_product" class="%via_api.admin.product.class%">
 	      <tag name="sonata.admin" manager_type="orm" group="Content" label="Post"/>
 	      <argument />
 	      <argument>%via_product.entity.product.class%</argument>
-	      <argument />
+	      <argument>ViaApiBundle:ProductAdmin</argument>
 	      <call method="setTemplate">
 	          <argument>list</argument>
-	          <argument>ViaApiBundle:CRUD:list.html.twig</argument>
+	          <argument>ViaApiBundle:CRUD:base_list.html.twig</argument>
 	      </call>
 	  	</service>
 	 </services>

@@ -9,7 +9,6 @@ class OverrideProductAdminCompilerClass implements CompilerPassInterface
     public function process(ContainerBuilder $container)
     {
         $definition = $container->getDefinition('via_product.admin.product');
-        \Doctrine\Common\Util\Debug::dump($definition);
         $definition->setClass('Via\Bundle\ApiBundle\Admin\ProductAdmin');
     }
 }
