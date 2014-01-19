@@ -62,7 +62,24 @@ jms_translation:
             dirs: [%kernel.root_dir%, %kernel.root_dir%/../src]
             output_dir: %kernel.root_dir%/Resources/translations
             ignored_domains: [routes]
-            excluded_names: [*TestCase.php, *Test.php]
+            excluded_names: ['*TestCase.php', '*Test.php']
             excluded_dirs: [cache, data, logs]
             extractors: [jms_i18n_routing]
             output_format: xliff
+        product:
+            dirs: [%kernel.root_dir%/../src/Via/Bundle/ProductBundle]
+            output_dir: %kernel.root_dir%/../src/Via/Bundle/ProductBundle/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: ['*TestCase.php', '*Test.php']
+            excluded_dirs: [cache, data, logs]
+            extractors: [jms_i18n_routing]
+            output_format: xlf
+            
+        property:
+            dirs: [%kernel.root_dir%/../src/Via/Bundle/PropertyBundle]
+            output_dir: %kernel.root_dir%/../src/Via/Bundle/PropertyBundle/Resources/translations
+            ignored_domains: [routes]
+            excluded_names: [*TestCase.php, *Test.php]
+            excluded_dirs: [cache, data, logs]
+            extractors: [jms_i18n_routing]
+            output_format: xlf

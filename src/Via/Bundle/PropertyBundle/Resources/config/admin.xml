@@ -3,17 +3,17 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     
     <parameters>        
-        <parameter key="via.admin.property.class">Via\Bundle\PropertyBundle\Admin\PropertyAdmin</parameter>
-        <parameter key="via.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>        
+        <parameter key="via.property.admin.property.class">Via\Bundle\PropertyBundle\Admin\PropertyAdmin</parameter>
+        <parameter key="via.property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>        
     </parameters>
     
     <services>
-       <service id="sonata.admin.properties" class="%via.admin.property.class%">
+       <service id="via.property.admin.property" class="%via.property.admin.property.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.admin.dashboard.properties"/>
+                label="via.property.admin.dashboard.property"/>
           <argument />
-          <argument>%via.entity.property.class%</argument>
+          <argument>%via.property.entity.property.class%</argument>
           <argument />
           <call method="setTranslationDomain">
               <argument>messages</argument>
