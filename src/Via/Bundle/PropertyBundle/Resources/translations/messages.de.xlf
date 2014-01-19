@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="de" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="3199d46c28424aeb1ccd7beb2fd6b0c2" resname="via.form.product.translations">
+        <source>via.form.product.translations</source>
+        <target>via.form.product.translations</target>
+      </trans-unit>
+      <trans-unit id="5587736b192d7dbc581c0c4c6247b8e0" resname="via.form.property.name">
+        <source>via.form.property.name</source>
+        <target>via.form.property.name</target>
+      </trans-unit>
+      <trans-unit id="82c55a8af02cd5788917d05a74f37e4d" resname="via.form.property.presentation">
+        <source>via.form.property.presentation</source>
+        <target>via.form.property.presentation</target>
+      </trans-unit>
+      <trans-unit id="8cfd756d37a0db3619e7ab17a085d1b4" resname="via.form.property.type">
+        <source>via.form.property.type</source>
+        <target>via.form.property.type</target>
+      </trans-unit>
+      <trans-unit id="860720481d5feec90200f0939f10278a" resname="via.label.property.name">
+        <source>via.label.property.name</source>
+        <target>via.label.property.name</target>
+      </trans-unit>
+      <trans-unit id="5ccd91115aedf77c738ff7072d6af67f" resname="via.label.property.presentation">
+        <source>via.label.property.presentation</source>
+        <target>via.label.property.presentation</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

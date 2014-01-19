@@ -17,43 +17,36 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             
-            new Sonata\CoreBundle\SonataCoreBundle(),
-            new Sonata\BlockBundle\SonataBlockBundle(),
-            new Sonata\jQueryBundle\SonatajQueryBundle(),
-            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            
+            new Sonata\CoreBundle\SonataCoreBundle(),
+            // Then add SonataAdminBundle
+            new Sonata\AdminBundle\SonataAdminBundle(),
             // If you haven't already, add the storage bundle
             // This example uses SonataDoctrineORMAdmin but
             // it works the same with the alternatives
             new Sonata\DoctrineORMAdminBundle\SonataDoctrineORMAdminBundle(),
-            
-            // Then add SonataAdminBundle
-            new Sonata\AdminBundle\SonataAdminBundle(),
-            
-            new Sonata\UserBundle\SonataUserBundle(),
-            
+            new Sonata\BlockBundle\SonataBlockBundle(),
+            new Sonata\jQueryBundle\SonatajQueryBundle(),
+            new Knp\Bundle\MenuBundle\KnpMenuBundle(),
+            new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
-            
-            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
-            
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),            
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),            
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),            
             // not required, but recommended for better extraction
-            new JMS\TranslationBundle\JMSTranslationBundle(),
-            
-            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
-            
+            new JMS\TranslationBundle\JMSTranslationBundle(),            
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),            
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
+
             
-            new Via\Bundle\WebBundle\ViaWebBundle(),
+            #new Via\Bundle\WebBundle\ViaWebBundle(),
             new Via\Bundle\ProductBundle\ViaProductBundle(),
-            new Via\Bundle\UserBundle\ViaUserBundle(),
-            new Via\Bundle\GroupBundle\ViaGroupBundle(),
-            new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
-            #new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
-            new Via\Bundle\ApiBundle\ViaApiBundle(),
-            new Via\Bundle\ApiUserBundle\ViaApiUserBundle(),
+            #new Via\Bundle\UserBundle\ViaUserBundle(),
+            #new Via\Bundle\GroupBundle\ViaGroupBundle(),
+            new Via\Bundle\PropertyBundle\ViaPropertyBundle(),            
+            #new Via\Bundle\ApiBundle\ViaApiBundle(),
+            #new Via\Bundle\ApiUserBundle\ViaApiUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

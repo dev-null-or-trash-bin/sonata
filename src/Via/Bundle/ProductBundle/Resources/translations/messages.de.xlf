@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+  <file source-language="de" datatype="plaintext" original="file.ext">
+    <body>
+      <trans-unit id="5409dc97422e602317c7175dd8462311" resname="via.form.label.custom_action">
+        <source>via.form.label.custom_action</source>
+        <target>via.form.label.custom_action</target>
+      </trans-unit>
+      <trans-unit id="d136a86289b6a30102e2f288147c194a" resname="via.form.label.product.articleNumber">
+        <source>via.form.label.product.articleNumber</source>
+        <target>via.form.label.product.articleNumber</target>
+      </trans-unit>
+      <trans-unit id="f8b74ad105610302c73b10e1dec91dce" resname="via.form.label.product.article_number">
+        <source>via.form.label.product.article_number</source>
+        <target>via.form.label.product.article_number</target>
+      </trans-unit>
+      <trans-unit id="9e208c4a37e955e41b84f78a27ac0e42" resname="via.form.label.product.description">
+        <source>via.form.label.product.description</source>
+        <target>via.form.label.product.description</target>
+      </trans-unit>
+      <trans-unit id="3176fa4412c2d87845252df8dd600958" resname="via.form.label.product.ean">
+        <source>via.form.label.product.ean</source>
+        <target>via.form.label.product.ean</target>
+      </trans-unit>
+      <trans-unit id="4a247ea7a29350d531f65057d23bed6e" resname="via.form.label.product.id">
+        <source>via.form.label.product.id</source>
+        <target>via.form.label.product.id</target>
+      </trans-unit>
+      <trans-unit id="e7b05bfb8f282d7a35244dd4bb00123c" resname="via.form.label.product.name">
+        <source>via.form.label.product.name</source>
+        <target>via.form.label.product.name</target>
+      </trans-unit>
+      <trans-unit id="cf727728ae72fc65fbefccaf60050073" resname="via.form.label.product.price">
+        <source>via.form.label.product.price</source>
+        <target>via.form.label.product.price</target>
+      </trans-unit>
+      <trans-unit id="57505e38ba60b3afd25bc32cc0221fcf" resname="via.form.label.product.short_description">
+        <source>via.form.label.product.short_description</source>
+        <target>via.form.label.product.short_description</target>
+      </trans-unit>
+      <trans-unit id="8abc300cf3479f46f640de5ad51e1439" resname="via.form.label.product.stockAmount">
+        <source>via.form.label.product.stockAmount</source>
+        <target>via.form.label.product.stockAmount</target>
+      </trans-unit>
+      <trans-unit id="c770f4d9c125148a695194af96c24558" resname="via.form.label.product.stock_amount">
+        <source>via.form.label.product.stock_amount</source>
+        <target>via.form.label.product.stock_amount</target>
+      </trans-unit>
+      <trans-unit id="9078ae3848dc3ba7a385b6cb35a8a292" resname="via.form.label.product.translations">
+        <source>via.form.label.product.translations</source>
+        <target>via.form.label.product.translations</target>
+      </trans-unit>
+      <trans-unit id="b1ab95c184ffa2474d9d6104fcc5eaca" resname="via.form.label.product.vat_percent">
+        <source>via.form.label.product.vat_percent</source>
+        <target>via.form.label.product.vat_percent</target>
+      </trans-unit>
+      <trans-unit id="f2ecc09754d85b71b06987c66c314185" resname="via.form.label.product_property.presentation">
+        <source>via.form.label.product_property.presentation</source>
+        <target>via.form.label.product_property.presentation</target>
+      </trans-unit>
+      <trans-unit id="6949b44298afaf2a64b5f9c202d5e5ea" resname="via.form.label.product_property.product">
+        <source>via.form.label.product_property.product</source>
+        <target>via.form.label.product_property.product</target>
+      </trans-unit>
+      <trans-unit id="0456082f3220bf6256832a0b4efb7ca4" resname="via.form.label.product_property.property">
+        <source>via.form.label.product_property.property</source>
+        <target>via.form.label.product_property.property</target>
+      </trans-unit>
+      <trans-unit id="d956a897e4f7a24f5c86f26569adbcbe" resname="via.form.label.product_property.value">
+        <source>via.form.label.product_property.value</source>
+        <target>via.form.label.product_property.value</target>
+      </trans-unit>
+      <trans-unit id="f04d0225980874837cd37105ca31c5b2" resname="via.form.product_property.value">
+        <source>via.form.product_property.value</source>
+        <target>via.form.product_property.value</target>
+      </trans-unit>
+      <trans-unit id="d90c5da609cfdc4be0b26c9f5ac10a7d" resname="via.tab.label.properties">
+        <source>via.tab.label.properties</source>
+        <target>via.tab.label.properties</target>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
