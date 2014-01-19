@@ -33,6 +33,8 @@ class AppKernel extends Kernel
             
             new Sonata\UserBundle\SonataUserBundle(),
             
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
@@ -50,6 +52,8 @@ class AppKernel extends Kernel
             new Via\Bundle\GroupBundle\ViaGroupBundle(),
             new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
             #new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
+            new Via\Bundle\ApiBundle\ViaApiBundle(),
+            new Via\Bundle\ApiUserBundle\ViaApiUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

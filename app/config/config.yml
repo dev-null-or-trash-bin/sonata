@@ -4,6 +4,7 @@ imports:
     - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
     - { resource: '@ViaProductBundle/Resources/config/admin.xml' }    
     - { resource: '@ViaPropertyBundle/Resources/config/admin.xml' }
+    - { resource: '@ViaApiUserBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
@@ -57,6 +58,8 @@ doctrine:
         # if using pdo_sqlite as your database driver, add the path in parameters.yml
         # e.g. database_path: "%kernel.root_dir%/data/data.db3"
         # path:     "%database_path%"
+        types:
+            json: Sonata\Doctrine\Types\JsonType
 
     orm:
         auto_generate_proxy_classes: "%kernel.debug%"
@@ -74,10 +77,24 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-# SonataBlockBundle
+
+
+
+
+
+
+
+
+#########################
+#                       #
+# SonataBlockBundle     #
+#                       #
+#########################
 sonata_block:
     default_contexts: [cms]
     blocks:
+        sonata.user.block.menu:    # used to display the menu in profile pages
+        sonata.user.block.account: # used to display menu option (login option)
         sonata.admin.block.admin_list:
             contexts:   [admin]
         sonata.block.service.text: ~
@@ -85,29 +102,74 @@ sonata_block:
         sonata.block.service.rss: ~
         sonata.admin.block.search_result:
             contexts:   [admin]
-      
+        via_api_user.block.service.user:
+            contexts:   [admin]
+
+#########################
+#                       #
+# SonataBlockBundle     #
+#                       #
+#########################
+  
+sonata_user:
+    security_acl:           true
+    impersonating_route:    sonata_admin_dashboard # or any route you want to use
+    class:                  # Entity Classes
+        user:               Via\Bundle\UserBundle\Entity\User
+        group:              Via\Bundle\GroupBundle\Entity\Group
+    profile:
+        menu:
+        - { route: 'sonata_user_profile_show', label: 'sonata_profile_title', domain: 'SonataUserBundle'}
+        - { route: 'sonata_user_profile_edit', label: 'link_edit_profile', domain: 'SonataUserBundle'}
+        - { route: 'sonata_customer_addresses', label: 'link_list_addresses', domain: 'SonataCustomerBundle'}
+        - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
+        
 
 # SonataAdminBundle
 sonata_admin:
     security:
-        handler: sonata.admin.security.handler.noop
+        handler: sonata.admin.security.handler.role
+        information:
+            GUEST:    []
+            STAFF:    [EDIT, LIST, CREATE]
+            EDITOR:   [OPERATOR, EXPORT]
+            ADMIN:    [MASTER]
+            OWNER:    [OWNER]            
+        # permissions not related to an object instance and also to be available when objects do not exist
+        # the DELETE admin permission means the user is allowed to batch delete objects
+        admin_permissions: [CREATE, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
+        # permission related to the objects
+        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
+        
     templates:
-        user_block: 'ViaWebBundle:Backend:menu.html.twig'
-        show:       'SonataAdminBundle:CRUD:show.html.twig'
+        #user_block: 'ViaWebBundle:Backend:menu.html.twig'        
     dashboard:
         blocks:
             # display a dashboard block
-            - { position: left, type: sonata.admin.block.admin_list } 
+            - { position: left, type: sonata.admin.block.admin_list }
+                        
             # Customize this part to add new block configuration
-            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Sonata Admin</h2> <p>This is a <code>sonata.block.service.text</code> from the Block Bundle, you can create and add new block in these area by configuring the <code>sonata_admin</code> section.</p> <br /> For instance, here a RSS feed parser (<code>sonata.block.service.rss</code>):"} }
-            - { position: right, type: sonata.block.service.rss, settings: { title: "Sonata Project's Feeds", url: "http://sonata-project.org/blog/archive.rss" }}  
+            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Via-Ebay Admin</h2>"} }
+            #- { position: right, type: sonata.block.service.rss, settings: { title: "Sonata Project's Feeds", url: "http://sonata-project.org/blog/archive.rss" }}
+            - { position: right, type: via_api_user.block.service.user }  
         
 
 # FOSUserBundle        
 fos_user:
-    db_driver: orm # other valid values are 'mongodb', 'couchdb' and 'propel'
+    db_driver: orm
     firewall_name: main
     user_class: Via\Bundle\UserBundle\Entity\User
+    group:
+        group_class:  Via\Bundle\GroupBundle\Entity\Group
+           
+
+
+
+
+
+
+
+
 
 # A2LixTranslationFormBundle
 a2lix_translation_form:
@@ -116,11 +178,6 @@ a2lix_translation_form:
     manager_registry: doctrine      
     templating: "A2lixTranslationFormBundle::default.html.twig"    
 
-parameters:
-    sonata.user.admin.user.entity: Via\Bundle\UserBundle\Entity\User
-    sonata.user.admin.user.class: Via\Bundle\UserBundle\Admin\UserAdmin
-    sonata.user.admin.group.entity: Via\Bundle\GroupBundle\Entity\Group
- 
 jms_i18n_routing:
     default_locale: '%locale%'
     locales: '%locales%'

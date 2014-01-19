@@ -16,8 +16,8 @@ class ProductAdmin extends Admin
         $context = $this->getPersistentParameter('context');
         
         // tab properties
-        $formMapper->with('via.tab.label.product',array(            
-        ))        
+        $formMapper->with('via.tab.label.product',array(
+        ))
         ->add('stockAmount', 'number', array(
             'label' => 'via.form.label.product.stock_amount',
             'translation_domain' => 'messages'
@@ -35,10 +35,10 @@ class ProductAdmin extends Admin
             'label' => 'via.form.label.product.vat_percent'
         ))
         ->add('translations', 'a2lix_translations', array(
-            'by_reference' => false,            
+            'by_reference' => true,
             'locales' => array(
                 'de',
-                'en'
+//                'en'
             ),
             'label' => 'via.form.label.product.translations',
             'fields' => array(
@@ -59,11 +59,11 @@ class ProductAdmin extends Admin
         ));
         
         // tab properties
-        $formMapper->with('via.tab.label.properties', array(            
-        )) 
+        $formMapper->with('via.tab.label.properties', array(
+        ))
         ->add('properties', 'sonata_type_collection', array(
             'required' => false,
-            'by_reference' => false,            
+            'by_reference' => false,
             'label' => 'via.tab.label.properties',
             'type_options' => array('btn_add' => true, 'btn_delete' => true)
         ), array(
@@ -83,11 +83,11 @@ class ProductAdmin extends Admin
      */
     public function prePersist($product)
     {
-        $product->setProperties($product->getProperties());        
+        $product->setProperties($product->getProperties());
     }
 
     public function preUpdate($product)
-    {   
+    {
         $product->setProperties($product->getProperties());
     }
     
@@ -130,10 +130,9 @@ class ProductAdmin extends Admin
         // add custom action links
         ->add('_action', 'actions', array(
             'actions' => array(
-                'view' => array(),
+                'show' => array(),
                 'edit' => array(),
             ),
-            'label' => 'via.form.label.custom_action'
         ))
         ;
     }

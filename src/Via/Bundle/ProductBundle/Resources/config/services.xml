@@ -5,8 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>        
-        <parameter key="via_product.form.type.product_property.class">Via\Bundle\ProductBundle\Form\Type\ProductPropertyType</parameter>
-        <parameter key="via_product.form.type.product_to_identifier.class">Via\Bundle\ProductBundle\Form\Type\ProductToIdentifierType</parameter>
+        <parameter key="via_product.form.type.product_property.class">Via\Bundle\ProductBundle\Form\Type\ProductPropertyType</parameter>        
         <parameter key="via_product.entity.product.class">Via\Bundle\ProductBundle\Entity\Product</parameter>
         <parameter key="via_product.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>
         <parameter key="via_product.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
@@ -21,14 +20,17 @@
             <tag name="form.type" alias="via_product_property" />
         </service>
         
-        <service id="via_product.repository.product" class="%via_product.repository.product.class%">            
-            <tag name="form.type" alias="via_repository_product" />
+        <service id="via_product.repository.product"
+                 class="%via_product.repository.product.class%"
+                 factory-service="doctrine.orm.entity_manager"
+                 factory-method="getRepository">
+                <argument>%via_product.entity.product.class%</argument>
         </service>
         
-        <service id="via_product.form.type.product_to_identifier" class="%via_product.form.type.product_to_identifier.class%">
+        <!-- service id="via_product.form.type.product_to_identifier" class="%via_product.form.type.product_to_identifier.class%">
             <argument type="service" id="via_product.repository.product" />
             <tag name="form.type" alias="via_product_to_identifier" />
-        </service>
+        </service -->
         
         <!-- service id="via_product.admin.product.extension.event" class="%via_product.admin.product.extension.event.class%">     
         	<argument type="service" id="event_dispatcher" />       

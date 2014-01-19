@@ -4,7 +4,7 @@ namespace Via\Bundle\ProductBundle\Entity\Repository;
 
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\ContainerAwareInterface;
-
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 
 #use Via\StoreBundle\Entity\Product;
@@ -27,59 +27,145 @@ class Product extends EntityRepository implements ContainerAwareInterface
         $this->container = $container;
     }
     
-    public function findOneByIdJoinedToDescription($id)
-    {   
-        $queryBuilder = $this->createQueryBuilder('p');
-        $queryBuilder->select('p, d, l')
-        ->join('p.description', 'd')        
-        ->join('d.local', 'l')
-        ->where('p.id = :id')->setParameter('id', $id);
+//     public function findAll()
+//     {
+//         echo __METHOD__;
+//         return $this
+//         ->getCollectionQueryBuilder()
+//         ->getQuery()
+//         ->getResult()
+//         ;
+//     }
     
-        /* print_r(array(
-         'sql'        => $queryBuilder->getQuery()->getSQL(),
-            'parameters' => $queryBuilder->getQuery()->getParameters(),
-        )); */
+//     public function findOneBy(array $criteria)
+//     {
+//         echo __METHOD__;
+//         $queryBuilder = $this->getQueryBuilder();
+    
+//         $this->applyCriteria($queryBuilder, $criteria);
+    
+//         return $queryBuilder
+//         ->getQuery()
+//         ->getOneOrNullResult()
+//         ;
+//     }
+    
+//     public function findBy(array $criteria, array $orderBy = null, $limit = null, $offset = null)
+//     {
+//         echo __METHOD__;
+//         $queryBuilder = $this->getCollectionQueryBuilder();
+    
+//         $this->applyCriteria($queryBuilder, $criteria);
+//         #$this->applySorting($queryBuilder, $orderBy);
+    
+//         if (null !== $limit) {
+//             $queryBuilder->setMaxResults($limit);
+//         }
+    
+//         if (null !== $offset) {
+//             $queryBuilder->setFirstResult($offset);
+//         }
+    
+//         return $queryBuilder
+//         ->getQuery()
+//         ->getResult()
+//         ;
+//     }
+    
+//     protected function applyCriteria(QueryBuilder $queryBuilder, array $criteria = null)
+//     {
+//         if (null === $criteria) {
+//             return;
+//         }
+    
+//         foreach ($criteria as $property => $value) {
+//             if (!is_array($value)) {
+//                 $queryBuilder
+//                 ->andWhere($queryBuilder->expr()->eq($this->getPropertyName($property), ':' . $property))
+//                 ->setParameter($property, $value);
+//             } else {
+//                 $queryBuilder->andWhere($queryBuilder->expr()->in($this->getPropertyName($property), $value));
+//             }
+//         }
+//     }
+    
+//     protected function getQueryBuilder()
+//     {
+//         return $this->createQueryBuilder($this->getAlias());
+//     }
+    
+//     protected function getCollectionQueryBuilder()
+//     {
+//         return $this->createQueryBuilder($this->getAlias());
+//     }
+    
+//     protected function getPropertyName($name)
+//     {
+//         if (false === strpos($name, '.')) {
+//             return $this->getAlias().'.'.$name;
+//         }
+    
+//         return $name;
+//     }
+    
+//     protected function getAlias()
+//     {
+//         return 'p';
+//     }
+    
+//     public function findOneByIdJoinedToDescription($id)
+//     {   
+//         $queryBuilder = $this->createQueryBuilder('p');
+//         $queryBuilder->select('p, d, l')
+//         ->join('p.description', 'd')        
+//         ->join('d.local', 'l')
+//         ->where('p.id = :id')->setParameter('id', $id);
+    
+//         /* print_r(array(
+//          'sql'        => $queryBuilder->getQuery()->getSQL(),
+//             'parameters' => $queryBuilder->getQuery()->getParameters(),
+//         )); */
         
-        return $queryBuilder->getQuery()->getSingleResult();
+//         return $queryBuilder->getQuery()->getSingleResult();
         
           
-    }
+//     }
     
-    /**
-     * @param int $page
-     * @param int $limit
-     *
-     * @return \Zend\Paginator\Paginator
-     */
-    public function findAllByLocalePaginated($locale, $page = 1, $limit = 10)
-    {
-        $queryBuilder = $this->createQueryBuilder('p');
-        $queryBuilder->select('p, d, l')
-            ->join('p.description', 'd')
-            ->join('d.local', 'l')
-            ->where('l.code = :code')->setParameter('code', $locale);
+//     /**
+//      * @param int $page
+//      * @param int $limit
+//      *
+//      * @return \Zend\Paginator\Paginator
+//      */
+//     public function findAllByLocalePaginated($locale, $page = 1, $limit = 10)
+//     {
+//         $queryBuilder = $this->createQueryBuilder('p');
+//         $queryBuilder->select('p, d, l')
+//             ->join('p.description', 'd')
+//             ->join('d.local', 'l')
+//             ->where('l.code = :code')->setParameter('code', $locale);
        
-        $paginator  = $this->container->get('knp_paginator');
-        $pagination = $paginator->paginate(
-            $queryBuilder->getQuery(),
-            $page/*page number*/,
-            $limit/*limit per page*/
-        );
+//         $paginator  = $this->container->get('knp_paginator');
+//         $pagination = $paginator->paginate(
+//             $queryBuilder->getQuery(),
+//             $page/*page number*/,
+//             $limit/*limit per page*/
+//         );
     
-        return $pagination;
-    }
+//         return $pagination;
+//     }
     
-    public function findByLocale($locale)
-    {
-        $queryBuilder = $this->createQueryBuilder('p');
-        $queryBuilder->select('p, d, l')  
-                        ->join('p.description', 'd')                        
-                        ->join('d.local', 'l')
-                        ->where('l.code = :code')->setParameter('code', $locale);
-        /* print_r(array(
-        'sql'        => $queryBuilder->getQuery()->getSQL(),
-        'parameters' => $queryBuilder->getQuery()->getParameters(),
-        )); */
-        return $queryBuilder->getQuery()->getResult();
-    }
+//     public function findByLocale($locale)
+//     {
+//         $queryBuilder = $this->createQueryBuilder('p');
+//         $queryBuilder->select('p, d, l')  
+//                         ->join('p.description', 'd')                        
+//                         ->join('d.local', 'l')
+//                         ->where('l.code = :code')->setParameter('code', $locale);
+//         /* print_r(array(
+//         'sql'        => $queryBuilder->getQuery()->getSQL(),
+//         'parameters' => $queryBuilder->getQuery()->getParameters(),
+//         )); */
+//         return $queryBuilder->getQuery()->getResult();
+//     }
 }
