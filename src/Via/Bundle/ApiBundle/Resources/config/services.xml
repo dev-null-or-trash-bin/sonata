@@ -7,11 +7,22 @@
     
     <parameters>
          <parameter key="via_api.admin.product.class">Via\Bundle\ApiBundle\Admin\ProductAdmin</parameter>      
+         <parameter key="via_api.admin.extension.product.class">Via\Bundle\ApiBundle\Admin\Extension\ProductAdminExtension</parameter>
+         <parameter key="via_api.listener.product_batch_confirmation.class">Via\Bundle\ApiBundle\EventListener\ProductBatchConfirmationListener</parameter>
     </parameters>
 
 	<services>
-	    <service id="sonata.admin.via_api_product" class="%via_api.admin.product.class%">
-	      <tag name="sonata.admin" manager_type="orm" group="Content" label="Post"/>
+		<!-- 
+			Override via_product.admin.product.class
+		 -->
+	    <service id="via_api.admin.product" class="%via_api.admin.product.class%">
+	      <tag name="sonata.admin" 
+	      		manager_type="orm" 
+	      		group="Content" 
+	      		label="via_api.admin.dashboard.api" 
+	      		target="via_product.admin.product" 
+	      		show_in_dashboard="false"
+	      />
 	      <argument />
 	      <argument>%via_product.entity.product.class%</argument>
 	      <argument>ViaApiBundle:ProductAdmin</argument>
@@ -19,7 +30,25 @@
 	          <argument>list</argument>
 	          <argument>ViaApiBundle:CRUD:base_list.html.twig</argument>
 	      </call>
-	  	</service>
+	      <!-- call method="setTemplate">
+	          <argument>batch_confirmation</argument>
+	          <argument>ViaApiBundle:CRUD:batch_confirmation.html.twig</argument>
+	      </call -->
+	      <!-- call method="setTemplate">
+	          <argument>layout</argument>
+	          <argument>ViaApiBundle::standard_layout.html.twig</argument>
+	      </call -->
+	  	</service>	  	
+	  	
+	    <service id="via_api.admin.extension.product" class="%via_api.admin.extension.product.class%">
+	    	<tag name="sonata.admin.extension" target="via_api.admin.product" />
+	    	<argument type="service" id="event_dispatcher" />
+	    </service>
+	  	
+	  	<service id="via_api.listener.product_batch_confirmation" class="%via_api.listener.product_batch_confirmation.class%">            
+            <tag name="kernel.event_listener" event="via.product.batch.confirmation" method="onProductBatchConfrmation" />            
+        </service>
+	  	
 	 </services>
   
 </container>

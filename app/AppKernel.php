@@ -33,6 +33,8 @@ class AppKernel extends Kernel
             
             new Sonata\UserBundle\SonataUserBundle(),
             
+            new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
+            
             new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
             
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),

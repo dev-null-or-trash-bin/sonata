@@ -1,14 +1,16 @@
 <?php
-namespace Via\Bundle\ApiBundle\Entity;
+namespace Via\Bundle\ApiUserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
-/**
- * @ORM\Entity
+/** 
  * @ORM\Table(name="api_user")
+ * @ORM\Entity(repositoryClass="Via\Bundle\ApiUserBundle\Repository\User")
  */
 class User
 {
+    use ORMBehaviors\Timestampable\Timestampable;
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -37,7 +39,91 @@ class User
     protected $enviroment;
     
     /**
-     * @ORM\Column(name="enviroment", type="string", length=55, nullable=true)
+     * @ORM\Column(name="platform", type="string", length=55, nullable=true)
      */
-    protected $enviroment;
+    protected $platform;
+    
+    /**
+     * @ORM\Column(name="enabled", type="boolean", nullable=false, options={"default"= 0})
+     */
+    protected $enabled;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    public function setUsername($username)
+    {
+        $this->username = $username;
+        return $this;
+    }
+
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    public function setPassword($password)
+    {
+        $this->password = $password;
+        return $this;
+    }
+
+    public function getToken()
+    {
+        return $this->token;
+    }
+
+    public function setToken($token)
+    {
+        $this->token = $token;
+        return $this;
+    }
+
+    public function getEnviroment()
+    {
+        return $this->enviroment;
+    }
+
+    public function setEnviroment($enviroment)
+    {
+        $this->enviroment = $enviroment;
+        return $this;
+    }
+
+    public function getPlatform()
+    {
+        return $this->platform;
+    }
+
+    public function setPlatform($platform)
+    {
+        $this->platform = $platform;
+        return $this;
+    }
+
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
+        return $this;
+    }
+	
+	
 }

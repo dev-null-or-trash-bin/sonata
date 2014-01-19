@@ -1,7 +1,8 @@
 <?php
 namespace Via\Bundle\UserBundle\Entity;
 
-use FOS\UserBundle\Entity\User as BaseUser;
+#use FOS\UserBundle\Entity\User as BaseUser;
+use Sonata\UserBundle\Entity\BaseUser as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -17,15 +18,7 @@ class User extends BaseUser
      */
     protected $id;
     
-    /**
-     * @ORM\Column(name="first_name", type="string", length=55, nullable=true)     
-     */
-    protected $firstName;
-    
-    /**
-     * @ORM\Column(name="last_name", type="string", length=55, nullable=true)
-     */
-    protected $lastName;
+
     
     /**
      * @ORM\ManyToMany(targetEntity="Via\Bundle\GroupBundle\Entity\Group")
@@ -44,42 +37,8 @@ class User extends BaseUser
     
     public function getFullName()
     {
-        return $this->firstName.' '.$this->lastName;
+        return $this->firstname.' '.$this->lastname;
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function setFirstName($firstName)
-    {
-        $this->firstName = $firstName;
     
-        return $this;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getFirstName()
-    {
-        return $this->firstName;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function setLastName($lastName)
-    {
-        $this->lastName = $lastName;
-    
-        return $this;
-    }
-    
-    /**
-     * {@inheritdoc}
-     */
-    public function getLastName()
-    {
-        return $this->lastName;
-    }
 }

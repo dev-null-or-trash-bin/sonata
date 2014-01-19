@@ -1,2 +1,11 @@
 {% extends 'SonataAdminBundle:CRUD:base_list.html.twig' %}
 
+{% block side_menu %}
+
+{{ sonata_block_render({
+    'type': 'via_api_user.block.service.user',    
+}) }}
+
+{{ parent() }}
+
+{% endblock %}

@@ -1,14 +1,34 @@
 <?php
 namespace Via\Bundle\ApiBundle\Controller;
 
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
+use Via\Bundle\ApiUserBundle\Entity\User as ApiUser;
+use Via\Bundle\ApiBundle\Event\ProductBatchEvent;
 
 class ProductAdminController extends Controller
 {
+    public function batchAction()
+    {   
+        $apiUserRepository = $this->get('via_api_user.repository.user');
+        $user = $apiUserRepository->findOneBy(array('enabled' => '1'));
+        
+        #\Doctrine\Common\Util\Debug::dump($this->admin->getFormBuilder());
+        
+        if (!$user instanceof ApiUser)
+        {
+            $this->addFlash('sonata_flash_error', 'via_api_user.no_active_user_found');
+            return new RedirectResponse($this->admin->generateUrl('list', array('filter' => $this->admin->getFilterParameters())));
+        }
+        
+        return parent::batchAction();
+    }
+    
     public function batchActionSendToViaEbay ()
-    {
+    {   
         $confirmation = $this->get('request')->get('confirmation', false);
-    if ($data = json_decode($this->get('request')->get('data'), true)) {
+        if ($data = json_decode($this->get('request')->get('data'), true)) {
             $action       = $data['action'];
             $idx          = $data['idx'];
             $allElements  = $data['all_elements'];
@@ -24,7 +44,10 @@ class ProductAdminController extends Controller
 
             unset($data['_sonata_csrf_token']);
         }
-        #\Doctrine\Common\Util\Debug::dump($data);
+        $this->get('event_dispatcher')->dispatch('via.product.batch.confirmation', new ProductBatchEvent($this->admin));
+        
+        return new RedirectResponse($this->admin->generateUrl('list', array('filter' => $this->admin->getFilterParameters())));
+        
         die(__METHOD__);
     }
 }

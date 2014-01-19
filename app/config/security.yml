@@ -3,8 +3,13 @@ security:
         FOS\UserBundle\Model\UserInterface: sha512
 
     role_hierarchy:
-        ROLE_ADMIN:       ROLE_USER
-        ROLE_SUPER_ADMIN: ROLE_ADMIN
+        ROLE_SONATA_ADMIN: ROLE_USER
+        ROLE_ADMIN:       
+            - ROLE_SONATA_ADMIN
+            
+        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        SONATA:
+            - ROLE_SONATA_PAGE_ADMIN_PAGE_EDIT  # if you are using acl then this line must be commented
 
     providers:
         fos_userbundle:
@@ -65,10 +70,10 @@ security:
         # Secured part of the site
         # This config requires being logged for the whole site and having the admin role for the admin part.
         # Change these rules to adapt them to your needs
-        - { path: ^/\w\w/admin/, role: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN'] }
+        - { path: ^/\w\w/admin/via/user/, role: ['ROLE_ADMIN', 'ROLE_SONATA_ADMIN'] }
+        - { path: ^/\w\w/admin/, role: ['ROLE_USER', 'ROLE_ADMIN', 'ROLE_SONATA_ADMIN'] }
+        
         - { path: ^/.*, role: IS_AUTHENTICATED_ANONYMOUSLY }
 
-
-    role_hierarchy:
-        ROLE_ADMIN:       [ROLE_USER, ROLE_SONATA_ADMIN]
-        ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+    acl:
+        connection: default

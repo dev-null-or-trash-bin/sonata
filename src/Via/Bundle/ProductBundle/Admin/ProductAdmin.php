@@ -35,10 +35,10 @@ class ProductAdmin extends Admin
             'label' => 'via.form.label.product.vat_percent'
         ))
         ->add('translations', 'a2lix_translations', array(
-            'by_reference' => false,
+            'by_reference' => true,
             'locales' => array(
                 'de',
-                'en'
+//                'en'
             ),
             'label' => 'via.form.label.product.translations',
             'fields' => array(
@@ -133,7 +133,6 @@ class ProductAdmin extends Admin
                 'show' => array(),
                 'edit' => array(),
             ),
-            'label' => 'via.form.label.custom_action'
         ))
         ;
     }

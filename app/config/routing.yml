@@ -2,16 +2,19 @@ via_api_user:
     resource: "@ViaApiUserBundle/Resources/config/routing.xml"
     prefix:   /
 
-via_api:
-    resource: "@ViaApiBundle/Resources/config/routing.xml"
-    prefix:   /
-
 via_property:
     resource: "@ViaPropertyBundle/Resources/config/routing.xml"
     prefix:   /
 
 homepage:
     path: /    
+    defaults:
+        _controller: FrameworkBundle:Redirect:redirect      
+        route: sonata_admin_dashboard
+        permanent: true
+        
+via_login:
+    path: /login 
     defaults:
         _controller: FrameworkBundle:Redirect:redirect      
         route: sonata_admin_dashboard
