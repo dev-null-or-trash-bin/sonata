@@ -4,7 +4,7 @@ imports:
     - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
     - { resource: '@ViaProductBundle/Resources/config/admin.xml' }    
     - { resource: '@ViaPropertyBundle/Resources/config/admin.xml' }
-    #- { resource: '@ViaApiUserBundle/Resources/config/admin.xml' }
+    - { resource: '@ViaApiUserBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
@@ -125,8 +125,8 @@ sonata_block:
         sonata.block.service.rss: ~
         sonata.admin.block.search_result:
             contexts:   [admin]
-        #via_api_user.block.service.user:
-        #    contexts:   [admin]        
+        via.api_user.block.service.user:
+            contexts:   [admin]        
 
 # SonataAdminBundle
 sonata_admin:
@@ -175,7 +175,7 @@ sonata_admin:
             - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Via-Ebay Admin</h2>"} }
             - { position: right, type: sonata.user.block.menu }
             - { position: right, type: sonata.user.block.account }
-            #- { position: right, type: via_api_user.block.service.user }  
+            - { position: right, type: via.api_user.block.service.user }  
         
 
 # FOSUserBundle        

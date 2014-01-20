@@ -10,15 +10,15 @@ use Via\Bundle\ApiBundle\Event\ProductBatchEvent;
 class ProductAdminController extends Controller
 {
     public function batchAction()
-    {   
-        $apiUserRepository = $this->get('via_api_user.repository.user');
+    {
+        $apiUserRepository = $this->get('via.api_user.repository.user');
         $user = $apiUserRepository->findOneBy(array('enabled' => '1'));
         
         #\Doctrine\Common\Util\Debug::dump($this->admin->getFormBuilder());
         
         if (!$user instanceof ApiUser)
         {
-            $this->addFlash('sonata_flash_error', 'via_api_user.no_active_user_found');
+            $this->addFlash('sonata_flash_error', 'via.api_user.no_active_user_found');
             return new RedirectResponse($this->admin->generateUrl('list', array('filter' => $this->admin->getFilterParameters())));
         }
         
@@ -26,7 +26,7 @@ class ProductAdminController extends Controller
     }
     
     public function batchActionSendToViaEbay ()
-    {   
+    {
         $confirmation = $this->get('request')->get('confirmation', false);
         if ($data = json_decode($this->get('request')->get('data'), true)) {
             $action       = $data['action'];

@@ -31,12 +31,12 @@ class AppKernel extends Kernel
             new Sonata\UserBundle\SonataUserBundle('FOSUserBundle'),
             new Sonata\EasyExtendsBundle\SonataEasyExtendsBundle(),
             
-            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),            
-            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),            
-            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),            
+            new Application\Sonata\UserBundle\ApplicationSonataUserBundle(),
+            new A2lix\TranslationFormBundle\A2lixTranslationFormBundle(),
+            new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             // not required, but recommended for better extraction
-            new JMS\TranslationBundle\JMSTranslationBundle(),            
-            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),            
+            new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Lunetics\LocaleBundle\LuneticsLocaleBundle(),
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
 
             
@@ -44,9 +44,9 @@ class AppKernel extends Kernel
             new Via\Bundle\ProductBundle\ViaProductBundle(),
             #new Via\Bundle\UserBundle\ViaUserBundle(),
             #new Via\Bundle\GroupBundle\ViaGroupBundle(),
-            new Via\Bundle\PropertyBundle\ViaPropertyBundle(),            
-            #new Via\Bundle\ApiBundle\ViaApiBundle(),
-            #new Via\Bundle\ApiUserBundle\ViaApiUserBundle(),
+            new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
+            new Via\Bundle\ApiBundle\ViaApiBundle(),
+            new Via\Bundle\ApiUserBundle\ViaApiUserBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

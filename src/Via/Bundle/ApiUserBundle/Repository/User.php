@@ -8,8 +8,8 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 
 class User extends EntityRepository
-{    
-    public function find($id)
+{
+    /* public function find($id)
     {
         return $this
         ->getQueryBuilder()
@@ -29,7 +29,7 @@ class User extends EntityRepository
     }
     
     public function findOneBy(array $criteria)
-    {        
+    {
         $queryBuilder = $this->getQueryBuilder();
     
         $this->applyCriteria($queryBuilder, $criteria);
@@ -37,6 +37,20 @@ class User extends EntityRepository
         return $queryBuilder
         ->getQuery()
         ->getOneOrNullResult()
+        ;
+    } */
+    public function findByNot (array $criteria)
+    {
+        $queryBuilder = $this->getCollectionQueryBuilder();
+        
+        foreach ($criteria as $property => $value) {
+            $queryBuilder->where($queryBuilder->expr()->not($queryBuilder->expr()->eq($this->getPropertyName($property), '?1')));
+            $queryBuilder->setParameter(1, $value);
+        }
+        
+        return $queryBuilder
+        ->getQuery()
+        ->getResult()
         ;
     }
     

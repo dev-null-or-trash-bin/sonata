@@ -5,12 +5,12 @@
     <h3 class="sonata-feed-title">{{ settings.title|trans({}) }}</h3>
 
     <div class="sonata-feeds-container">
-        
+            {% if user %}
             <div>
                 <strong>{{ user.username }}</strong>
                 <div>{{ user.token }}</div>
             </div>
-        
+            {% endif %}
     </div>
 
 {% endblock %}
