@@ -1,0 +1,14 @@
+
+- add Listener for ProductBundle
+
+- add message if no user is enabled in UserEnableResolver (OnPostXXX)
+
+- add api authentification
+
+- add Entity from ViaEbay
+
+- refactore ApiUserBundle, ApiBundle
+
+- change ApiUserBlock integration 
+
+- add configureShowFields in ProductAdmin

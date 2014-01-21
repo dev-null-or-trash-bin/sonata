@@ -3,7 +3,7 @@ namespace Via\Bundle\ApiUserBundle\EventListener;
 
 use Symfony\Component\EventDispatcher\GenericEvent;
 use Via\Bundle\ApiUserBundle\Entity\UserInterface;
-use Via\Bundle\ApiUserBundle\UserProcessing\EnableResolverInterface;
+use Via\Bundle\ApiUserBundle\UserProcessing\UserStateResolverInterface;
 
 class UserListener
 {
@@ -18,7 +18,7 @@ class UserListener
      *
      * @param StateResolverInterface $stateResolver
      */
-    public function __construct(EnableResolverInterface $enableResolver)
+    public function __construct(UserStateResolverInterface $enableResolver)
     {
         $this->enableResolver = $enableResolver;
     }
@@ -27,8 +27,6 @@ class UserListener
     public function processUser (GenericEvent $event)
     {
         $user = $event->getSubject();
-        
-        
         
         if (!$user instanceof UserInterface) {
             throw new \InvalidArgumentException(

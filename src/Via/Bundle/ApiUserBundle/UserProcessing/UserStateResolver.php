@@ -5,8 +5,11 @@ use Via\Bundle\ApiUserBundle\Entity\UserInterface;
 use Symfony\Component\DependencyInjection\ContainerAware;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class EnableResolver extends ContainerAware implements EnableResolverInterface
+class UserStateResolver extends ContainerAware implements UserStateResolverInterface
 {
+    const STATE_ENABLED = true;
+    const STATE_DISABLED = false;
+    
     public function disableOtherUser (UserInterface $user)
     {
         $currentUserId = $user->getId();
@@ -18,5 +21,15 @@ class EnableResolver extends ContainerAware implements EnableResolverInterface
         {
             $user->setEnabled(false);
         }
+        
+        $users = $userRepository->findBy(array('enabled' => 1));
+        
+        if (count($users) == 0)
+        {
+            $this->container->get('session')->getFlashBag()
+             ->add('sonata_flash_error', 'via.api_user.no_active_user_found');
+        }
+        
+        #\Doctrine\Common\Util\Debug::dump($this->container->get('session'), 6);die();
     }
 }

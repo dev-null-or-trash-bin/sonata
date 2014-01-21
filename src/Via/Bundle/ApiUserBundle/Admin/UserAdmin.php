@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 use Via\Bundle\ApiUserBundle\Event\UserEvent;
+use Sonata\BlockBundle\Event\BlockEvent;
 
 class UserAdmin extends Admin
 {
@@ -72,7 +73,8 @@ class UserAdmin extends Admin
      */
     protected function configureFormFields(FormMapper $formMapper)
     {
-
+        
+        $this->eventDispatcher->dispatch('sonata.block.event.sonata.admin.form.list.top', new BlockEvent());
         $formMapper
             ->with('General')
                 ->add('username')
@@ -104,6 +106,7 @@ class UserAdmin extends Admin
             ->addIdentifier('username')
             ->add('token')
             ->add('enabled', null)
+            #->add('enabled', null, array('editable' => true))
             ->add('createdAt')
             
         ;

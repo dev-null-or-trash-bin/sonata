@@ -8,7 +8,7 @@
         <parameter key="via.api_user.entity.user.class">Via\Bundle\ApiUserBundle\Entity\User</parameter>       
         <parameter key="via.api_user.repository.user.class">Via\Bundle\ApiUserBundle\Repository\User</parameter>
         <parameter key="via.api_user.block.user.class">Via\Bundle\ApiUserBundle\Block\UserBlock</parameter>        
-        <parameter key="via.api_user.user_processing.enable_resolver.class">Via\Bundle\ApiUserBundle\UserProcessing\EnableResolver</parameter>
+        <parameter key="via.api_user.user_processing.user_state.class">Via\Bundle\ApiUserBundle\UserProcessing\UserStateResolver</parameter>
         <parameter key="via.api_user.listener.user.class">Via\Bundle\ApiUserBundle\EventListener\UserListener</parameter>
     </parameters>
 
@@ -30,14 +30,18 @@
           </call>
 		</service>
 		
-		<service id="via.api_user.user_processing.enable_resolver" class="%via.api_user.user_processing.enable_resolver.class%">
+		<service id="via.api_user.user_processing.user_state" class="%via.api_user.user_processing.user_state.class%">
 			<call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
 		</service>
 		
+		<!-- service id="via.api_user.block.service.text" class="Sonata\BlockBundle\Event\TextBlockListener">
+		    <tag name="kernel.event_listener" event="sonata.block.event.sonata.admin.form.list.top" method="onBlock"/>		    
+		</service -->
+		
 		<service id="via.api_user.listener.user" class="%via.api_user.listener.user.class%"> 
-            <argument type="service" id="via.api_user.user_processing.enable_resolver" />
+            <argument type="service" id="via.api_user.user_processing.user_state" />
             <tag name="kernel.event_listener" event="via.api_user.preUpdate" 	method="processUser" />            
             <tag name="kernel.event_listener" event="via.api_user.prePersist" 	method="processUser" />
             <tag name="kernel.event_listener" event="via.api_user.preRemove" 	method="processUser" />

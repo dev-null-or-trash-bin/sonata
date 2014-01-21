@@ -5,10 +5,15 @@ use Symfony\Component\EventDispatcher\GenericEvent;
 
 class ProductBatchConfirmationListener
 {
-    public function onProductBatchConfrmation(GenericEvent $event)    
-    {   
+    public function onProductBatchConfrmation(GenericEvent $event)
+    {
         $request = $event->getSubject();
-        \Doctrine\Common\Util\Debug::dump($request, 6);
+        $allElements = $request->get('all_elements');
+        
+        if ($allElements != 'on')
+            $productIds = $request->get('idx');
+        
+        \Doctrine\Common\Util\Debug::dump($allElements, 6);die();
         
         sleep(10);
     }
