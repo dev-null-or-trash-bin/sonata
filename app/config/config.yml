@@ -2,6 +2,19 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
+    
+    # Sonata Bundles
+    - { resource: sonata/sonata_admin.yml }
+    #- { resource: sonata/sonata_page.yml }
+    - { resource: sonata/sonata_block.yml }
+    #- { resource: sonata/sonata_media.yml }
+    #- { resource: sonata/sonata_formatter.yml }
+    #- { resource: sonata/sonata_news.yml }
+    #- { resource: sonata/sonata_cache.yml }
+    #- { resource: sonata/sonata_seo.yml }
+    #- { resource: sonata/sonata_notification.yml }
+    - { resource: sonata/sonata_user.yml }
+    #- { resource: sonata/sonata_timeline.yml }
 
 framework:
     #esi:             ~
@@ -73,132 +86,6 @@ swiftmailer:
 
 
 
-
-
-
-
-#########################
-#                       #
-# SonataBlockBundle     #
-#                       #
-#########################
-  
-sonata_user:
-    security_acl:           true
-    manager_type:           orm # can be orm or mongodb
-    impersonating_route:    sonata_admin_dashboard # or any route you want to use    
-    profile:
-    # Profile show page is a dashboard as in SonataAdminBundle
-        dashboard:
-            blocks:
-                - { position: left, type: sonata.block.service.text, settings: { content: "<h2>Welcome!</h2> This is a sample user profile dashboard, feel free to override it in the configuration! Want to make this text dynamic? For instance display the user's name? Create a dedicated block and edit the configuration!"} }
-                #- { position: left, type: sonata.order.block.recent_orders, settings: { title: Recent Orders, number: 5, mode: public }}
-                #- { position: right, type: sonata.timeline.block.timeline, settings: { max_per_page: 15 }}
-                #- { position: right, type: sonata.news.block.recent_posts, settings: { title: Recent Posts, number: 5, mode: public }}
-                #- { position: right, type: sonata.news.block.recent_comments, settings: { title: Recent Comments, number: 5, mode: public }}
-        # Customize user portal menu by setting links
-        menu:
-            - { route: 'sonata_user_profile_show', label: 'sonata_profile_title', domain: 'SonataUserBundle'}
-            - { route: 'sonata_user_profile_edit', label: 'link_edit_profile', domain: 'SonataUserBundle'}
-            #- { route: 'sonata_customer_addresses', label: 'link_list_addresses', domain: 'SonataCustomerBundle'}
-            - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
-            #- { route: 'sonata_order_index', label: 'order_list', domain: 'SonataOrderBundle'}
-    class:                  # Entity Classes
-        user:               Via\Bundle\UserBundle\Entity\User
-        group:              Via\Bundle\UserBundle\Entity\Group
-
-
-#########################
-#                       #
-# SonataBlockBundle     #
-#                       #
-#########################
-sonata_block:
-    default_contexts: [cms]
-    blocks:
-        sonata.user.block.menu:    # used to display the menu in profile pages
-            contexts:   [admin]
-        sonata.user.block.account: # used to display menu option (login option)
-            contexts:   [admin]
-        sonata.admin.block.admin_list:
-            contexts:   [admin]
-        sonata.block.service.text: ~
-        sonata.block.service.action: ~
-        sonata.block.service.rss: ~
-        sonata.admin.block.search_result:
-            contexts:   [admin]
-        #via.api_user.block.service.user:
-        #    contexts:   [admin]        
-
-# SonataAdminBundle
-sonata_admin:
-    security:
-        handler: sonata.admin.security.handler.acl
-        
-        information:
-            GUEST:    [VIEW, LIST]
-            STAFF:    [EDIT, LIST, CREATE]
-            EDITOR:   [OPERATOR, EXPORT]
-            ADMIN:    [MASTER]
-        # permissions not related to an object instance and also to be available when objects do not exist
-        # the DELETE admin permission means the user is allowed to batch delete objects
-        admin_permissions: [CREATE, VIEW, EDIT, LIST, DELETE, UNDELETE, EXPORT, OPERATOR, MASTER]
-        # permission related to the objects
-        object_permissions: [VIEW, EDIT, DELETE, UNDELETE, OPERATOR, MASTER, OWNER]
-        
-    templates:
-            # default global templates
-            layout:  SonataAdminBundle::standard_layout.html.twig
-            ajax:    SonataAdminBundle::ajax_layout.html.twig
-            dashboard: SonataAdminBundle:Core:dashboard.html.twig
-
-            # default actions templates, should extend a global templates
-            list:    SonataAdminBundle:CRUD:list.html.twig
-            show:    SonataAdminBundle:CRUD:show.html.twig
-            edit:    SonataAdminBundle:CRUD:edit.html.twig
-            history: SonataAdminBundle:CRUD:history.html.twig
-            preview: SonataAdminBundle:CRUD:preview.html.twig
-            delete:  SonataAdminBundle:CRUD:delete.html.twig
-            batch:   SonataAdminBundle:CRUD:list__batch.html.twig
-            batch_confirmation: SonataAdminBundle:CRUD:batch_confirmation.html.twig
-            # list related templates
-            inner_list_row: SonataAdminBundle:CRUD:list_inner_row.html.twig
-            base_list_field: SonataAdminBundle:CRUD:base_list_field.html.twig
-
-            # default values of block templates, they should extend the base_block template
-            list_block: SonataAdminBundle:Block:block_admin_list.html.twig 
-    dashboard:
-        
-        blocks:
-            # display a dashboard block
-            - { position: left, type: sonata.admin.block.admin_list }
-                        
-            # Customize this part to add new block configuration
-            - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Via-Ebay Admin</h2>"} }
-            - { position: right, type: sonata.user.block.menu }
-            - { position: right, type: sonata.user.block.account }
-            #- { position: right, type: via.api_user.block.service.user }  
-        
-
-# FOSUserBundle        
-fos_user:
-    db_driver: orm
-    firewall_name: main
-    #user_class:     Application\Sonata\UserBundle\Entity\User
-    user_class:     Via\Bundle\UserBundle\Entity\User
-    group:
-        #group_class: Application\Sonata\UserBundle\Entity\Group
-        group_class: Via\Bundle\UserBundle\Entity\Group
-           
-
-
-
-
-
-
-
-
-
 # A2LixTranslationFormBundle
 a2lix_translation_form:
     locales: '%locales%'      
@@ -219,3 +106,5 @@ lunetics_locale:
     - session
     - cookie
     - browser
+    
+    

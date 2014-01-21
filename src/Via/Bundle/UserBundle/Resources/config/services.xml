@@ -18,8 +18,12 @@
 	      		show_in_dashboard="false"	      		
 	      />
 	      <argument />
-	      <argument>%via.user.entity.user.class%</argument>	      
-	      <argument />
+	      <argument>%via.user.entity.user.class%</argument>
+	      <argument>SonataAdminBundle:CRUD</argument>
+	      <call method="setUserManager">
+	      		<argument type="service" id="fos_user.user_manager" />
+              
+          </call>
 	  	</service>	
 	
 	</services>
