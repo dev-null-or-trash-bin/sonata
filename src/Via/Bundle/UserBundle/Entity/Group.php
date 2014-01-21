@@ -1,15 +1,14 @@
 <?php
-namespace Via\Bundle\GroupBundle\Entity;
+namespace Via\Bundle\UserBundle\Entity;
 
-#use FOS\UserBundle\Entity\Group as BaseGroup;
 use Sonata\UserBundle\Entity\BaseGroup as BaseGroup;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_group")
+ * @ORM\Table(name="fos_user_group")
  */
-class Group extends BaseGroup
+class Group extends BaseGroup implements GroupInterface
 {
     /**
      * @ORM\Id

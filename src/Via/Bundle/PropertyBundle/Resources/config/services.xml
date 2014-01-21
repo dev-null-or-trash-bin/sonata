@@ -7,7 +7,8 @@
         <parameter key="via.property.form.type.property_choice.class">Via\Bundle\PropertyBundle\Form\Type\PropertyEntityChoiceType</parameter>
         <parameter key="via.property.form.type.property.class">Via\Bundle\PropertyBundle\Form\Type\PropertyType</parameter>
         <parameter key="via.property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>
-        
+        <parameter key="via.property.admin.property.class">Via\Bundle\PropertyBundle\Admin\PropertyAdmin</parameter>
+        <parameter key="via.property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>    
     </parameters>
 
     <services>  
@@ -21,6 +22,19 @@
             <argument>%via.property.entity.property.class%</argument>
             <tag name="form.type" alias="via_property_choice" />
         </service>
+        
+        <service id="via.property.admin.property" class="%via.property.admin.property.class%">
+          <tag name="sonata.admin" manager_type="orm" 
+                group="Content" 
+                label="via.property.admin.dashboard.property"/>
+          <argument />
+          <argument>%via.property.entity.property.class%</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>messages</argument>
+          </call>
+      </service>
+        
     </services>
 
 </container>

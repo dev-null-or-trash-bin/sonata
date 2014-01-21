@@ -2,9 +2,6 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: '../../vendor/knplabs/doctrine-behaviors/config/orm-services.yml' }
-    - { resource: '@ViaProductBundle/Resources/config/admin.xml' }    
-    - { resource: '@ViaPropertyBundle/Resources/config/admin.xml' }
-    - { resource: '@ViaApiUserBundle/Resources/config/admin.xml' }
 
 framework:
     #esi:             ~
@@ -106,6 +103,11 @@ sonata_user:
             #- { route: 'sonata_customer_addresses', label: 'link_list_addresses', domain: 'SonataCustomerBundle'}
             - { route: 'sonata_user_profile_edit_authentication', label: 'link_edit_authentication', domain: 'SonataUserBundle'}
             #- { route: 'sonata_order_index', label: 'order_list', domain: 'SonataOrderBundle'}
+    class:                  # Entity Classes
+        user:               Via\Bundle\UserBundle\Entity\User
+        group:              Via\Bundle\UserBundle\Entity\Group
+
+
 #########################
 #                       #
 # SonataBlockBundle     #
@@ -125,8 +127,8 @@ sonata_block:
         sonata.block.service.rss: ~
         sonata.admin.block.search_result:
             contexts:   [admin]
-        via.api_user.block.service.user:
-            contexts:   [admin]        
+        #via.api_user.block.service.user:
+        #    contexts:   [admin]        
 
 # SonataAdminBundle
 sonata_admin:
@@ -175,16 +177,18 @@ sonata_admin:
             - { position: right, type: sonata.block.service.text, settings: { content: "<h2>Welcome to the Via-Ebay Admin</h2>"} }
             - { position: right, type: sonata.user.block.menu }
             - { position: right, type: sonata.user.block.account }
-            - { position: right, type: via.api_user.block.service.user }  
+            #- { position: right, type: via.api_user.block.service.user }  
         
 
 # FOSUserBundle        
 fos_user:
     db_driver: orm
     firewall_name: main
-    user_class:     Application\Sonata\UserBundle\Entity\User
+    #user_class:     Application\Sonata\UserBundle\Entity\User
+    user_class:     Via\Bundle\UserBundle\Entity\User
     group:
-        group_class: Application\Sonata\UserBundle\Entity\Group
+        #group_class: Application\Sonata\UserBundle\Entity\Group
+        group_class: Via\Bundle\UserBundle\Entity\Group
            
 
 
