@@ -3,23 +3,23 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services/services-1.0.xsd">
     
     <parameters>
-        <parameter key="via_api_user.admin.user.class">Via\Bundle\ApiUserBundle\Admin\UserAdmin</parameter>        
+        <parameter key="via.api_user.admin.user.class">Via\Bundle\ApiUserBundle\Admin\UserAdmin</parameter>        
     </parameters>
     
     <services>
     
-       <service id="via_api_user.admin.user" class="%via_api_user.admin.user.class%">
+       <service id="via.api_user.admin.user" class="%via.api_user.admin.user.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via_api_user.admin.dashboard.user"
+                label="via.api_user.admin.dashboard.user"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
            />
           <argument />
-          <argument>%via_api_user.entity.user.class%</argument>
+          <argument>%via.api_user.entity.user.class%</argument>
           <argument>SonataAdminBundle:CRUD</argument>
-          <!-- call method="setContainer">
-              <argument type="service" id="service_container" />
-          </call -->          
+          <call method="setEventDispatcher">
+              <argument type="service" id="event_dispatcher" />
+          </call>          
           <call method="setTranslationDomain">
               <argument>messages</argument>
           </call>

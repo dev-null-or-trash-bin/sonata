@@ -10,7 +10,9 @@
         <parameter key="via.product.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>
         <parameter key="via.product.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
         <parameter key="via.product.repository.product.class">Via\Bundle\ProductBundle\Entity\Repository\Product</parameter>
-        <parameter key="via.product.admin.product.extension.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>        
+        <parameter key="via.product.admin.product.extension.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>
+        <parameter key="via.product.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>
+        <parameter key="via.product.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>         
     </parameters>
 
     
@@ -36,6 +38,36 @@
         	<argument type="service" id="event_dispatcher" />       
             <tag name="sonata.admin.extension" global="true" />
         </service -->
+        
+        
+        <service id="via.product.admin.product" class="%via.product.admin.product.class%">
+          <tag name="sonata.admin" manager_type="orm" 
+                group="Content" 
+                label="via.product.admin.dashboard.product"
+           		label_translator_strategy="sonata.admin.label.strategy.noop"     
+           />
+          <argument />
+          <argument>%via.product.entity.product.class%</argument>
+          <argument>SonataAdminBundle:CRUD</argument>
+          <argument type="service" id="service_container" />
+          <call method="setTranslationDomain">
+              <argument>messages</argument>
+          </call>
+      </service>
+      
+      <service id="via.product.admin.product_property" class="%via.product.admin.product_property.class%">
+          <tag name="sonata.admin" manager_type="orm" 
+                group="Content" 
+                label="via.product.admin.dashboard.product_property"
+           		label_translator_strategy="sonata.admin.label.strategy.noop"     
+           />          
+          <argument />
+          <argument>%via.product.entity.product_property.class%</argument>
+          <argument />
+          <call method="setTranslationDomain">
+              <argument>messages</argument>
+          </call>
+      </service>
         
     </services>
     

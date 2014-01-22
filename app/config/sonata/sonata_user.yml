@@ -1,0 +1,51 @@
+#
+# more information can be found here http://sonata-project.org/bundles/user
+#
+fos_user:
+    db_driver:        orm # can be orm or odm
+    firewall_name:    main
+    user_class:       Via\Bundle\UserBundle\Entity\User
+    group:
+        group_class:  Via\Bundle\UserBundle\Entity\Group
+
+# Enable Doctrine to map the provided entities
+doctrine:
+    orm:
+        entity_managers:
+            default:
+                mappings:
+                    FOSUserBundle: ~
+                    ViaUserBundle: ~
+                    SonataUserBundle: ~
+
+sonata_user:
+    security_acl:             false
+    table:
+        user_group:           fos_user_user_group
+
+    impersonating:
+        route:                sonata_admin_dashboard
+        parameters:           { path: / }
+
+#    google_authenticator:
+#        server:               %sonata_user.google_authenticator.server%
+#        enabled:              true
+
+    manager_type:             orm
+    class:    
+        user:                   Via\Bundle\UserBundle\Entity\User
+        group:                  Via\Bundle\UserBundle\Entity\Group
+    profile:
+        form:
+            type:                 sonata_user_profile
+            handler:              sonata.user.profile.form.handler.default
+            name:                 sonata_user_profile_form
+            validation_groups:
+                # Defaults:
+                - Profile
+                - Default
+    admin:                  # Admin Classes
+        user:
+            class:          Via\Bundle\UserBundle\Admin\UserAdmin
+            controller:     SonataAdminBundle:CRUD
+            translation:    SonataUserBundle

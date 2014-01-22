@@ -4,11 +4,11 @@ namespace Via\Bundle\ApiUserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
-/** 
+/**
  * @ORM\Table(name="api_user")
  * @ORM\Entity(repositoryClass="Via\Bundle\ApiUserBundle\Repository\User")
  */
-class User
+class User implements UserInterface
 {
     use ORMBehaviors\Timestampable\Timestampable;
     /**
@@ -47,6 +47,11 @@ class User
      * @ORM\Column(name="enabled", type="boolean", nullable=false, options={"default"= 0})
      */
     protected $enabled;
+    
+    public function __toString()
+    {
+        return ($this->getUsername()) ? : '';
+    }
 
     public function getId()
     {

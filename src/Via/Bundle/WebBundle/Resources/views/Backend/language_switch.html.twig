@@ -1,3 +1,0 @@
-{% for locale in locales %}
-    {% if loop.index > 1 %} | {% endif %}<a href="{{ locale.link }}" title="{{ locale.locale_target_language }}">{{ locale.locale_target_language }}</a>
-{% endfor %}

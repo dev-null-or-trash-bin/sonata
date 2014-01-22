@@ -1,0 +1,45 @@
+sonata_block:
+    exception:
+        default:
+            renderer:               throw
+            filter:                 debug_only
+        renderers:
+            inline:                 sonata.block.exception.renderer.inline
+            inline_debug:           sonata.block.exception.renderer.inline_debug
+            throw:                  sonata.block.exception.renderer.throw
+    
+        filters:
+            debug_only:             sonata.block.exception.filter.debug_only
+            ignore_block_exception: sonata.block.exception.filter.ignore_block_exception
+            keep_all:               sonata.block.exception.filter.keep_all
+            keep_none:              sonata.block.exception.filter.keep_none
+#    context_manager: sonata.page.block.context_manager
+    default_contexts: [cms]
+
+    http_cache:
+        listener: true
+
+    blocks:
+        sonata.admin.block.admin_list:
+            contexts:   [admin]
+
+        sonata.admin.block.search_result:
+            contexts:   [admin]
+
+#        sonata.admin_doctrine_orm.block.audit:
+#            contexts:   [admin]
+
+        sonata.block.service.text:
+
+        sonata.block.service.rss:
+        
+#        sonata.timeline.block.timeline:
+
+        sonata.user.block.account:
+            cache: sonata.page.cache.js_async
+#            cache: sonata.page.cache.esi
+            contexts: [user]
+        sonata.user.block.menu:
+            contexts: [user]
+        via.api_user.block.service.user:   
+            exception: { filter: inline }

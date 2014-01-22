@@ -1,15 +1,15 @@
 <?php
 namespace Via\Bundle\UserBundle\Entity;
 
-#use FOS\UserBundle\Entity\User as BaseUser;
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
+use FOS\UserBundle\Model\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="fos_user")
+ * @ORM\Table(name="fos_user_user")
  */
-class User extends BaseUser
+class User extends BaseUser implements UserInterface
 {
     /**
      * @ORM\Id
@@ -18,11 +18,30 @@ class User extends BaseUser
      */
     protected $id;
     
-
+    /**
+     * @var unknown
+     *
+     * @ORM\Column(name="viaebay_username", type="string", length=255, nullable=true)
+     */
+    protected $viaebay_username;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Via\Bundle\GroupBundle\Entity\Group")
-     * @ORM\JoinTable(name="fos_user_group",
+     * @var unknown
+     *
+     * @ORM\Column(name="viaebay_password", type="string", length=255, nullable=true)
+     */
+    protected $viaebay_password;
+    
+    /**
+     * @var unknown
+     *
+     * @ORM\Column(name="viaebay_token", type="string", length=255, nullable=true)
+     */
+    protected $viaebay_token;
+    
+    /**
+     * @ORM\ManyToMany(targetEntity="Group")
+     * @ORM\JoinTable(name="fos_user_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="group_id", referencedColumnName="id")}
      * )
@@ -34,11 +53,38 @@ class User extends BaseUser
         parent::__construct();
         // your own logic
     }
-    
-    public function getFullName()
+
+    public function getViaebayUsername()
     {
-        return $this->firstname.' '.$this->lastname;
+        return $this->viaebay_username;
     }
-    
-    
+
+    public function setViaebayUsername($viaebay_username)
+    {
+        $this->viaebay_username = $viaebay_username;
+        return $this;
+    }
+
+    public function getViaebayPassword()
+    {
+        return $this->viaebay_password;
+    }
+
+    public function setViaebayPassword($viaebay_password)
+    {
+        $this->viaebay_password = $viaebay_password;
+        return $this;
+    }
+
+    public function getViaebayToken()
+    {
+        return $this->viaebay_token;
+    }
+
+    public function setViaebayToken($viaebay_token)
+    {
+        $this->viaebay_token = $viaebay_token;
+        return $this;
+    }
+	
 }
