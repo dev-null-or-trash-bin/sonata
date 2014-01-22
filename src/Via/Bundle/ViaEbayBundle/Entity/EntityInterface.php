@@ -1,7 +1,6 @@
 <?php
-namespace Via\Bundle\ApiBundle\Platform\ViaEbay\Entity;
+namespace Via\Bundle\ViaEbayBundle\Entity;
 
 
-interface EntityInterface{
-
-}
+interface EntityInterface
+{}

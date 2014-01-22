@@ -1,7 +1,7 @@
 <?php
-namespace Via\Bundle\ApiBundle\Platform\ViaEbay\Entity;
+namespace Via\Bundle\ViaEbayBundle\Entity;
 
-use Via\Bundle\ApiBundle\Platform\ViaEbay\Entity\BaseEntity;
+use Via\Bundle\ViaEbayBundle\Entity\BaseEntity;
 
 class Product extends BaseEntity
 {

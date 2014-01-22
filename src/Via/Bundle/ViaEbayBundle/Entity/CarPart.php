@@ -1,9 +1,9 @@
 <?php
-namespace Via\Rest\Entity;
+namespace Via\Bundle\ViaEbayBundle\Entity;
 
-use Via\Rest\Entity\AbstractEntity;
+use Via\Bundle\ViaEbayBundle\Entity\BaseEntity;
 
-class CarPart extends AbstractEntity
+class CarPart extends BaseEntity
 {
     private static $instance = null;
     protected $ProductId = null;
@@ -31,7 +31,7 @@ class CarPart extends AbstractEntity
     }
    
     public static function init()
-    {        
+    {
         return new CarPart();
     }
     
@@ -46,8 +46,8 @@ class CarPart extends AbstractEntity
         );
     } */
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getProductId()
     {
@@ -55,7 +55,7 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $ProductId
      */
     public function setProductId($ProductId)
@@ -65,8 +65,8 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getKType()
     {
@@ -74,7 +74,7 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Ktype
      */
     public function setKType($Ktype)
@@ -84,8 +84,8 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getHsn()
     {
@@ -93,7 +93,7 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Hsn
      */
     public function setHsn($Hsn)
@@ -103,8 +103,8 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getTsn()
     {
@@ -112,7 +112,7 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Tsn
      */
     public function setTsn($Tsn)
@@ -121,8 +121,8 @@ class CarPart extends AbstractEntity
         return $this;
     }
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getComment()
     {
@@ -130,7 +130,7 @@ class CarPart extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Comment
      */
     public function setComment($Comment)

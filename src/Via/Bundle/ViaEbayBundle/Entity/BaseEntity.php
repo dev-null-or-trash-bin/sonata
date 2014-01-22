@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\ApiBundle\Platform\ViaEbay\Entity;
+namespace Via\Bundle\ViaEbayBundle\Entity;
 
 use Sonata\AdminBundle\Admin\BaseFieldDescription;
 

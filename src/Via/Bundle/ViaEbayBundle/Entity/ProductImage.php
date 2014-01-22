@@ -1,9 +1,9 @@
 <?php
-namespace Via\Rest\Entity;
+namespace Via\Bundle\ViaEbayBundle\Entity;
 
-use Via\Rest\Entity\AbstractEntity;
+use Via\Bundle\ViaEbayBundle\Entity\BaseEntity;
 
-class ProductImage extends AbstractEntity
+class ProductImage extends BaseEntity
 {
     private static $instance = null;
     protected $ProductId = null;
@@ -35,8 +35,8 @@ class ProductImage extends AbstractEntity
         
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getProductId()
     {
@@ -44,7 +44,7 @@ class ProductImage extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $ProductId
      */
     public function setProductId($ProductId)
@@ -54,8 +54,8 @@ class ProductImage extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getImageUrl()
     {
@@ -63,7 +63,7 @@ class ProductImage extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $ImageUrl
      */
     public function setImageUrl($ImageUrl)
@@ -73,8 +73,8 @@ class ProductImage extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getType()
     {
@@ -82,7 +82,7 @@ class ProductImage extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Type
      */
     public function setType($Type)
@@ -96,7 +96,7 @@ class ProductImage extends AbstractEntity
         return array (
         	'ProductId'    => $this->getProductId(),
             'ImageUrl'     => $this->getImageUrl(),
-            'Type'         => $this->getType() 
+            'Type'         => $this->getType()
         );
     } */
 }

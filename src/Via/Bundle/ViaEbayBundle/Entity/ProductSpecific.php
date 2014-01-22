@@ -1,12 +1,12 @@
 <?php
-namespace Via\Rest\Entity;
+namespace Via\Bundle\ViaEbayBundle\Entity;
 
-use Via\Rest\Entity\AbstractEntity;
+use Via\Bundle\ViaEbayBundle\Entity\BaseEntity;
 
-class ProductSpecific extends AbstractEntity
+class ProductSpecific extends BaseEntity
 {
     private static $instance = null;
-    protected $ProductId = null; 
+    protected $ProductId = null;
     protected $Name  = null;
     protected $Value = null;
     
@@ -43,8 +43,8 @@ class ProductSpecific extends AbstractEntity
     } */
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getProductId()
     {
@@ -52,7 +52,7 @@ class ProductSpecific extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $ProductId
      */
     public function setProductId($ProductId)
@@ -62,8 +62,8 @@ class ProductSpecific extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getName()
     {
@@ -71,7 +71,7 @@ class ProductSpecific extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Name
      */
     public function setName($Name)
@@ -81,8 +81,8 @@ class ProductSpecific extends AbstractEntity
     }
 
     /**
-     * 
-     * @return 
+     *
+     * @return
      */
     public function getValue()
     {
@@ -90,7 +90,7 @@ class ProductSpecific extends AbstractEntity
     }
 
     /**
-     * 
+     *
      * @param $Value
      */
     public function setValue($Value)
