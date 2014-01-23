@@ -7,6 +7,7 @@
 	<parameters>
 		<parameter key="via.user.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>      
 		<parameter key="via.user.entity.user.class">Via\Bundle\UserBundle\Entity\User</parameter>
+		<parameter key="via.user.block.service.account.class">Via\Bundle\UserBundle\Block\Service\AccountBlockService</parameter>
 	</parameters>
 	
 	<services>
@@ -25,6 +26,13 @@
               
           </call>
 	  	</service>	
+	  	
+	  	<service id="via.user.block.service.account" class="%via.user.block.service.account.class%">
+            <tag name="sonata.block" />
+            <argument>via.user.block.service.account</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="security.context" />            
+        </service>
 	
 	</services>
     

@@ -1,0 +1,8 @@
+lunetics_locale:
+  allowed_locales: '%locales%'
+  guessing_order:
+    - query
+    - router
+    - session
+    - cookie
+    - browser

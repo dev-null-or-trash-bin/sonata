@@ -1,0 +1,38 @@
+{
+    "name": "Blackbox",
+    "apiVersion": "1.0",
+    "baseUrl": "http://sandbox.api.via.de",
+    "operations": {
+        "PostAuthentication": {
+            "httpMethod": "POST",
+            "uri": "Authentication_JSON_AppService.axd/Login",
+            "responseClass": "GetAuthOutput",
+            "parameters": {
+                "userName": {
+                    "location": "json",
+                    "type": "string",
+                    "required": true
+                },
+                "password": {
+                    "location": "json",
+                    "type": "string",
+                    "required": true
+                    
+                },
+                "createPersistentCookie": {
+                    "location": "json",
+                    "type": "string",
+                    "default": "false"
+                }
+            }
+        }
+    },
+    "models": {
+        "GetAuthOutput": {
+            "type": "object",
+            "additionalProperties": {
+                "location": "json"
+            }
+        }
+    }
+}

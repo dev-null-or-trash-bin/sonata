@@ -1,0 +1,19 @@
+{% extends sonata_block.templates.block_base %}
+
+{% block block %}
+    <div class="well">
+        {% if user %}
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    <h5 class="panel-title" style="line-height: 1.1; margin: 0px;">{{ settings.title }}</h5>
+  </div>
+  <div class="panel-body">
+    Panel content
+    
+    <a class="btn btn-default" href="{#{ url('via_via_ebay_test', { 'name': 'foo_bar' }) }#}" role="button">Link</a>
+  </div>
+</div>
+        
+        {% endif %}
+  </div> 
+{% endblock %}

@@ -43,3 +43,6 @@ sonata_block:
             contexts: [user]
         via.api_user.block.service.user:   
             exception: { filter: inline }
+        via.user.block.service.account:
+            contexts: [user]
+            #exception: { filter: inline }

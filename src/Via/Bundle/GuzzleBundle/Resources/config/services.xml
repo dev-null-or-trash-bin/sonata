@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="via.guzzle.client.service_description.via_ebay.file"></parameter>
+		<parameter key="via.guzzle.plugin.via_ebay.auth.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbayAuthPlugin</parameter>
+		<parameter key="via.guzzle.plugin.via_ebay.header.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbayHeaderPlugin</parameter>
+		
+		<parameter key="via.guzzle.plugin.via_ebay.header.headers" type="collection" ></parameter>
+	</parameters>
+
+	<services>
+	    <service id="via.guzzle.client.service_description.via_ebay"
+	         class="%guzzle.service_description.class%"
+	         factory-class="%guzzle.service_description.class%"
+	         factory-method="factory">	         
+	    	<argument>%via.guzzle.client.service_description.via_ebay.file%</argument>
+		</service>
+		
+		<service id="via.guzzle.plugin.via_ebay.header" class="%via.guzzle.plugin.via_ebay.header.class%">
+            <argument id="via.guzzle.plugin.via_ebay.header.headers">%via.guzzle.plugin.via_ebay.header.headers%</argument>
+        </service>
+		
+		<service id="via.guzzle.plugin.via_ebay.auth" class="%via.guzzle.plugin.via_ebay.auth.class%" />
+		
+		<service id="via.guzzle.via_ebay.client" class="%guzzle.client.class%">
+	    
+	    	<call method="setDescription">
+	        	<argument type="service" id="via.guzzle.client.service_description.via_ebay"/>
+	    	</call>
+	    	
+	    	<call method="addSubscriber">
+		        <argument type="service" id="via.guzzle.plugin.via_ebay.auth"/>
+		    </call>
+		    
+		    <call method="addSubscriber">
+		        <argument type="service" id="via.guzzle.plugin.via_ebay.header"/>
+		    </call>
+		    
+		    <call method="setUserAgent">
+		        <argument>ViA-eBay Demo</argument>
+		        <argument>true</argument>
+		    </call>
+		    
+		    <tag name="playbloom_guzzle.client" />
+		</service>
+	</services>
+</container>
