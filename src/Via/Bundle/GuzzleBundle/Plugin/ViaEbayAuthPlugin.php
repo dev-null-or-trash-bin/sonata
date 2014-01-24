@@ -5,6 +5,8 @@ namespace Via\Bundle\GuzzleBundle\Plugin;
 use Guzzle\Common\Event;
 use Guzzle\Common\Version;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\DependencyInjection\ContainerInterface;
+use Symfony\Component\Security\Core\SecurityContextInterface;
 
 /**
 * Adds specified curl auth to all requests sent from a client. Defaults to CURLAUTH_BASIC if none supplied.
@@ -12,8 +14,11 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 */
 class ViaEbayAuthPlugin implements EventSubscriberInterface
 {
+    protected $container;
+    
+    protected $securityContext;
     /**
-     * 
+     *
      */
     public function __construct()
     {
@@ -22,7 +27,10 @@ class ViaEbayAuthPlugin implements EventSubscriberInterface
 
     public static function getSubscribedEvents()
     {
-        return array('client.create_request' => array('onRequestCreate', 255));
+        return array(
+            'client.create_request' => array('onRequestCreate', 255),
+            #'command.before_send' => array('onCommandBeforeSend', 255)
+        );
     }
 
     /**
@@ -31,7 +39,37 @@ class ViaEbayAuthPlugin implements EventSubscriberInterface
      * @param Event $event
      */
     public function onRequestCreate(Event $event)
-    {        
-        #\Doctrine\Common\Util\Debug::dump($event, 3);#die(__METHOD__);
+    {
+        $user = $this->securityContext->getToken()->getUser();
+        $viaEbayUserName = $user->getViaebayUsername();
+        $viaEbayPassword = $user->getViaebayPassword();
+        $viaEbayToken = $user->getViaebayToken();
+        
+        $client = $this->container->get('via.guzzle.via_ebay.auth.client');
+        $command = $client->getCommand('PostAuthentication', array('userName' => $viaEbayUserName, 'password' => $viaEbayPassword));
+        $responseModel = $client->execute($command);
+        
+        $request = $event['request'];
+        $request->setHeader('Cookie', $responseModel->getCookie());
+        $request->setHeader('SubscriptionToken', $viaEbayToken);
+        
+        $cookieLifeTime = $this->container->getParameter('via.guzzle.cookie.life_time');
+        
+        
+    }
+    
+    public function onCommandBeforeSend(Event $event)
+    {
+        
+    }
+    
+    public function setServiceContainer (ContainerInterface $container)
+    {
+        $this->container = $container;
+    }
+    
+    public function setSecurityContext (SecurityContextInterface $securityContext)
+    {
+        $this->securityContext = $securityContext;
     }
 }

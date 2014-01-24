@@ -60,6 +60,17 @@ class Configuration implements ConfigurationInterface
                             ->end()
                         ->end()
                         
+                        ->arrayNode('live')
+                            ->addDefaultsIfNotSet()
+                             ->children()
+                                ->scalarNode('auth_url')->defaultValue('http://ebayapi.api.via.de')->end()
+                                ->scalarNode('auth_path')->defaultValue('Authentication_JSON_AppService.axd/Login')->end()
+                             ->end()
+                        ->end()
+                        ->arrayNode('cookies')
+                            ->prototype('scalar')
+                            ->end()
+                        ->end()
 
                         ->arrayNode('headers')
                             ->prototype('scalar')

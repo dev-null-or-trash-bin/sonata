@@ -19,7 +19,9 @@ via_guzzle:
     # custom headers
     headers:
         Accept: "application/json"
-
+    
+    cookie:
+        life_time: 1200
 
 monolog:
     handlers:

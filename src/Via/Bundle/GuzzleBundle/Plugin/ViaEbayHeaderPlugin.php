@@ -20,7 +20,7 @@ class ViaEbayHeaderPlugin implements EventSubscriberInterface {
      * @param   array $headers
      */
     public function __construct(array $headers) {
-
+        
         $this->setHeaders($headers);
     }
 
@@ -93,12 +93,12 @@ class ViaEbayHeaderPlugin implements EventSubscriberInterface {
     public function onRequestCreate(Event $event) {
 
         $request = $event['request'];
-
+        
         // make sure to keep headers that have been already set
         foreach($this->headers as $key => $value) {
 
             $request->addHeader($key, $value);
         }
-        #\Doctrine\Common\Util\Debug::dump($event, 3);
+        #\Doctrine\Common\Util\Debug::dump($this->headers, 3);
     }
 }

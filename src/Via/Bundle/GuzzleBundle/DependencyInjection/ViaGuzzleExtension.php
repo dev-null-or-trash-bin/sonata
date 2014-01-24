@@ -34,14 +34,25 @@ class ViaGuzzleExtension extends Extension
         
             $this->setUpHeaders($config['headers'], $container);
         }
+        
+        if($config['cookie']) {
+        
+            $this->setUpCookieLifeTime($config['cookie'], $container);
+        }
     }
     
     protected function setUpHeaders(array $headers, ContainerBuilder $container) {
     
-        $container->setParameter('via,guzzle.plugin.via_ebay.header.headers', $headers);
+        $container->setParameter('via.guzzle.plugin.via_ebay.header.headers', $headers);
         $container->getDefinition('via.guzzle.via_ebay.client')
         ->addMethodCall('getEventDispatcher')
         ->addMethodCall('addSubscriber', array($container->getDefinition('via.guzzle.plugin.via_ebay.header')));
+    }
+    
+    protected function setUpCookieLifeTime(array $cookies, ContainerBuilder $container) {
+    
+        $container->setParameter('via.guzzle.cookie.life_time', $cookies['life_time']);
+        
     }
         
     /**
