@@ -7,7 +7,7 @@ class TestController extends Controller
 {
     public function indexAction($name = null)
     {
-        $client = $this->get('via.guzzle.via_ebay.client');
+        $client = $this->get('via_guzzle.client.via_ebay');
         #$client->setSslVerification(false);
         #\Doctrine\Common\Util\Debug::dump($client, 3);
         #$loggerPlugin = $this->get('playbloom_guzzle.client.plugin.logger');

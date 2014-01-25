@@ -25,10 +25,10 @@ class ViaGuzzleExtension extends Extension
         $loader->load('services.xml');
         
         $processor = new Processor();
-        $configuration = new Configuration($this->getAlias(), $container->getParameter('kernel.debug'));
+        $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         
-        $container->setParameter('via.guzzle.client.service_description.via_ebay.file', __DIR__ . '/../Resources/config/client.json');
+        $container->setParameter('via_guzzle.client.service_description.via_ebay.file', $config['sandbox']['service_description']);
         
         if($config['headers']) {
         
@@ -43,25 +43,12 @@ class ViaGuzzleExtension extends Extension
     
     protected function setUpHeaders(array $headers, ContainerBuilder $container) {
     
-        $container->setParameter('via.guzzle.plugin.via_ebay.header.headers', $headers);
-        $container->getDefinition('via.guzzle.via_ebay.client')
-        ->addMethodCall('getEventDispatcher')
-        ->addMethodCall('addSubscriber', array($container->getDefinition('via.guzzle.plugin.via_ebay.header')));
+        $container->setParameter('via_guzzle.plugin.via_ebay.header.headers', $headers);
     }
     
     protected function setUpCookieLifeTime(array $cookies, ContainerBuilder $container) {
     
-        $container->setParameter('via.guzzle.cookie.life_time', $cookies['life_time']);
+        $container->setParameter('via_guzzle.cookie.life_time', $cookies['life_time']);
         
-    }
-        
-    /**
-     * Returns alias of class
-     *
-     * @return string
-     */
-    public function getAlias() {
-    
-        return 'via_guzzle';
     }
 }

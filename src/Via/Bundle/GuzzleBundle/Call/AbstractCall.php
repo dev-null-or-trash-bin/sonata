@@ -1,7 +1,7 @@
 <?php
 namespace Via\Bundle\GuzzleBundle\Call;
 
-class BaseCall implements BaseCallInterface
+abstract class BaseCall implements BaseCallInterface
 {
     const MODE_SANDBOX = 0;
     const MODE_PRODUCT = 1;

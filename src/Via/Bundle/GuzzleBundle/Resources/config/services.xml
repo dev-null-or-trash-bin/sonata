@@ -5,47 +5,57 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="via.guzzle.client.service_description.via_ebay.file"></parameter>
-		<parameter key="via.guzzle.plugin.via_ebay.auth.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbayAuthPlugin</parameter>
-		<parameter key="via.guzzle.plugin.via_ebay.header.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbayHeaderPlugin</parameter>
+		<parameter key="via_guzzle.client.service_description.via_ebay.file"></parameter>
+		<parameter key="via_guzzle.plugin.via_ebay.auth.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbay\AuthPlugin</parameter>
+		<parameter key="via_guzzle.plugin.via_ebay.header.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbay\HeaderPlugin</parameter>
 		
-		<parameter key="via.guzzle.plugin.via_ebay.header.headers" type="collection" ></parameter>
+		<parameter key="via_guzzle.event_listener.via_ebay.response.class">Via\Bundle\GuzzleBundle\EventListener\ViaEbay\ResponseListener</parameter>
+		
+		<parameter key="via_guzzle.plugin.via_ebay.header.headers" type="collection" ></parameter>
 	</parameters>
 
 	<services>
-	    <service id="via.guzzle.client.service_description.via_ebay"
+	    <service id="via_guzzle.client.service_description.via_ebay"
 	         class="%guzzle.service_description.class%"
 	         factory-class="%guzzle.service_description.class%"
 	         factory-method="factory">	         
-	    	<argument>%via.guzzle.client.service_description.via_ebay.file%</argument>
+	    	<argument>%via_guzzle.client.service_description.via_ebay.file%</argument>
 		</service>
 		
-		<service id="via.guzzle.plugin.via_ebay.header" class="%via.guzzle.plugin.via_ebay.header.class%">
-            <argument id="via.guzzle.plugin.via_ebay.header.headers">%via.guzzle.plugin.via_ebay.header.headers%</argument>
+		<!-- service id="via_guzzle.event_listener.via_ebay.response" class="%via_guzzle.event_listener.via_ebay.response.class%">
+            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
+        </service -->
+		
+		<service id="via_guzzle.plugin.via_ebay.header" class="%via_guzzle.plugin.via_ebay.header.class%">
+            <argument id="via_guzzle.plugin.via_ebay.header.headers">%via_guzzle.plugin.via_ebay.header.headers%</argument>
         </service>
 		
-		<service id="via.guzzle.plugin.via_ebay.auth" class="%via.guzzle.plugin.via_ebay.auth.class%">
+		<service id="via_guzzle.plugin.via_ebay.auth" class="%via_guzzle.plugin.via_ebay.auth.class%">
+			
+			<argument type="service" id="security.context"/>
+			
 			<call method="setServiceContainer">
 		        <argument type="service" id="service_container"/>
 		    </call>
 		    
-		    <call method="setSecurityContext">
-		        <argument type="service" id="security.context"/>
-		    </call>
 		</service>
 		
-		<service id="via.guzzle.via_ebay.client" class="%guzzle.client.class%">
+		<service id="via_guzzle.client.via_ebay" class="%guzzle.client.class%">
 	    
 	    	<call method="setDescription">
-	        	<argument type="service" id="via.guzzle.client.service_description.via_ebay"/>
+	        	<argument type="service" id="via_guzzle.client.service_description.via_ebay"/>
 	    	</call>
 	    	
 	    	<call method="addSubscriber">
-		        <argument type="service" id="via.guzzle.plugin.via_ebay.auth"/>
+		        <argument type="service" id="via_guzzle.plugin.via_ebay.auth"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
-		        <argument type="service" id="via.guzzle.plugin.via_ebay.header"/>
+		        <argument type="service" id="via_guzzle.plugin.via_ebay.header"/>
+		    </call>
+		    
+		    <call method="addSubscriber">
+		        <argument type="service" id="misd_guzzle.log.monolog"/>
 		    </call>
 		    
 		    <call method="setUserAgent">
@@ -56,14 +66,18 @@
 		    <tag name="playbloom_guzzle.client" />
 		</service>
 		
-		<service id="via.guzzle.via_ebay.auth.client" class="%guzzle.client.class%">
+		<service id="via_guzzle.client.auth.via_ebay" class="%guzzle.client.class%">
 	    
 	    	<call method="setDescription">
-	        	<argument type="service" id="via.guzzle.client.service_description.via_ebay"/>
+	        	<argument type="service" id="via_guzzle.client.service_description.via_ebay"/>
 	    	</call>
 	    	
 	    	<call method="addSubscriber">
-		        <argument type="service" id="via.guzzle.plugin.via_ebay.header"/>
+		        <argument type="service" id="via_guzzle.plugin.via_ebay.header"/>
+		    </call>
+		    
+		    <call method="addSubscriber">
+		        <argument type="service" id="misd_guzzle.log.monolog"/>
 		    </call>
 		    
 		    <call method="setUserAgent">

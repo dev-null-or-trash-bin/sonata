@@ -13,88 +13,45 @@ use Symfony\Component\Config\Definition\ConfigurationInterface;
 class Configuration implements ConfigurationInterface
 {
    /**
-    * @var string $alias
-    */
-    protected $alias;
-
-   /**
-    * @var boolean $debug
-    */
-    protected $debug;
-
-   /**
-    * Constructor
-    *
-    * @author Florian Preusner
-    * @version 1.0
-    * @since 2013-10
-    *
-    * @param string $alias
-    * @param boolean $debug
-    */
-    public function __construct($alias, $debug = false) {
-
-        $this->alias = $alias;
-        $this->debug = (boolean) $debug;
-    }
-
-   /**
     * Generates the configuration tree builder
     *
-    * @author Florian Preusner
-    * @version 1.0
-    * @since 2013-10
     *
     * @return TreeBuilder
     */
     public function getConfigTreeBuilder() {
 
-        $builder = new TreeBuilder();
-        $builder->root($this->alias)
+        $treeBuilder = new TreeBuilder();
+        $rootNode = $treeBuilder->root('via_guzzle');
+
+        $rootNode->children()         
+                ->arrayNode('sandbox')
+                    ->addDefaultsIfNotSet()
                     ->children()
-                        ->arrayNode('sandbox')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('auth_url')->defaultValue('http://sandbox.api.via.de')->end()
-                                ->scalarNode('auth_path')->defaultValue('Authentication_JSON_AppService.axd/Login')->end()
-                            ->end()
-                        ->end()
-                        
-                        ->arrayNode('live')
-                            ->addDefaultsIfNotSet()
-                             ->children()
-                                ->scalarNode('auth_url')->defaultValue('http://ebayapi.api.via.de')->end()
-                                ->scalarNode('auth_path')->defaultValue('Authentication_JSON_AppService.axd/Login')->end()
-                             ->end()
-                        ->end()
-                        ->arrayNode('cookies')
-                            ->prototype('scalar')
-                            ->end()
-                        ->end()
-
-                        ->arrayNode('headers')
-                            ->prototype('scalar')
-                            ->end()
-                        ->end()
-
-                        ->arrayNode('plugin')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->arrayNode('via_ebay')
-                                    ->addDefaultsIfNotSet()
-                                    ->children()
-                                        ->scalarNode('username')->defaultFalse()->end()
-                                        ->scalarNode('password')->defaultValue('')->end()
-                                        ->scalarNode('token')->defaultValue('')->end()
-                                    ->end()
-                                ->end()
-                            ->end()
-                        ->end()
-
-                        ->booleanNode('logging')->defaultValue($this->debug)->end()
+                        ->scalarNode('service_description')->defaultValue('%kernel.root_dir%/config/via/sandbox_webservices.json')->end()
                     ->end()
-                ->end();
+                ->end()
+                
+                ->arrayNode('live')
+                    ->addDefaultsIfNotSet()
+                     ->children()
+                        ->scalarNode('service_description')->defaultValue('%kernel.root_dir%/config/via/live_webservices.json')->end()
+                     ->end()
+                ->end()
+                ->arrayNode('cookie')
+                    ->prototype('scalar')
+                    ->end()
+                ->end()
 
-        return $builder;
+                ->arrayNode('headers')
+                    ->prototype('scalar')
+                    ->end()
+                ->end()
+                
+                ->booleanNode('logging')->defaultValue(false)->end()
+        ->end()
+        
+        ;
+
+        return $treeBuilder;
     }
 }

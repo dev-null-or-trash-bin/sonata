@@ -5,13 +5,13 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="via.user.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>      
-		<parameter key="via.user.entity.user.class">Via\Bundle\UserBundle\Entity\User</parameter>
-		<parameter key="via.user.block.service.account.class">Via\Bundle\UserBundle\Block\Service\AccountBlockService</parameter>
+		<parameter key="via_user.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>      
+		<parameter key="via_user.entity.user.class">Via\Bundle\UserBundle\Entity\User</parameter>
+		<parameter key="via_user.block.service.account.class">Via\Bundle\UserBundle\Block\Service\AccountBlockService</parameter>
 	</parameters>
 	
 	<services>
-		<service id="via.user.admin.user" class="%via.user.admin.user.class%">
+		<service id="via_user.admin.user" class="%via_user.admin.user.class%">
 	      <tag name="sonata.admin" 
 	      		manager_type="orm"
 	      		group="Content"  
@@ -19,7 +19,7 @@
 	      		show_in_dashboard="false"	      		
 	      />
 	      <argument />
-	      <argument>%via.user.entity.user.class%</argument>
+	      <argument>%via_user.entity.user.class%</argument>
 	      <argument>SonataAdminBundle:CRUD</argument>
 	      <call method="setUserManager">
 	      		<argument type="service" id="fos_user.user_manager" />
@@ -27,9 +27,9 @@
           </call>
 	  	</service>	
 	  	
-	  	<service id="via.user.block.service.account" class="%via.user.block.service.account.class%">
+	  	<service id="via_user.block.service.account" class="%via_user.block.service.account.class%">
             <tag name="sonata.block" />
-            <argument>via.user.block.service.account</argument>
+            <argument>via_user.block.service.account</argument>
             <argument type="service" id="templating" />
             <argument type="service" id="security.context" />            
         </service>

@@ -11,18 +11,6 @@ web_profiler:
     toolbar: true
     intercept_redirects: false
 
-via_guzzle:
-    sandbox:
-        auth_url: 'http://sandbox.api.via.de'
-        auth_path: 'Authentication_JSON_AppService.axd/Login'
-        
-    # custom headers
-    headers:
-        Accept: "application/json"
-    
-    cookie:
-        life_time: 1200
-
 monolog:
     handlers:
         main:

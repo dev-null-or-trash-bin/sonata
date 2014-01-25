@@ -38,9 +38,9 @@ class AppKernel extends Kernel
 
             
             new Via\Bundle\UserBundle\ViaUserBundle(),
-            new Via\Bundle\ProductBundle\ViaProductBundle(),
-            new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
-            new Via\Bundle\ApiBundle\ViaApiBundle(),
+            #new Via\Bundle\ProductBundle\ViaProductBundle(),
+            #new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
+            #new Via\Bundle\ApiBundle\ViaApiBundle(),
             new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
         );
 

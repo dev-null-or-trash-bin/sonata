@@ -1,0 +1,11 @@
+via_guzzle:
+    sandbox:
+        service_description: '%kernel.root_dir%/config/via/sandbox_webservice.json'
+    live:
+        service_description: ~'%kernel.root_dir%/config/via/live_webservice.json'
+    # custom headers
+    headers:
+        Accept: "application/json"
+    
+    cookie:
+        life_time: 1200

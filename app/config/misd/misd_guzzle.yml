@@ -1,0 +1,4 @@
+misd_guzzle:
+    log:
+        format: debug # default/debug/short or custom MessageFormatter string
+        enabled: true

@@ -5,24 +5,24 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>        
-        <parameter key="via.api_user.entity.user.class">Via\Bundle\ApiUserBundle\Entity\User</parameter>       
-        <parameter key="via.api_user.repository.user.class">Via\Bundle\ApiUserBundle\Repository\User</parameter>
-        <parameter key="via.api_user.block.user.class">Via\Bundle\ApiUserBundle\Block\UserBlock</parameter>        
-        <parameter key="via.api_user.user_processing.user_state.class">Via\Bundle\ApiUserBundle\UserProcessing\UserStateResolver</parameter>
-        <parameter key="via.api_user.listener.user.class">Via\Bundle\ApiUserBundle\EventListener\UserListener</parameter>
+        <parameter key="via_api_user.entity.user.class">Via\Bundle\ApiUserBundle\Entity\User</parameter>       
+        <parameter key="via_api_user.repository.user.class">Via\Bundle\ApiUserBundle\Repository\User</parameter>
+        <parameter key="via_api_user.block.user.class">Via\Bundle\ApiUserBundle\Block\UserBlock</parameter>        
+        <parameter key="via_api_user.user_processing.user_state.class">Via\Bundle\ApiUserBundle\UserProcessing\UserStateResolver</parameter>
+        <parameter key="via_api_user.listener.user.class">Via\Bundle\ApiUserBundle\EventListener\UserListener</parameter>
     </parameters>
 
     
     <services>
-		<service id="via.api_user.repository.user"
-                 class="%via.api_user.repository.user.class%"
+		<service id="via_api_user.repository.user"
+                 class="%via_api_user.repository.user.class%"
                  factory-service="doctrine.orm.entity_manager"
                  factory-method="getRepository">
-                <argument>%via.api_user.entity.user.class%</argument>
+                <argument>%via_api_user.entity.user.class%</argument>
         </service>
         
-        <service id="via.api_user.block.service.user" class="%via.api_user.block.user.class%" public="true">
-		    <tag name="sonata.block" alias="via_api_user_block_service"/>
+        <service id="via_api_user.block.service.user" class="%via_api_user.block.user.class%" public="true">
+		    <tag name="sonata.block" alias="_block_service"/>
 		    <argument>via-api_user.block.service.user</argument>
 		    <argument type="service" id="templating" />
 		    <call method="setContainer">
@@ -30,21 +30,21 @@
           </call>
 		</service>
 		
-		<service id="via.api_user.user_processing.user_state" class="%via.api_user.user_processing.user_state.class%">
+		<service id="via_api_user.user_processing.user_state" class="%via_api_user.user_processing.user_state.class%">
 			<call method="setContainer">
                 <argument type="service" id="service_container" />
             </call>
 		</service>
 		
-		<!-- service id="via.api_user.block.service.text" class="Sonata\BlockBundle\Event\TextBlockListener">
+		<!-- service id="via_api_user.block.service.text" class="Sonata\BlockBundle\Event\TextBlockListener">
 		    <tag name="kernel.event_listener" event="sonata.block.event.sonata.admin.form.list.top" method="onBlock"/>		    
 		</service -->
 		
-		<service id="via.api_user.listener.user" class="%via.api_user.listener.user.class%"> 
-            <argument type="service" id="via.api_user.user_processing.user_state" />
-            <tag name="kernel.event_listener" event="via.api_user.preUpdate" 	method="processUser" />            
-            <tag name="kernel.event_listener" event="via.api_user.prePersist" 	method="processUser" />
-            <tag name="kernel.event_listener" event="via.api_user.preRemove" 	method="processUser" />
+		<service id="via_api_user.listener.user" class="%via_api_user.listener.user.class%"> 
+            <argument type="service" id="via_api_user.user_processing.user_state" />
+            <tag name="kernel.event_listener" event="via_api_user.preUpdate" 	method="processUser" />            
+            <tag name="kernel.event_listener" event="via_api_user.prePersist" 	method="processUser" />
+            <tag name="kernel.event_listener" event="via_api_user.preRemove" 	method="processUser" />
         </service>
         
     </services>

@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\Plugin;
+namespace Via\Bundle\GuzzleBundle\Plugin\ViaEbay;
 
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
@@ -7,7 +7,7 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 /**
  * Adds headers to request
  */
-class ViaEbayHeaderPlugin implements EventSubscriberInterface {
+class HeaderPlugin implements EventSubscriberInterface {
 
     /**
      * @var array $headers

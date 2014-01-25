@@ -24,7 +24,7 @@ class UserBlock extends BaseBlockService
     {
         $resolver->setDefaults(array(
             'url'      => false,
-            'title'    => 'via.api_user.block.title.user',
+            'title'    => 'via_api_user.block.title.user',
             'template' => 'ViaApiUserBundle:Block:block_user.html.twig',
         ));
     }
@@ -43,7 +43,7 @@ class UserBlock extends BaseBlockService
         // merge settings
         $settings = $blockContext->getSettings();
         
-        $apiUserRepository = $this->container->get('via.api_user.repository.user');
+        $apiUserRepository = $this->container->get('via_api_user.repository.user');
         $user = $apiUserRepository->findOneBy(array('enabled' => '1'));
 
         return $this->renderResponse($blockContext->getTemplate(), array(
