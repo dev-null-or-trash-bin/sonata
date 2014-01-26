@@ -1,5 +1,9 @@
-via_guzzle:
-    resource: "@ViaGuzzleBundle/Resources/config/routing.xml"
+via_web:
+    resource: "@ViaWebBundle/Resources/config/routing.xml"
+    prefix:   /admin
+
+#via_guzzle:
+#    resource: "@ViaGuzzleBundle/Resources/config/routing.xml"
 
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"

@@ -4,31 +4,31 @@
                                http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="via.property.form.type.property_choice.class">Via\Bundle\PropertyBundle\Form\Type\PropertyEntityChoiceType</parameter>
-        <parameter key="via.property.form.type.property.class">Via\Bundle\PropertyBundle\Form\Type\PropertyType</parameter>
-        <parameter key="via.property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>
-        <parameter key="via.property.admin.property.class">Via\Bundle\PropertyBundle\Admin\PropertyAdmin</parameter>
-        <parameter key="via.property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>    
+        <parameter key="via_property.form.type.property_choice.class">Via\Bundle\PropertyBundle\Form\Type\PropertyEntityChoiceType</parameter>
+        <parameter key="via_property.form.type.property.class">Via\Bundle\PropertyBundle\Form\Type\PropertyType</parameter>
+        <parameter key="via_property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>
+        <parameter key="via_property.admin.property.class">Via\Bundle\PropertyBundle\Admin\PropertyAdmin</parameter>
+        <parameter key="via_property.entity.property.class">Via\Bundle\PropertyBundle\Entity\Property</parameter>    
     </parameters>
 
     <services>  
-    	<service id="via.fproperty.orm.type.property" class="%via.property.form.type.property.class%">
-            <argument>%via.property.entity.property.class%</argument>
+    	<service id="via.fproperty.orm.type.property" class="%via_property.form.type.property.class%">
+            <argument>%via_property.entity.property.class%</argument>
             <argument />
             <tag name="form.type" alias="via_property" />
         </service>
         
-        <service id="via.property.form.type.property_choice" class="%via.property.form.type.property_choice.class%">
-            <argument>%via.property.entity.property.class%</argument>
+        <service id="via_property.form.type.property_choice" class="%via_property.form.type.property_choice.class%">
+            <argument>%via_property.entity.property.class%</argument>
             <tag name="form.type" alias="via_property_choice" />
         </service>
         
-        <service id="via.property.admin.property" class="%via.property.admin.property.class%">
+        <service id="via_property.admin.property" class="%via_property.admin.property.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.property.admin.dashboard.property"/>
+                label="via_property.admin.dashboard.property"/>
           <argument />
-          <argument>%via.property.entity.property.class%</argument>
+          <argument>%via_property.entity.property.class%</argument>
           <argument />
           <call method="setTranslationDomain">
               <argument>messages</argument>

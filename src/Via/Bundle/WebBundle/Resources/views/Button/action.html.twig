@@ -1,0 +1,8 @@
+{#% extends 'SonataAdminBundle:CRUD:list__action.html.twig' %#}
+
+{#% if admin.hasRoute('via_ebay_action') %#}
+    <a href="{#{ admin.generateObjectUrl('action_name', object) }#}" class="btn btn-small" title="{{ 'action_name'|trans({}, 'SonataAdminBundle') }}">
+        <i class="icon-remove"></i>
+        {{ 'action_name'|trans({}, 'SonataAdminBundle') }}
+    </a>
+{#% endif %#}

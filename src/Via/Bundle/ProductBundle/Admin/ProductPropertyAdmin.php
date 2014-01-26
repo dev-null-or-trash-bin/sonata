@@ -9,6 +9,7 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class ProductPropertyAdmin extends Admin
 {
+    protected $baseRoutePattern = 'via-product-property';
     
     protected function configureFormFields(FormMapper $formMapper)
     {

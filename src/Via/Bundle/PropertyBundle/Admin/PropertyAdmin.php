@@ -9,6 +9,8 @@ use Via\Bundle\PropertyBundle\Entity\PropertyTypes;
 
 class PropertyAdmin extends Admin
 {
+    protected $baseRoutePattern = 'via-property';
+    
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)
     {

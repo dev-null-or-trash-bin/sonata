@@ -33,8 +33,8 @@ sonata_user:
 
     manager_type:             orm
     class:    
-        user:                   Via\Bundle\UserBundle\Entity\User
-        group:                  Via\Bundle\UserBundle\Entity\Group
+        user:                 Via\Bundle\UserBundle\Entity\User
+        group:                Via\Bundle\UserBundle\Entity\Group
     profile:
         form:
             type:                 sonata_user_profile

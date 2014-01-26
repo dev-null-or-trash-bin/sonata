@@ -1,12 +1,12 @@
 <?php
-namespace Via\Bundle\UserBundle\Block\Service;
+namespace Via\Bundle\WebBundle\Block\Service;
 
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Validator\ErrorElement;
 use Sonata\BlockBundle\Block\BaseBlockService;
 use Sonata\BlockBundle\Block\BlockContextInterface;
 use Sonata\BlockBundle\Model\BlockInterface;
-use Sonata\UserBundle\Menu\ProfileMenuBuilder;
+#use Sonata\UserBundle\Menu\ProfileMenuBuilder;
 use Sonata\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -64,12 +64,13 @@ class AccountBlockService extends BaseBlockService
     public function setContainer($container)
     {
         $this->container = $container;
+        
     }
     
-    public function getName()
-    {
-        return 'Via User Block';
-    }
+//     public function getName()
+//     {
+//         return 'Via User Block';
+//     }
 
     /**
      * {@inheritdoc}
@@ -77,7 +78,7 @@ class AccountBlockService extends BaseBlockService
     public function setDefaultSettings(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'template' => 'ViaUserBundle:Block:account.html.twig',
+            'template' => 'ViaWebBundle:Block:account.html.twig',
             'ttl'      => 0,
             'title'      => $this->getName(),
         ));

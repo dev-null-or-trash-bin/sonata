@@ -29,7 +29,7 @@
         "GetProducts": {
             "httpMethod": "GET",
             "uri": "publicapi/v1/api.svc/Products",
-            "responseClass": "GetAuthOutput"            
+            "responseClass": "GetProductsOutput2"            
         },
         "GetCatalogs": {
             "httpMethod": "GET",
@@ -42,6 +42,18 @@
             "type": "object",
             "additionalProperties": {
                 "location": "json"
+            }
+        },
+        "GetProductsOutput2": {
+            "type": "array",
+            "additionalProperties": {
+                "location": "json"
+            }
+        },
+        "GetProductsOutput": {
+            "type": "array",
+            "items": {
+                "$ref": "Product"
             }
         }
     }

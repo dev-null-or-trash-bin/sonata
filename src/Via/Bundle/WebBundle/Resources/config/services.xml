@@ -1,0 +1,66 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+	<parameters>
+		<parameter key="via_web.admin.user.class">Via\Bundle\WebBundle\Admin\UserAdmin</parameter>
+		<parameter key="via_web.admin.product.class">Via\Bundle\WebBundle\Admin\ProductAdmin</parameter>
+		<parameter key="via_web.block.service.account.class">Via\Bundle\WebBundle\Block\Service\AccountBlockService</parameter>
+	</parameters>
+
+	<services>
+		<service id="via_web.admin.user" class="%via_web.admin.user.class%">
+	      <tag name="sonata.admin" 
+	      		manager_type="orm"
+	      		group="Content"  
+	      		target="via_user.admin.user"
+	      		show_in_dashboard="false"	      		
+	      />
+	      <argument />
+	      <argument>%via_user.entity.user.class%</argument>
+	      <argument>SonataAdminBundle:CRUD</argument>
+	      <call method="setUserManager">
+	      		<argument type="service" id="fos_user.user_manager" />              
+          </call>
+	  	</service>	
+	  	
+	  	<service id="via_web.admin.product" class="%via_web.admin.product.class%">
+	      <tag name="sonata.admin" 
+	      		manager_type="orm"
+	      		group="Content"  
+	      		target="via_product.admin.product"
+	      		show_in_dashboard="false"	      		
+	      />
+	      <argument />
+	      <argument>%via_product.entity.product.class%</argument>
+	      <argument>ViaWebBundle:ProductAdmin</argument>
+	      <call method="setTranslationDomain">
+              <argument>ViaWebBundle</argument>
+          </call>
+	  	</service>
+	  	
+	  	<service id="via_web.block.service.account" class="%via_web.block.service.account.class%">            
+            <argument>via_web.block.service.account</argument>
+            <argument type="service" id="templating" />
+            <argument type="service" id="security.context" />            
+            <tag name="sonata.block" />
+        </service>
+	
+	</services>
+
+    <!--
+    <parameters>
+        <parameter key="via_web.example.class">Via\Bundle\WebBundle\Example</parameter>
+    </parameters>
+
+    <services>
+        <service id="via_web.example" class="%via_web.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+    </services>
+    -->
+</container>

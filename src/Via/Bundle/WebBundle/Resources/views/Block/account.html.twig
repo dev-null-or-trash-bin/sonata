@@ -1,0 +1,81 @@
+{% extends 'SonataBlockBundle:Block:block_base.html.twig' %}
+
+{% block block %}
+    
+        {% if user %}
+			
+			    <h3 class="">{{ settings.title }}</h3>
+			    
+			    <div class="alert alert-default alert-info">
+				    <strong>Via-eBay Benutzer</strong>
+				    <div>This file can be found in <code>SonataTimelineBundle:Block:timeline.html.twig</code>.</div>
+				</div>
+			    <p class="lead">
+			     Benutzername: <small>{{ user.viaebayUsername }}</small><br/>
+			     Passwort: <small>{{ user.viaebayPassword }}</small>
+			    </p>
+			    
+			    <button class="btn btn-default" type="button" id="viaebay-send-all-products">Export all Products</button>
+			
+        {% endif %}
+  
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+	$('#viaebay-get-all-products').click(function () {
+		return;
+		alert('asdasd');
+// 		$('#progress').progressbar({ value: 0 });
+        
+//         $.ajax({
+//             method: 'GET',
+//            url: "{#{ url('via_guzzle_via_ebay_test', { 'name': 'foo_bar' }) }#}",
+//             dataType: 'text',
+//             success: function() {
+//                 console.log('YAYE!', arguments[0]);
+//             },
+//             error: function() {
+//                 console.log('AWWW!');
+//             },
+//             progress: function(e) {
+//                 if(e.lengthComputable) {
+//                     var pct = (e.loaded / e.total) * 100;
+
+//                     $('#progress')
+//                         .progressbar('option', 'value', pct)
+//                         .children('.ui-progressbar-value')
+//                         .html(pct.toPrecision(3) + '%')
+//                         .css('display', 'block');
+//                 } else {
+//                     console.warn('Content Length not reported!');
+//                 }
+//             }
+//         });
+
+		var progresspump = setInterval(function(){
+		    /* query the completion percentage from the server */
+		    $.get("{{ url('via_guzzle_via_ebay_test', { 'name': 'foo_bar' }) }}", function(data){
+		      /* update the progress bar width */
+		      $("#progress").css('width',data+'%');
+		      /* and display the numeric value */
+		      $("#progress").html(data+'%');
+
+alert(data);
+		      
+		      /* test to see if the job has completed */
+		      if(data > 99.999) {
+		        clearInterval(progresspump);
+		        $("#progressouter").removeClass("active");
+		        $("#progress").html("Done");
+		      }
+		    })
+		  }, 1000);
+		
+	});
+});
+        
+</script>
+  
+{% endblock %}

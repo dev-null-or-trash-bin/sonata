@@ -19,27 +19,6 @@ class User extends BaseUser implements UserInterface
     protected $id;
     
     /**
-     * @var unknown
-     *
-     * @ORM\Column(name="viaebay_username", type="string", length=255, nullable=true)
-     */
-    protected $viaebay_username;
-    
-    /**
-     * @var unknown
-     *
-     * @ORM\Column(name="viaebay_password", type="string", length=255, nullable=true)
-     */
-    protected $viaebay_password;
-    
-    /**
-     * @var unknown
-     *
-     * @ORM\Column(name="viaebay_token", type="string", length=255, nullable=true)
-     */
-    protected $viaebay_token;
-    
-    /**
      * @ORM\ManyToMany(targetEntity="Group")
      * @ORM\JoinTable(name="fos_user_user_group",
      *      joinColumns={@ORM\JoinColumn(name="user_id", referencedColumnName="id")},
@@ -47,6 +26,11 @@ class User extends BaseUser implements UserInterface
      * )
      */
     protected $groups;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="ViaEbayUser", mappedBy="user",cascade={"persist"})
+     */
+    protected $viaebay_user;
 
     public function __construct()
     {
@@ -54,37 +38,14 @@ class User extends BaseUser implements UserInterface
         // your own logic
     }
 
-    public function getViaebayUsername()
+    public function getViaebayUser()
     {
-        return $this->viaebay_username;
+        return $this->viaebay_user;
     }
 
-    public function setViaebayUsername($viaebay_username)
+    public function setViaebayUser($viaebay_user)
     {
-        $this->viaebay_username = $viaebay_username;
+        $this->viaebay_user = $viaebay_user;
         return $this;
-    }
-
-    public function getViaebayPassword()
-    {
-        return $this->viaebay_password;
-    }
-
-    public function setViaebayPassword($viaebay_password)
-    {
-        $this->viaebay_password = $viaebay_password;
-        return $this;
-    }
-
-    public function getViaebayToken()
-    {
-        return $this->viaebay_token;
-    }
-
-    public function setViaebayToken($viaebay_token)
-    {
-        $this->viaebay_token = $viaebay_token;
-        return $this;
-    }
-	
+    }	
 }

@@ -41,8 +41,8 @@ sonata_block:
             contexts: [user]
         sonata.user.block.menu:
             contexts: [user]
-        via.api_user.block.service.user:   
-            exception: { filter: inline }
-        via.user.block.service.account:
+        #via.api_user.block.service.user:   
+            #exception: { filter: ignore_block_exception }
+        via_web.block.service.account:
             contexts: [user]
-            #exception: { filter: inline }
+            exception: { filter: ignore_block_exception }

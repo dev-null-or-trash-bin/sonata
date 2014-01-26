@@ -5,49 +5,49 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-        <parameter key="via.product.form.type.product_property.class">Via\Bundle\ProductBundle\Form\Type\ProductPropertyType</parameter>        
-        <parameter key="via.product.entity.product.class">Via\Bundle\ProductBundle\Entity\Product</parameter>
-        <parameter key="via.product.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>
-        <parameter key="via.product.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
-        <parameter key="via.product.repository.product.class">Via\Bundle\ProductBundle\Entity\Repository\Product</parameter>
-        <parameter key="via.product.admin.product.extension.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>
-        <parameter key="via.product.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>
-        <parameter key="via.product.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>         
+        <parameter key="via_product.form.type.product_property.class">Via\Bundle\ProductBundle\Form\Type\ProductPropertyType</parameter>        
+        <parameter key="via_product.entity.product.class">Via\Bundle\ProductBundle\Entity\Product</parameter>
+        <parameter key="via_product.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>
+        <parameter key="via_product.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
+        <parameter key="via_product.repository.product.class">Via\Bundle\ProductBundle\Entity\Repository\Product</parameter>
+        <parameter key="via_product.admin.product.extension.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>
+        <parameter key="via_product.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>
+        <parameter key="via_product.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>         
     </parameters>
 
     
     <services>
-        <service id="via.product.form.type.product_property" class="%via.product.form.type.product_property.class%">
-        	<argument>%via.product.entity.product_property.class%</argument>
-            <tag name="form.type" alias="via.product_property" />
+        <service id="via_product.form.type.product_property" class="%via_product.form.type.product_property.class%">
+        	<argument>%via_product.entity.product_property.class%</argument>
+            <tag name="form.type" alias="via_product_property" />
         </service>
         
-        <service id="via.product.repository.product"
-                 class="%via.product.repository.product.class%"
+        <service id="via_product.repository.product"
+                 class="%via_product.repository.product.class%"
                  factory-service="doctrine.orm.entity_manager"
                  factory-method="getRepository">
-                <argument>%via.product.entity.product.class%</argument>
+                <argument>%via_product.entity.product.class%</argument>
         </service>
         
-        <!-- service id="via.product.form.type.product_to_identifier" class="%via.product.form.type.product_to_identifier.class%">
-            <argument type="service" id="via.product.repository.product" />
-            <tag name="form.type" alias="via.product_to_identifier" />
+        <!-- service id="via_product.form.type.product_to_identifier" class="%via_product.form.type.product_to_identifier.class%">
+            <argument type="service" id="via_product.repository.product" />
+            <tag name="form.type" alias="via_product_to_identifier" />
         </service -->
         
-        <!-- service id="via.product.admin.product.extension.event" class="%via.product.admin.product.extension.event.class%">     
+        <!-- service id="via_product.admin.product.extension.event" class="%via_product.admin.product.extension.event.class%">     
         	<argument type="service" id="event_dispatcher" />       
             <tag name="sonata.admin.extension" global="true" />
         </service -->
         
         
-        <service id="via.product.admin.product" class="%via.product.admin.product.class%">
+        <service id="via_product.admin.product" class="%via_product.admin.product.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.product.admin.dashboard.product"
+                label="via_product.admin.dashboard.product"
            		label_translator_strategy="sonata.admin.label.strategy.noop"     
            />
           <argument />
-          <argument>%via.product.entity.product.class%</argument>
+          <argument>%via_product.entity.product.class%</argument>
           <argument>SonataAdminBundle:CRUD</argument>
           <argument type="service" id="service_container" />
           <call method="setTranslationDomain">
@@ -55,14 +55,15 @@
           </call>
       </service>
       
-      <service id="via.product.admin.product_property" class="%via.product.admin.product_property.class%">
+      <service id="via_product.admin.product_property" class="%via_product.admin.product_property.class%">
           <tag name="sonata.admin" manager_type="orm" 
                 group="Content" 
-                label="via.product.admin.dashboard.product_property"
-           		label_translator_strategy="sonata.admin.label.strategy.noop"     
+                label="via_product.admin.dashboard.product_property"
+           		label_translator_strategy="sonata.admin.label.strategy.noop"
+           		show_in_dashboard="false"     
            />          
           <argument />
-          <argument>%via.product.entity.product_property.class%</argument>
+          <argument>%via_product.entity.product_property.class%</argument>
           <argument />
           <call method="setTranslationDomain">
               <argument>messages</argument>
