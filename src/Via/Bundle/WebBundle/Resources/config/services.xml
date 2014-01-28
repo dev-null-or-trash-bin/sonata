@@ -20,10 +20,10 @@
 	      />
 	      <argument />
 	      <argument>%via_user.entity.user.class%</argument>
-	      <argument>SonataAdminBundle:CRUD</argument>
-	      <call method="setUserManager">
-	      		<argument type="service" id="fos_user.user_manager" />              
-          </call>
+	      <argument>SonataAdminBundle:CRUD</argument>	
+	      <call method="setTranslationDomain">
+              <argument>ViaWebBundle</argument>
+          </call>      
 	  	</service>	
 	  	
 	  	<service id="via_web.admin.product" class="%via_web.admin.product.class%">
