@@ -36,8 +36,8 @@ class Product extends AbstractEntity
      * "default templates". Very basic and flexible as it is only intended
      * for internal use.
      */
-    final private function __construct()
-    {}
+    #public function __construct()
+    #{}
     
     public static function init()
     {

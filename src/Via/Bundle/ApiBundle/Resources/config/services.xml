@@ -4,17 +4,19 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
+      
     <parameters>
-        <parameter key="via_api.example.class">Via\Bundle\ApiBundle\Example</parameter>
+        <parameter key="via_api.controller.viaebay.test.class">Via\Bundle\ApiBundle\Controller\ViaEbay\TestController</parameter>
+        <parameter key="via_api.controller.core.class">Via\Bundle\ApiBundle\Controller\CoreController</parameter>
     </parameters>
-
+    
     <services>
-        <service id="via_api.example" class="%via_api.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
+    	<service id="via_api.controller.viaebay.test" class="%via_api.controller.viaebay.test.class%">
+              <call method="setContainer">
+	        	<argument type="service" id="service_container"/>
+	    	</call>
+       </service>
+    	
     </services>
-    -->
+    
 </container>

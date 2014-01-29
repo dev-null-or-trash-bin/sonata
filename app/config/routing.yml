@@ -1,6 +1,6 @@
 via_api:
-    resource: "@ViaApiBundle/Resources/config/routing.xml"
-    prefix:   /
+    resource: "@ViaApiBundle/Resources/config/routing.yml"
+    prefix:   /admin/api
 
 via_web:
     resource: "@ViaWebBundle/Resources/config/routing.xml"

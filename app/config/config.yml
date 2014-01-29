@@ -11,7 +11,7 @@ imports:
     - { resource: 'jms/jms_i18n_routing.yml' }
     - { resource: 'a2lix/a2lix_translation_form.yml' }
     - { resource: 'lunetics/lunetics_locale.yml' }
-    #- { resource: 'via/via_guzzle.yml' }
+    - { resource: 'via/via_guzzle.yml' }
     - { resource: 'misd/misd_guzzle.yml' }
     
 framework:

@@ -1,0 +1,9 @@
+
+via_api_via_ebay_test:
+    pattern: /viaebay/test/
+    methods: [GET]
+    defaults:
+        _controller: ViaApiBundle:ViaEbay\Test:index
+        _via:            
+            method: createFilterPaginator
+            arguments: [$criteria, $sorting, $deleted] 
