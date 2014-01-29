@@ -12,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 
+use Doctrine\Common\Util\Debug;
 /**
 * Adds specified curl auth to all requests sent from a client. Defaults to CURLAUTH_BASIC if none supplied.
 * @deprecated Use $client->getConfig()->setPath('request.options/auth', array('user', 'pass', 'Basic|Digest');
@@ -31,11 +32,13 @@ class AuthPlugin implements EventSubscriberInterface
     public function __construct(SecurityContextInterface $securityContext)
     {   
         $user = $securityContext->getToken()->getUser();
+        #Debug::dump($user->getViaebayUser(), 5);die();
         if ($user instanceof UserInterface)
         {
-            $this->username = $user->getViaebayUsername();
-            $this->password = $user->getViaebayPassword();
-            $this->subscriptionToken = $user->getViaebayToken();
+            $viaebayUser = $user->getViaebayUser();
+            $this->username = $viaebayUser->getUsername();
+            $this->password = $viaebayUser->getPassword();
+            $this->subscriptionToken = $viaebayUser->getToken();
         }
     }
 
