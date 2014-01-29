@@ -1,16 +1,17 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\Entity;
+namespace Via\Bundle\ApiBundle\Entity\ViaEbay;
 
-use Via\Bundle\GuzzleBundle\Entity\BaseEntity;
+use Via\Bundle\ApiBundle\Entity\ViaEbay\AbstractEntity;
 
-class CarPart extends BaseEntity
+class CarPart extends AbstractEntity
 {
-    private static $instance = null;
     protected $ProductId = null;
     protected $KType = null;
     protected $HSN = '';
     protected $TSN = '';
     protected $Comment = '';
+    
+    protected static $instance = null;
     
     /**
      * We made the constructor private to force the factory style.
@@ -19,8 +20,13 @@ class CarPart extends BaseEntity
      * "default templates". Very basic and flexible as it is only intended
      * for internal use.
      */
-    private function __construct()
+    final private function __construct()
     {}
+    
+    public static function init()
+    {
+        return new self();
+    }
     
     public function getInstance()
     {
@@ -28,11 +34,6 @@ class CarPart extends BaseEntity
             static::$instance = self::init();
     
         return static::$instance;
-    }
-   
-    public static function init()
-    {
-        return new CarPart();
     }
     
     /* public function toArray ()

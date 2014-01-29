@@ -1,9 +1,7 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\Entity;
+namespace Via\Bundle\ApiBundle\Entity\ViaEbay;
 
-use Sonata\AdminBundle\Admin\BaseFieldDescription;
-
-class BaseEntity implements EntityInterface
+abstract class AbstractEntity
 {
     public function toArray ()
     {
@@ -12,7 +10,7 @@ class BaseEntity implements EntityInterface
         $result = array();
         foreach ($props as $name => $value)
         {
-            $result[BaseFieldDescription::camelize($name)] = $value;
+            $result[$name] = $value;
         }
         
         return $result;

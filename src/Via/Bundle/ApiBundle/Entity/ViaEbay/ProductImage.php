@@ -1,14 +1,15 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\Entity;
+namespace Via\Bundle\ApiBundle\Entity\ViaEbay;
 
-use Via\Bundle\GuzzleBundle\Entity\BaseEntity;
+use Via\Bundle\ApiBundle\Entity\ViaEbay\AbstractEntity;
 
-class ProductSpecific extends BaseEntity
+class ProductImage extends AbstractEntity
 {
-    private static $instance = null;
     protected $ProductId = null;
-    protected $Name  = null;
-    protected $Value = null;
+    protected $ImageUrl  = null;
+    protected $Type = 1;
+     
+    protected static $instance = null;
     
     /**
      * We made the constructor private to force the factory style.
@@ -17,8 +18,13 @@ class ProductSpecific extends BaseEntity
      * "default templates". Very basic and flexible as it is only intended
      * for internal use.
      */
-    private function __construct()
+    final private function __construct()
     {}
+    
+    public static function init()
+    {
+        return new self();
+    }
     
     public function getInstance()
     {
@@ -27,20 +33,7 @@ class ProductSpecific extends BaseEntity
     
         return static::$instance;
     }
-     
-    public static function init()
-    {
-        return new ProductSpecific();
-    }
-    
-    /* public function toArray ()
-    {
-        return array (
-            'ProductId'     => $this->getProductId(),
-            'Name'          => $this->getName(),
-            'Value'         => $this->getValue()
-        );
-    } */
+        
 
     /**
      *
@@ -65,18 +58,18 @@ class ProductSpecific extends BaseEntity
      *
      * @return
      */
-    public function getName()
+    public function getImageUrl()
     {
-        return $this->Name;
+        return $this->ImageUrl;
     }
 
     /**
      *
-     * @param $Name
+     * @param $ImageUrl
      */
-    public function setName($Name)
+    public function setImageUrl($ImageUrl)
     {
-        $this->Name = $Name;
+        $this->ImageUrl = $ImageUrl;
         return $this;
     }
 
@@ -84,18 +77,27 @@ class ProductSpecific extends BaseEntity
      *
      * @return
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->Value;
+        return $this->Type;
     }
 
     /**
      *
-     * @param $Value
+     * @param $Type
      */
-    public function setValue($Value)
+    public function setType($Type)
     {
-        $this->Value = $Value;
+        $this->Type = $Type;
         return $this;
     }
+    
+    /* public function toArray ()
+    {
+        return array (
+        	'ProductId'    => $this->getProductId(),
+            'ImageUrl'     => $this->getImageUrl(),
+            'Type'         => $this->getType()
+        );
+    } */
 }
