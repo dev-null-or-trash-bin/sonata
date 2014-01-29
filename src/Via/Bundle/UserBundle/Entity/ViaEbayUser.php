@@ -57,16 +57,7 @@ class ViaEbayUser
      * @ORM\Column(name="enviroment", type="string", length=50, nullable=true)
      */
     protected $enviroment;
-    
-    /**
-     * @var User
-     *
-     * @ORM\OneToOne(targetEntity="User", inversedBy="viaebay_user")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     * })
-     */
-    protected $user;
+      
     
     public function __toString()
     {
@@ -137,7 +128,7 @@ class ViaEbayUser
     {
         $this->enviroment = $enviroment;
         return $this;
-    }    
+    }
 
     public function getName()
     {
@@ -147,17 +138,6 @@ class ViaEbayUser
     public function setName($name)
     {
         $this->name = $name;
-        return $this;
-    }
-
-    public function getUser()
-    {
-        return $this->user;
-    }
-
-    public function setUser(User $user)
-    {
-        $this->user = $user;
         return $this;
     }
 	

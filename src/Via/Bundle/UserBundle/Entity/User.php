@@ -28,7 +28,8 @@ class User extends BaseUser implements UserInterface
     protected $groups;
     
     /**
-     * @ORM\OneToOne(targetEntity="ViaEbayUser", mappedBy="user",cascade={"persist"})
+     * @ORM\OneToOne(targetEntity="ViaEbayUser")
+     * @ORM\JoinColumn(name="viaebay_user_id", referencedColumnName="id")
      */
     protected $viaebay_user;
 
@@ -47,5 +48,5 @@ class User extends BaseUser implements UserInterface
     {
         $this->viaebay_user = $viaebay_user;
         return $this;
-    }	
+    }
 }

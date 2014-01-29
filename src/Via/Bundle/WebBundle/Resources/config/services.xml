@@ -23,7 +23,10 @@
 	      <argument>SonataAdminBundle:CRUD</argument>	
 	      <call method="setTranslationDomain">
               <argument>ViaWebBundle</argument>
-          </call>      
+          </call>  
+          <call method="setUserManager">
+	      		<argument type="service" id="fos_user.user_manager" />
+          </call>    
 	  	</service>	
 	  	
 	  	<service id="via_web.admin.product" class="%via_web.admin.product.class%">

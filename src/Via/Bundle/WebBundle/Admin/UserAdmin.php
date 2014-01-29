@@ -8,7 +8,7 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 
 class UserAdmin extends BaseUserAdmin
-{   
+{
     protected function configureFormFields(FormMapper $formMapper)
     {
         parent::configureFormFields($formMapper);
@@ -16,7 +16,25 @@ class UserAdmin extends BaseUserAdmin
         $formMapper->with('FooBar');
         
         $formMapper->with('ViA-eBay')
-            ->add('viaebay_user', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array()))        
+            ->add('viaebay_user', 'sonata_type_model_list', array('required' => false), array('link_parameters' => array()))
         ;
+    }
+    
+    /**
+     * Kinda Hackish methods to fix potential bug with SonataAdminBundle.
+     * I have not
+     * confirmed this is necessary but I've seen this implemented more than once.
+     */
+    public function prePersist($user)
+    {
+        $user->setViaebayUser($user->getViaebayUser());
+    }
+    
+    public function preUpdate($user)
+    {
+        parent::preUpdate($user);
+        #\Doctrine\Common\Util\Debug::dump($user->getViaebayUser());die();
+        #die(__METHOD__);
+        $user->setViaebayUser($user->getViaebayUser());
     }
 }
