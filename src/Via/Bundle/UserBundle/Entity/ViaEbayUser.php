@@ -57,6 +57,12 @@ class ViaEbayUser
      * @ORM\Column(name="enviroment", type="string", length=50, nullable=true)
      */
     protected $enviroment;
+    
+    /**
+     * @ORM\OneToOne(targetEntity="User", inversedBy="viaebay_user")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     */
+    protected $user;
       
     
     public function __toString()

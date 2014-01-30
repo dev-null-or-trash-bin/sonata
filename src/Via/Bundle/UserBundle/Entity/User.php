@@ -2,14 +2,13 @@
 namespace Via\Bundle\UserBundle\Entity;
 
 use Sonata\UserBundle\Entity\BaseUser as BaseUser;
-use FOS\UserBundle\Model\UserInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="fos_user_user")
  */
-class User extends BaseUser implements UserInterface
+class User extends BaseUser
 {
     /**
      * @ORM\Id
@@ -28,7 +27,7 @@ class User extends BaseUser implements UserInterface
     protected $groups;
     
     /**
-     * @ORM\OneToOne(targetEntity="ViaEbayUser")
+     * @ORM\OneToOne(targetEntity="ViaEbayUser", mappedBy="user")
      * @ORM\JoinColumn(name="viaebay_user_id", referencedColumnName="id")
      */
     protected $viaebay_user;
