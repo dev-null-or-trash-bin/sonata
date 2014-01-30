@@ -7,7 +7,7 @@ use Guzzle\Http\Client;
 
 use Doctrine\Common\Util\Debug;
 
-class TestController extends CoreController
+class RestController extends CoreController implements RestControllerInterface
 {   
     public function indexAction($name = null)
     {

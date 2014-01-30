@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\ApiBundle\Entity\ViaEbay;
+namespace Via\Bundle\ApiBundle\Entity\Blackbox;
 
 class ProductVariationSpecifics extends AbstractEntity
 {

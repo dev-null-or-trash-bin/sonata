@@ -1,9 +1,9 @@
 
 via_api_via_ebay_test:
-    pattern: /viaebay/test/
+    pattern: /blackbox/test/
     methods: [GET]
     defaults:
-        _controller: via_api.controller.viaebay.test:indexAction
+        _controller: via_api.controller.blackbox.test:indexAction
         _via:            
             #method: createFilterPaginator
             arguments: ['$criteria', '$sorting', '$deleted'] 

@@ -1,7 +1,7 @@
 <?php
-namespace Via\Bundle\ApiBundle\Entity\ViaEbay;
+namespace Via\Bundle\ApiBundle\Entity\Blackbox;
 
-use Via\Bundle\ApiBundle\Entity\ViaEbay\AbstractEntity;
+use Via\Bundle\ApiBundle\Entity\Blackbox\AbstractEntity;
 
 class CarPart extends AbstractEntity
 {

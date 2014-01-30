@@ -1,14 +1,14 @@
 <?php
-namespace Via\Bundle\ApiBundle\Entity\ViaEbay;
+namespace Via\Bundle\ApiBundle\Entity\Blackbox;
 
-use Via\Bundle\ApiBundle\Entity\ViaEbay\AbstractEntity;
+use Via\Bundle\ApiBundle\Entity\Blackbox\AbstractEntity;
 
-class ProductSpecific extends AbstractEntity
+class ProductImage extends AbstractEntity
 {
     protected $ProductId = null;
-    protected $Name  = null;
-    protected $Value = null;
-    
+    protected $ImageUrl  = null;
+    protected $Type = 1;
+     
     protected static $instance = null;
     
     /**
@@ -20,7 +20,11 @@ class ProductSpecific extends AbstractEntity
      */
     final private function __construct()
     {}
-      
+    
+    public static function init()
+    {
+        return new self();
+    }
     
     public function getInstance()
     {
@@ -29,20 +33,7 @@ class ProductSpecific extends AbstractEntity
     
         return static::$instance;
     }
-     
-    public static function init()
-    {
-        return new ProductSpecific();
-    }
-    
-    /* public function toArray ()
-    {
-        return array (
-            'ProductId'     => $this->getProductId(),
-            'Name'          => $this->getName(),
-            'Value'         => $this->getValue()
-        );
-    } */
+        
 
     /**
      *
@@ -67,18 +58,18 @@ class ProductSpecific extends AbstractEntity
      *
      * @return
      */
-    public function getName()
+    public function getImageUrl()
     {
-        return $this->Name;
+        return $this->ImageUrl;
     }
 
     /**
      *
-     * @param $Name
+     * @param $ImageUrl
      */
-    public function setName($Name)
+    public function setImageUrl($ImageUrl)
     {
-        $this->Name = $Name;
+        $this->ImageUrl = $ImageUrl;
         return $this;
     }
 
@@ -86,18 +77,27 @@ class ProductSpecific extends AbstractEntity
      *
      * @return
      */
-    public function getValue()
+    public function getType()
     {
-        return $this->Value;
+        return $this->Type;
     }
 
     /**
      *
-     * @param $Value
+     * @param $Type
      */
-    public function setValue($Value)
+    public function setType($Type)
     {
-        $this->Value = $Value;
+        $this->Type = $Type;
         return $this;
     }
+    
+    /* public function toArray ()
+    {
+        return array (
+        	'ProductId'    => $this->getProductId(),
+            'ImageUrl'     => $this->getImageUrl(),
+            'Type'         => $this->getType()
+        );
+    } */
 }
