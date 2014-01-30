@@ -9,13 +9,15 @@
 		<parameter key="via_user.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>	
 		<parameter key="via_user.entity.viaebay_user.class">Via\Bundle\UserBundle\Entity\ViaEbayUser</parameter>
 		<parameter key="via_user.admin.viaebay_user.class">Via\Bundle\UserBundle\Admin\ViaEbayUserAdmin</parameter>		
+		<parameter key="via_user.admin.viaebay_user.extension.class">Via\Bundle\UserBundle\Admin\ViaEbayUserAdminExtension</parameter>
+		<parameter key="via_user.listener.viaebay.user_update.class">Via\Bundle\UserBundle\EventListener\ViaEbay\UserUpdateListener</parameter>		
+		<parameter key="via_user.manager.viaebay.user.class">Via\Bundle\UserBundle\Entity\ViaEbayUserManager</parameter>
 	</parameters>
 	
 	<services>
 		<service id="via_user.admin.user" class="%via_user.admin.user.class%">
 	      <tag name="sonata.admin" 
-	      		manager_type="orm"
-	      		group="Content"  
+	      		manager_type="orm"	      		  
 	      		target="sonata.user.admin.user"
 	      		show_in_dashboard="false"	      		
 	      />
@@ -30,14 +32,42 @@
 	  	<service id="via_user.admin.viaebay_user" class="%via_user.admin.viaebay_user.class%">
 	      <tag name="sonata.admin" 
 	      		manager_type="orm"
-	      		group="Content" 
+	      		group="ViA-eBay" 
 	      		label="via_user.admin.dashboard.viaebay_user"
 	      		show_in_dashboard="true"	      		
 	      />
 	      <argument />
 	      <argument>%via_user.entity.viaebay_user.class%</argument>
-	      <argument />	      
+	      <argument>ViaUserBundle:ViaEbayUserAdmin</argument>	 
+	           
 	  	</service>	
+	  	
+	  	<!-- Extension for Events -->
+	  	<service id="via_user.admin.viaebay_user.extension" class="%via_user.admin.viaebay_user.extension.class%">
+	  		<tag name="sonata.admin.extension" 
+	      		target="via_user.admin.viaebay_user"      		
+	      />
+	      	<argument type="service" id="event_dispatcher" />
+	  	</service>
+	  	
+	  	<!-- Manager -->	
+	  	<service id="via_user.manager.entity_manager" alias="doctrine.orm.default_entity_manager" />
+	  	
+	  	<service id="via_user.manager.viaebay.user" class="%via_user.manager.viaebay.user.class%">
+           <argument type="service" id="via_user.manager.entity_manager" />
+           <argument>%via_user.entity.viaebay_user.class%</argument>
+        </service>
+	  	
+	  	<!-- Listener -->	  	 
+	  	 <service id="via_user.listener.viaebay.user_update" class="%via_user.listener.viaebay.user_update.class%">
+            <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_persist" method="processUser" />
+            <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_update" method="processUser" />
+            <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_remove" method="processUser" />
+            <call method="setUserManager">
+	      		<argument type="service" id="via_user.manager.viaebay.user" />
+          </call>
+        </service>      
+        
 	  	
 	</services>
 	
