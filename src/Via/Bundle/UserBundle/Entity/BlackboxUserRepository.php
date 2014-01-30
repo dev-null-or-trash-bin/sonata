@@ -3,7 +3,7 @@ namespace Via\Bundle\UserBundle\Entity;
 
 use Via\Bundle\UserBundle\Entity\EntityRepository;
 
-class ViaEbayUserRepository extends EntityRepository
+class BlackboxUserRepository extends EntityRepository
 {
     public function findEnabledUser ($user)
     {

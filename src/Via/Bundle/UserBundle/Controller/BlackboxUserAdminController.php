@@ -7,7 +7,7 @@ use Sonata\AdminBundle\Controller\CRUDController as Controller;
 use Doctrine\Common\Util\Debug;
 use Via\Bundle\UserBundle\Entity\EnviromentTypes;
 
-class ViaEbayUserAdminController extends Controller
+class BlackboxUserAdminController extends Controller
 {
     /**
      * {@inheritdoc}
