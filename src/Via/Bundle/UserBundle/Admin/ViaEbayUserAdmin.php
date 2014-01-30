@@ -12,8 +12,8 @@ class ViaEbayUserAdmin extends Admin
 {
     protected $baseRoutePattern = 'via-viaebay-user';
     
-    protected function configureFormFields(FormMapper $formMapper)
-    {   
+    public function configureFormFields(FormMapper $formMapper)
+    {
         $formMapper->with('ViaEbay')
         ->add('name', null, array(
              
@@ -41,19 +41,19 @@ class ViaEbayUserAdmin extends Admin
         ->end();
     }
     
-    protected function configureListFields(ListMapper $listMapper)
+    public function configureListFields(ListMapper $listMapper)
     {
         $listMapper->addIdentifier('id', null, array(
             'label' => 'via.form.label.product.id'
         ))
         ->add('name', null, array(
-            'label' => 'via.form.label.viaebay_user.name',            
+            'label' => 'via.form.label.viaebay_user.name',
         ))
         ->add('enviroment', null, array(
             'label' => 'via.form.label.viaebay_user.enviroment',
         ))
         ->add('enabled', null, array(
-            'editable' => true,
+            'editable' => false,
             'label' => 'via.form.label.viaebay_user.enabled'
         ))
         

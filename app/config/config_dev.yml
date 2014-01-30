@@ -46,10 +46,10 @@ web_profiler_extra:
         enabled:        true
         display_in_wdt: true
     assetic:
-        enabled:        false
+        enabled:        true
         display_in_wdt: true
     twig:
-        enabled:        false
+        enabled:        true
         display_in_wdt: true
         
 playbloom_guzzle:

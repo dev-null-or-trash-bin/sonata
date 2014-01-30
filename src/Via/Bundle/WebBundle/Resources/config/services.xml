@@ -14,7 +14,7 @@
 		<service id="via_web.admin.user" class="%via_web.admin.user.class%">
 	      <tag name="sonata.admin" 
 	      		manager_type="orm"
-	      		group="Content"  
+	      		group="ViA-eBay"  
 	      		target="via_user.admin.user"
 	      		show_in_dashboard="false"	      		
 	      />
