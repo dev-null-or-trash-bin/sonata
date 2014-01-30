@@ -23,33 +23,31 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('via_guzzle');
 
-        $rootNode->children()         
-                ->arrayNode('sandbox')
-                    ->addDefaultsIfNotSet()
+        $rootNode->children()
+                ->arrayNode('blackbox')
                     ->children()
-                        ->scalarNode('service_description')->defaultValue('%kernel.root_dir%/config/via/sandbox_webservices.json')->end()
+                    ->arrayNode('service_description')
+                        ->addDefaultsIfNotSet()
+                        ->children()
+                            ->scalarNode('sandbox')->defaultValue('%kernel.root_dir%/config/via/sandbox_webservices.json')->end()
+                            ->scalarNode('live')->defaultValue('%kernel.root_dir%/config/via/live_webservices.json')->end()
+                        ->end()
+                    ->end()                
+                   
+                    ->arrayNode('cookie')
+                        ->prototype('scalar')
+                        ->end()
                     ->end()
-                ->end()
-                
-                ->arrayNode('live')
-                    ->addDefaultsIfNotSet()
-                     ->children()
-                        ->scalarNode('service_description')->defaultValue('%kernel.root_dir%/config/via/live_webservices.json')->end()
-                     ->end()
-                ->end()
-                ->arrayNode('cookie')
-                    ->prototype('scalar')
+    
+                    ->arrayNode('headers')
+                        ->prototype('scalar')
+                        ->end()
                     ->end()
+                    ->scalarNode('enviroment')  ->defaultValue('sandbox')->end()
+                    ->booleanNode('logging')->defaultValue(false)->end()
                 ->end()
-
-                ->arrayNode('headers')
-                    ->prototype('scalar')
-                    ->end()
                 ->end()
-                
-                ->booleanNode('logging')->defaultValue(false)->end()
-        ->end()
-        
+            ->end()
         ;
 
         return $treeBuilder;

@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\Storage\ViaEbay;
+namespace Via\Bundle\GuzzleBundle\Storage\Blackbox;
 
 class Cookie
 {   

@@ -5,53 +5,52 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="via_guzzle.client.service_description.via_ebay.file"></parameter>
-		<parameter key="via_guzzle.plugin.via_ebay.auth.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbay\AuthPlugin</parameter>
-		<parameter key="via_guzzle.plugin.via_ebay.header.class">Via\Bundle\GuzzleBundle\Plugin\ViaEbay\HeaderPlugin</parameter>
+		<parameter key="via_guzzle.blackbox.client.service_description" type="collection"></parameter>
+		<parameter key="via_guzzle.blackbox.plugin.auth.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\AuthPlugin</parameter>
+		<parameter key="via_guzzle.blackbox.plugin.header.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\HeaderPlugin</parameter>
 		
-		<parameter key="via_guzzle.event_listener.via_ebay.response.class">Via\Bundle\GuzzleBundle\EventListener\ViaEbay\ResponseListener</parameter>
+		<parameter key="via_guzzle.blackbox.event_listener.response.class">Via\Bundle\GuzzleBundle\EventListener\Blackbox\ResponseListener</parameter>
 		
-		<parameter key="via_guzzle.plugin.via_ebay.header.headers" type="collection" ></parameter>
+		<parameter key="via_guzzle.blackbox.plugin.header.headers" type="collection" ></parameter>
 	</parameters>
 
 	<services>
-	    <service id="via_guzzle.client.service_description.via_ebay"
+	    <service id="via_guzzle.blackbox.client.service_description"
 	         class="%guzzle.service_description.class%"
 	         factory-class="%guzzle.service_description.class%"
 	         factory-method="factory">	         
-	    	<argument>%via_guzzle.client.service_description.via_ebay.file%</argument>
+	    	<argument></argument>
 		</service>
 		
-		<!-- service id="via_guzzle.event_listener.via_ebay.response" class="%via_guzzle.event_listener.via_ebay.response.class%">
-            <tag name="kernel.event_listener" event="kernel.response" method="onKernelResponse" />
-        </service -->
 		
-		<service id="via_guzzle.plugin.via_ebay.header" class="%via_guzzle.plugin.via_ebay.header.class%">
-            <argument id="via_guzzle.plugin.via_ebay.header.headers">%via_guzzle.plugin.via_ebay.header.headers%</argument>
+		
+		<service id="via_guzzle.blackbox.plugin.header" class="%via_guzzle.blackbox.plugin.header.class%">
+            <argument id="via_guzzle.plugin.blackbox.header.headers">%via_guzzle.blackbox.plugin.header.headers%</argument>
         </service>
 		
-		<service id="via_guzzle.plugin.via_ebay.auth" class="%via_guzzle.plugin.via_ebay.auth.class%">
-			
-			<argument type="service" id="security.context"/>
+		<service id="via_guzzle.blackbox.plugin.auth" class="%via_guzzle.blackbox.plugin.auth.class%">
 			
 			<call method="setServiceContainer">
 		        <argument type="service" id="service_container"/>
 		    </call>
+		    <call method="setUserManager">
+		        <argument type="service" id="via_user.manager.viaebay.user"/>
+		    </call>
 		    
 		</service>
 		
-		<service id="via_guzzle.client.via_ebay" class="%guzzle.client.class%">
+		<service id="via_guzzle.blackbox.client" class="%guzzle.client.class%">
 	    
 	    	<call method="setDescription">
-	        	<argument type="service" id="via_guzzle.client.service_description.via_ebay"/>
+	        	<argument type="service" id="via_guzzle.blackbox.client.service_description"/>
 	    	</call>
 	    	
 	    	<call method="addSubscriber">
-		        <argument type="service" id="via_guzzle.plugin.via_ebay.auth"/>
+		        <argument type="service" id="via_guzzle.blackbox.plugin.auth"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
-		        <argument type="service" id="via_guzzle.plugin.via_ebay.header"/>
+		        <argument type="service" id="via_guzzle.blackbox.plugin.header"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
@@ -66,14 +65,14 @@
 		    <tag name="playbloom_guzzle.client" />
 		</service>
 		
-		<service id="via_guzzle.client.auth.via_ebay" class="%guzzle.client.class%">
+		<service id="via_guzzle.blackbox.client.auth" class="%guzzle.client.class%">
 	    
 	    	<call method="setDescription">
-	        	<argument type="service" id="via_guzzle.client.service_description.via_ebay"/>
+	        	<argument type="service" id="via_guzzle.blackbox.client.service_description"/>
 	    	</call>
 	    	
 	    	<call method="addSubscriber">
-		        <argument type="service" id="via_guzzle.plugin.via_ebay.header"/>
+		        <argument type="service" id="via_guzzle.blackbox.plugin.header"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
