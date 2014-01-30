@@ -26,26 +26,9 @@ class User extends BaseUser
      */
     protected $groups;
     
-    /**
-     * @ORM\OneToOne(targetEntity="ViaEbayUser", mappedBy="user")
-     * @ORM\JoinColumn(name="viaebay_user_id", referencedColumnName="id")
-     */
-    protected $viaebay_user;
-
     public function __construct()
     {
         parent::__construct();
         // your own logic
-    }
-
-    public function getViaebayUser()
-    {
-        return $this->viaebay_user;
-    }
-
-    public function setViaebayUser($viaebay_user)
-    {
-        $this->viaebay_user = $viaebay_user;
-        return $this;
     }
 }
