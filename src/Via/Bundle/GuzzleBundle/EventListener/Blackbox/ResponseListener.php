@@ -1,9 +1,9 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\EventListener\ViaEbay;
+namespace Via\Bundle\GuzzleBundle\EventListener\Blackbox;
 
 use Symfony\Component\HttpFoundation\Cookie;
 use Symfony\Component\HttpKernel\Event\FilterResponseEvent;
-use Via\Bundle\GuzzleBundle\Storage\ViaEbay\Cookie as ViaEbayCookie;
+use Via\Bundle\GuzzleBundle\Storage\Blackbox\Cookie as BlackboxCookie;
 
 class ResponseListener
 {

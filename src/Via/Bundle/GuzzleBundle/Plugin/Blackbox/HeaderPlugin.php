@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\GuzzleBundle\Plugin\ViaEbay;
+namespace Via\Bundle\GuzzleBundle\Plugin\Blackbox;
 
 use Guzzle\Common\Event;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;

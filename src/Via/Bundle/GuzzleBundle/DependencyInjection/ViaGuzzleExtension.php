@@ -28,27 +28,51 @@ class ViaGuzzleExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         
-        $container->setParameter('via_guzzle.client.service_description.via_ebay.file', $config['sandbox']['service_description']);
-        
-        if($config['headers']) {
-        
-            $this->setUpHeaders($config['headers'], $container);
-        }
-        
-        if($config['cookie']) {
-        
-            $this->setUpCookieLifeTime($config['cookie'], $container);
+        $this->setServiceDescription($config, $container);
+        $this->setUpHeaders($config, $container);
+        $this->setUpCookieLifeTime($config, $container);
+        $this->setEnviroment($config, $container);
+    }
+    
+    protected function setUpHeaders(array $config, ContainerBuilder $container) {
+    
+        foreach($config as $platform => $settings)
+        {
+            if ($settings['headers']) {
+                $container->setParameter($this->getAlias(). '.' .$platform.'.plugin.header.headers', $settings['headers']);
+            }
         }
     }
     
-    protected function setUpHeaders(array $headers, ContainerBuilder $container) {
+    protected function setUpCookieLifeTime(array $config, ContainerBuilder $container) {
     
-        $container->setParameter('via_guzzle.plugin.via_ebay.header.headers', $headers);
+        foreach($config as $platform => $settings)
+        {
+            if ($settings['cookie']['life_time']) {
+                $container->setParameter($this->getAlias(). '.' .$platform.'.cookie.life_time', $settings['cookie']['life_time']);
+            }
+        }
     }
     
-    protected function setUpCookieLifeTime(array $cookies, ContainerBuilder $container) {
+    protected function setServiceDescription(array $config, ContainerBuilder $container) {
     
-        $container->setParameter('via_guzzle.cookie.life_time', $cookies['life_time']);
-        
+        foreach($config as $platform => $settings)
+        {
+            if ($settings['service_description']) {
+                foreach($settings['service_description'] as $enviroment => $envSettings)
+                $container->setParameter($this->getAlias(). '.' .$platform. '.'.$enviroment.'.client.service_description', $envSettings);
+            }
+            $container->setParameter($this->getAlias(). '.' .$platform.'.client.service_description', $settings['service_description'][$settings['enviroment']]);
+        }
+    }
+    
+    protected function setEnviroment(array $config, ContainerBuilder $container) {
+    
+        foreach($config as $platform => $settings)
+        {
+            if ($settings['enviroment']) {
+                $container->setParameter($this->getAlias(). '.' .$platform.'.client.enviroment', $settings['enviroment']);
+            }
+        }
     }
 }

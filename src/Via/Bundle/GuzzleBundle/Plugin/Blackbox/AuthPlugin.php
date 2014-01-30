@@ -1,18 +1,20 @@
 <?php
 
-namespace Via\Bundle\GuzzleBundle\Plugin\ViaEbay;
+namespace Via\Bundle\GuzzleBundle\Plugin\Blackbox;
 
 use Guzzle\Common\Event;
 use Guzzle\Common\Version;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\SecurityContextInterface;
-use Via\Bundle\GuzzleBundle\Storage\ViaEbay\Cookie;
+use Via\Bundle\GuzzleBundle\Storage\Blackbox\Cookie;
 use Symfony\Component\HttpFoundation\Request;
 use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 
 use Doctrine\Common\Util\Debug;
+use Via\Bundle\UserBundle\Model\ViaEbayUserManagerInterface;
+use Via\Bundle\UserBundle\Model\ViaEbayUserInterface;
 /**
 * Adds specified curl auth to all requests sent from a client. Defaults to CURLAUTH_BASIC if none supplied.
 * @deprecated Use $client->getConfig()->setPath('request.options/auth', array('user', 'pass', 'Basic|Digest');
@@ -20,26 +22,28 @@ use Doctrine\Common\Util\Debug;
 class AuthPlugin implements EventSubscriberInterface
 {
     protected $container;
+    
+    private $userManager;
         
-    protected $username;
+    private $username;
     
-    protected $password;
+    private $password;
     
-    protected $subscriptionToken;
+    private $subscriptionToken;
     /**
      *
      */
-    public function __construct(SecurityContextInterface $securityContext)
+    public function __construct()
     {   
-        $user = $securityContext->getToken()->getUser();
+        
         #Debug::dump($user->getViaebayUser(), 5);die();
-        if ($user instanceof UserInterface)
+        /* if ($user instanceof UserInterface)
         {
             $viaebayUser = $user->getViaebayUser();
             $this->username = $viaebayUser->getUsername();
             $this->password = $viaebayUser->getPassword();
             $this->subscriptionToken = $viaebayUser->getToken();
-        }
+        } */
     }
 
     public static function getSubscribedEvents()
@@ -57,22 +61,36 @@ class AuthPlugin implements EventSubscriberInterface
      */
     public function onRequestCreate(Event $event)
     {   
-        $cookieValue = Cookie::getValue();
+        $enviroment = $this->container->getParameter('via_guzzle.enviroment');
+        $user = $this->userManager->findBy(array('enabled' => true, 'enviroment' => $enviroment));
         
-        if (Cookie::getExpireDate() < new \DateTime())
+        Debug::dump($user);
+        
+        if ($user instanceof ViaEbayUserInterface)
         {   
-            $client = $this->container->get('via_guzzle.client.auth.via_ebay');
-            $command = $client->getCommand('PostAuthentication', array('userName' => $this->username, 'password' => $this->password));
-            $responseModel = $client->execute($command);
+            $this->username = $user->getUsername();
+            $this->password = $user->getPassword();
+            $this->subscriptionToken = $user->getToken();
             
-            $cookieValue = $responseModel->getCookie();            
+            if (Cookie::getExpireDate() < new \DateTime())
+            {
+                $client = $this->container->get('via_guzzle.client.auth.via_ebay');
+                $command = $client->getCommand('PostAuthentication', array('userName' => $this->username, 'password' => $this->password));
+                $responseModel = $client->execute($command);
             
-            $this->saveCookieData($cookieValue);
+                $cookieValue = $responseModel->getCookie();
+            
+                $this->saveCookieData($cookieValue);
+            }
+            
+            $request = $event['request'];
+            $request->setHeader('SubscriptionToken', $this->subscriptionToken);
+            $request->setHeader('Cookie', $cookieValue);
+            
+            return;
         }
         
-        $request = $event['request'];
-        $request->setHeader('SubscriptionToken', $this->subscriptionToken);
-        $request->setHeader('Cookie', $cookieValue);
+                
     }
     
     private function saveCookieData ($value)
@@ -94,5 +112,10 @@ class AuthPlugin implements EventSubscriberInterface
     public function setServiceContainer (ContainerInterface $container)
     {
         $this->container = $container;
+    }
+    
+    public function setUserManager (ViaEbayUserManagerInterface $userManager)
+    {
+        $this->userManager = $userManager;
     }
 }
