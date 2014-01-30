@@ -1,31 +1,24 @@
 <?php
 namespace Via\Bundle\ApiBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Component\HttpFoundation\Request;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Guzzle\Http\Client;
 
 use Doctrine\Common\Util\Debug;
 
-abstract class CoreController extends Controller
+class CoreController extends ServiceController
 {
     /**
      * Controller configuration.
      *
-     * @var Configuration
+     * @var object Configuration
      */
     protected $configuration;
-    protected $parameters;
-    protected $client;
-    
     /**
-     * Constructor.
+     * Guzzle client.
+     *
+     * @var object Guzzle\Http\Client
      */
-    public function __construct()
-    {
-        $this->configuration = new Configuration();
-    }
+    protected $client;
     
     /**
      * Get configuration with the bound request.
@@ -39,5 +32,18 @@ abstract class CoreController extends Controller
         return $this->configuration;
     }
     
+    public function setConfiguration(Configuration $configuration)
+    {
+        $this->configuration = $configuration;
+    }
     
+    public function setClient (Client $client)
+    {
+        $this->client = $client;
+    }
+    
+    public function getClient ()
+    {
+        return $this->client;
+    }
 }

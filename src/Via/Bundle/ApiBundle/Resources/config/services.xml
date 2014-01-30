@@ -8,14 +8,35 @@
     <parameters>
         <parameter key="via_api.controller.viaebay.test.class">Via\Bundle\ApiBundle\Controller\ViaEbay\TestController</parameter>
         <parameter key="via_api.controller.core.class">Via\Bundle\ApiBundle\Controller\CoreController</parameter>
+        <parameter key="via_api.controller.service.class">Via\Bundle\ApiBundle\Controller\ServiceController</parameter>
+        <parameter key="via_api.controller.configuration.class">Via\Bundle\ApiBundle\Controller\Configuration</parameter>
     </parameters>
     
     <services>
-    	<service id="via_api.controller.viaebay.test" class="%via_api.controller.viaebay.test.class%">
-              <call method="setContainer">
-	        	<argument type="service" id="service_container"/>
-	    	</call>
+    	<!-- <service id="via_api.controller.service" class="%via_api.controller.service.class%">
+    		<argument type="service" id="templating"/>
+    		<argument type="service" id="router"/>
        </service>
+    
+    	<service id="via_api.controller.core" class="%via_api.controller.core.class%" parent="via_api.controller.service">
+	    	<call method="setGuzzleClient">
+	        	<argument type="service" id="via_guzzle.client.via_ebay"/>
+	    	</call>
+       </service> -->
+       
+       <service id="via_api.controller.configuration" class="%via_api.controller.configuration.class%" />
+       
+       <service id="via_api.controller.viaebay.test" class="%via_api.controller.viaebay.test.class%">
+       		<argument type="service" id="templating"/>
+    		<argument type="service" id="router"/>
+    		<argument type="service" id="service_container"/>
+    		<call method="setClient">
+	        	<argument type="service" id="via_guzzle.client.via_ebay"/>
+	    	</call>
+	    	<call method="setConfiguration">
+	        	<argument type="service" id="via_api.controller.configuration"/>
+	    	</call>
+       </service>    	
     	
     </services>
     
