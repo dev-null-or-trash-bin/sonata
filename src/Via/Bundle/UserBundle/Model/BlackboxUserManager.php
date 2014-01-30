@@ -1,9 +1,9 @@
 <?php
 namespace Via\Bundle\UserBundle\Model;
 
-use Via\Bundle\UserBundle\Model\ViaEbayUserManagerInterface;
+use Via\Bundle\UserBundle\Model\BlackboxUserManagerInterface;
 
-abstract class ViaEbayUserManager implements ViaEbayUserManagerInterface
+abstract class BlackboxUserManager implements BlackboxUserManagerInterface
 {
     /**
      * @var string

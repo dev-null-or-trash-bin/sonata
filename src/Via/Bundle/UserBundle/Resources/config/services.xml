@@ -7,11 +7,11 @@
 	<parameters>		      
 		<parameter key="via_user.entity.user.class">Via\Bundle\UserBundle\Entity\User</parameter>
 		<parameter key="via_user.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>	
-		<parameter key="via_user.entity.viaebay_user.class">Via\Bundle\UserBundle\Entity\ViaEbayUser</parameter>
-		<parameter key="via_user.admin.viaebay_user.class">Via\Bundle\UserBundle\Admin\ViaEbayUserAdmin</parameter>		
-		<parameter key="via_user.admin.viaebay_user.extension.class">Via\Bundle\UserBundle\Admin\ViaEbayUserAdminExtension</parameter>
-		<parameter key="via_user.listener.viaebay.user_update.class">Via\Bundle\UserBundle\EventListener\ViaEbay\UserUpdateListener</parameter>		
-		<parameter key="via_user.manager.viaebay.user.class">Via\Bundle\UserBundle\Entity\ViaEbayUserManager</parameter>
+		<parameter key="via_user.entity.blackbox.user.class">Via\Bundle\UserBundle\Entity\BlackboxUser</parameter>
+		<parameter key="via_user.admin.blackbox.user.class">Via\Bundle\UserBundle\Admin\BlackboxUserAdmin</parameter>		
+		<parameter key="via_user.admin.blackbox.user.extension.class">Via\Bundle\UserBundle\Admin\BlackboxUserAdminExtension</parameter>
+		<parameter key="via_user.listener.blackbox.user_update.class">Via\Bundle\UserBundle\EventListener\Blackbox\UserUpdateListener</parameter>		
+		<parameter key="via_user.manager.blackbox.user.class">Via\Bundle\UserBundle\Entity\BlackboxUserManager</parameter>
 	</parameters>
 	
 	<services>
@@ -29,23 +29,23 @@
           </call>
 	  	</service>
 	  	
-	  	<service id="via_user.admin.viaebay_user" class="%via_user.admin.viaebay_user.class%">
+	  	<service id="via_user.admin.blackbox.user" class="%via_user.admin.blackbox.user.class%">
 	      <tag name="sonata.admin" 
 	      		manager_type="orm"
-	      		group="ViA-eBay" 
-	      		label="via_user.admin.dashboard.viaebay_user"
+	      		group="Blackbox" 
+	      		label="via_user.admin.dashboard.blackbox.user"
 	      		show_in_dashboard="true"	      		
 	      />
 	      <argument />
-	      <argument>%via_user.entity.viaebay_user.class%</argument>
-	      <argument>ViaUserBundle:ViaEbayUserAdmin</argument>	 
+	      <argument>%via_user.entity.blackbox.user.class%</argument>
+	      <argument>ViaUserBundle:BlackboxUserAdmin</argument>	 
 	           
 	  	</service>	
 	  	
 	  	<!-- Extension for Events -->
-	  	<service id="via_user.admin.viaebay_user.extension" class="%via_user.admin.viaebay_user.extension.class%">
+	  	<service id="via_user.admin.blackbox.user.extension" class="%via_user.admin.blackbox.user.extension.class%">
 	  		<tag name="sonata.admin.extension" 
-	      		target="via_user.admin.viaebay_user"      		
+	      		target="via_user.admin.blackbox.user"      		
 	      />
 	      	<argument type="service" id="event_dispatcher" />
 	  	</service>
@@ -53,18 +53,18 @@
 	  	<!-- Manager -->	
 	  	<service id="via_user.manager.entity_manager" alias="doctrine.orm.default_entity_manager" />
 	  	
-	  	<service id="via_user.manager.viaebay.user" class="%via_user.manager.viaebay.user.class%">
+	  	<service id="via_user.manager.blackbox.user" class="%via_user.manager.blackbox.user.class%">
            <argument type="service" id="via_user.manager.entity_manager" />
-           <argument>%via_user.entity.viaebay_user.class%</argument>
+           <argument>%via_user.entity.blackbox.user.class%</argument>
         </service>
 	  	
 	  	<!-- Listener -->	  	 
-	  	 <service id="via_user.listener.viaebay.user_update" class="%via_user.listener.viaebay.user_update.class%">
+	  	 <service id="via_user.listener.blackbox.user_update" class="%via_user.listener.blackbox.user_update.class%">
             <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_persist" method="processUser" />
             <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_update" method="processUser" />
             <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_remove" method="processUser" />
             <call method="setUserManager">
-	      		<argument type="service" id="via_user.manager.viaebay.user" />
+	      		<argument type="service" id="via_user.manager.blackbox.user" />
           </call>
         </service>      
         

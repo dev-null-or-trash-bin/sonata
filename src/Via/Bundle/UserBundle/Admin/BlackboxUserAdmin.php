@@ -8,13 +8,13 @@ use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
 use Via\Bundle\UserBundle\Entity\EnviromentTypes;
 
-class ViaEbayUserAdmin extends Admin
+class BlackboxUserAdmin extends Admin
 {
-    protected $baseRoutePattern = 'via-viaebay-user';
+    protected $baseRoutePattern = 'via-blackbox-user';
     
     public function configureFormFields(FormMapper $formMapper)
     {
-        $formMapper->with('ViaEbay')
+        $formMapper->with('Blackbox')
         ->add('name', null, array(
              
         ))

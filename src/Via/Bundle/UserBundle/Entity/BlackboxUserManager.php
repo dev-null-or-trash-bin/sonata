@@ -3,11 +3,11 @@ namespace Via\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\NoResultException;
-use Via\Bundle\UserBundle\Model\ViaEbayUserManager as ModelViaEbayUserManager;
-use Via\Bundle\UserBundle\Model\ViaEbayUserInterface;
+use Via\Bundle\UserBundle\Model\BlackboxUserManager as ModelBlackboxUserManager;
+use Via\Bundle\UserBundle\Model\BlackboxUserInterface;
 use Doctrine\Common\Util\Debug;
 
-class ViaEbayUserManager extends ModelViaEbayUserManager
+class BlackboxUserManager extends ModelBlackboxUserManager
 {
     /**
      * @var \Doctrine\ORM\EntityManager
@@ -27,7 +27,7 @@ class ViaEbayUserManager extends ModelViaEbayUserManager
     /**
      * {@inheritDoc}
      */
-    public function save(ViaEbayUserInterface $user)
+    public function save(BlackboxUserInterface $user)
     {
         $this->em->persist($user);
         $this->em->flush();
@@ -52,13 +52,13 @@ class ViaEbayUserManager extends ModelViaEbayUserManager
     /**
      * {@inheritDoc}
      */
-    public function delete(ViaEbayUserInterface $user)
+    public function delete(BlackboxUserInterface $user)
     {
         $this->em->remove($user);
         $this->em->flush();
     }
     
-    public function disableUsers (ViaEbayUserInterface $user)
+    public function disableUsers (BlackboxUserInterface $user)
     {
         if ($user->getEnabled())
         {
