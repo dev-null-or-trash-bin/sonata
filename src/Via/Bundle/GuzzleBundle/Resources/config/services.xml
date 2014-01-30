@@ -34,7 +34,7 @@
 		        <argument type="service" id="service_container"/>
 		    </call>
 		    <call method="setUserManager">
-		        <argument type="service" id="via_user.manager.viaebay.user"/>
+		        <argument type="service" id="via_user.manager.blackbox.user"/>
 		    </call>
 		    
 		</service>
