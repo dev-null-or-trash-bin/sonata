@@ -28,11 +28,9 @@ class ViaWebExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         
-        $container->setParameter('sonata.admin.configuration.templates.layout', 'ViaWebBundle::standard_layout.html.twig');
-        
-        #$container->setParameter('sonata.admin.configuration.templates.layout', 'ViaWebBundle::standard_layout.html.twig');
-        #$this->setSonataBlocks($container);
-        #$this->setSonataAdmin($container);
+        $sonataLayouts = $container->getParameter('sonata.admin.configuration.templates');
+        $sonataLayouts['layout'] = 'ViaWebBundle::standard_layout.html.twig';        
+        $container->setParameter('sonata.admin.configuration.templates', $sonataLayouts);        
     }
     
     public function setSonataAdmin(ContainerBuilder $container)
