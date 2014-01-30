@@ -3,11 +3,13 @@ namespace Via\Bundle\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Via\Bundle\UserBundle\Entity\User;
+use Via\Bundle\UserBundle\Model\ViaEbayUser as AbstractViaEbayUser ;
+use Via\Bundle\UserBundle\Model\ViaEbayUserInterface;
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="ViaEbayUserRepository")
  * @ORM\Table(name="viaebay_user")
  */
-class ViaEbayUser
+class ViaEbayUser implements ViaEbayUserInterface
 {
     /**
      * @ORM\Id
@@ -57,12 +59,6 @@ class ViaEbayUser
      * @ORM\Column(name="enviroment", type="string", length=50, nullable=true)
      */
     protected $enviroment;
-    
-    /**
-     * @ORM\OneToOne(targetEntity="User", inversedBy="viaebay_user")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
-     */
-    protected $user;
       
     
     public function __toString()
