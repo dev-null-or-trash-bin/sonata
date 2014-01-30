@@ -1,7 +1,7 @@
 <?php
 namespace Via\Bundle\UserBundle\Model;
 
-interface ViaEbayUserManagerInterface
+interface BlackboxUserManagerInterface
 {
     /**
      * Creates an empty post instance
@@ -17,7 +17,7 @@ interface ViaEbayUserManagerInterface
      *
      * @return void
     */
-    public function delete(ViaEbayUserInterface $user);
+    public function delete(BlackboxUserInterface $user);
     
     /**
      * Finds one post by the given criteria
@@ -51,5 +51,5 @@ interface ViaEbayUserManagerInterface
      *
      * @return void
     */
-    public function save(ViaEbayUserInterface $user);
+    public function save(BlackboxUserInterface $user);
 }
