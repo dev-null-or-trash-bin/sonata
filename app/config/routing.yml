@@ -1,10 +1,10 @@
-via_api:
-    resource: "@ViaApiBundle/Resources/config/routing.yml"
-    prefix:   /admin/api
+#via_api:
+#    resource: "@ViaApiBundle/Resources/config/routing.yml"
+#    prefix:   /admin/api
 
-via_web:
-    resource: "@ViaWebBundle/Resources/config/routing.xml"
-    prefix:   /admin
+#via_web:
+#    resource: "@ViaWebBundle/Resources/config/routing.xml"
+#    prefix:   /admin
 
 #via_guzzle:
 #    resource: "@ViaGuzzleBundle/Resources/config/routing.xml"

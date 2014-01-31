@@ -1,0 +1,107 @@
+via:
+    batch:
+        action:
+            # Desc: via.batch.action.via_ebay
+            via_ebay: via.batch.action.via_ebay   # FIXME
+
+    form:
+        label:
+            # Desc: via.form.label.custom_action
+            custom_action: via.form.label.custom_action   # FIXME
+
+            # Desc: via.form.label.custom_action.upload
+            custom_action.upload: via.form.label.custom_action.upload   # FIXME
+
+            product:
+                # Desc: via.form.label.product.articleNumber
+                articleNumber: via.form.label.product.articleNumber   # FIXME
+
+                # Desc: via.form.label.product.article_number
+                article_number: via.form.label.product.article_number   # FIXME
+
+                # Desc: via.form.label.product.description
+                description: via.form.label.product.description   # FIXME
+
+                # Desc: via.form.label.product.ean
+                ean: via.form.label.product.ean   # FIXME
+
+                # Desc: via.form.label.product.id
+                id: via.form.label.product.id   # FIXME
+
+                # Desc: via.form.label.product.name
+                name: via.form.label.product.name   # FIXME
+
+                # Desc: via.form.label.product.price
+                price: via.form.label.product.price   # FIXME
+
+                # Desc: via.form.label.product.short_description
+                short_description: via.form.label.product.short_description   # FIXME
+
+                # Desc: via.form.label.product.stockAmount
+                stockAmount: via.form.label.product.stockAmount   # FIXME
+
+                # Desc: via.form.label.product.stock_amount
+                stock_amount: via.form.label.product.stock_amount   # FIXME
+
+                # Desc: via.form.label.product.translations
+                translations: via.form.label.product.translations   # FIXME
+
+                # Desc: via.form.label.product.vat_percent
+                vat_percent: via.form.label.product.vat_percent   # FIXME
+
+            product_property:
+                # Desc: via.form.label.product_property.presentation
+                presentation: via.form.label.product_property.presentation   # FIXME
+
+                # Desc: via.form.label.product_property.product
+                product: via.form.label.product_property.product   # FIXME
+
+                # Desc: via.form.label.product_property.property
+                property: via.form.label.product_property.property   # FIXME
+
+                # Desc: via.form.label.product_property.value
+                value: via.form.label.product_property.value   # FIXME
+
+            viaebay_user:
+                enabled: via.form.label.viaebay_user.enabled   # FIXME
+                enviroment: via.form.label.viaebay_user.enviroment   # FIXME
+                name: via.form.label.viaebay_user.name   # FIXME
+
+        product:
+            # Desc: via.form.product.translations
+            translations: via.form.product.translations   # FIXME
+
+        product_property:
+            # Desc: via.form.product_property.value
+            value: via.form.product_property.value   # FIXME
+
+        property:
+            # Desc: via.form.property.name
+            name: via.form.property.name   # FIXME
+
+            # Desc: via.form.property.presentation
+            presentation: via.form.property.presentation   # FIXME
+
+            # Desc: via.form.property.type
+            type: via.form.property.type   # FIXME
+
+    label:
+        property:
+            # Desc: via.label.property.name
+            name: via.label.property.name   # FIXME
+
+            # Desc: via.label.property.presentation
+            presentation: via.label.property.presentation   # FIXME
+
+    tab:
+        label:
+            # Desc: via.tab.label.properties
+            properties: via.tab.label.properties   # FIXME
+
+# Desc: via_ebay_action
+via_ebay_action: via_ebay_action   # FIXME
+
+via_web:
+    label:
+        via_ebay:
+            action: via_web.label.via_ebay.action   # FIXME

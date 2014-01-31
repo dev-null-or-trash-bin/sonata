@@ -13,8 +13,8 @@ use FOS\UserBundle\Model\UserInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\RedirectController;
 
 use Doctrine\Common\Util\Debug;
-use Via\Bundle\UserBundle\Model\ViaEbayUserManagerInterface;
-use Via\Bundle\UserBundle\Model\ViaEbayUserInterface;
+use Via\Bundle\UserBundle\Model\BlackboxUserManagerInterface;
+use Via\Bundle\UserBundle\Model\BlackboxUserInterface;
 /**
 * Adds specified curl auth to all requests sent from a client. Defaults to CURLAUTH_BASIC if none supplied.
 * @deprecated Use $client->getConfig()->setPath('request.options/auth', array('user', 'pass', 'Basic|Digest');
@@ -34,7 +34,7 @@ class AuthPlugin implements EventSubscriberInterface
      *
      */
     public function __construct()
-    {   
+    {
         
         #Debug::dump($user->getViaebayUser(), 5);die();
         /* if ($user instanceof UserInterface)
@@ -60,14 +60,12 @@ class AuthPlugin implements EventSubscriberInterface
      * @param Guzzle\Common\Event $event
      */
     public function onRequestCreate(Event $event)
-    {   
-        $enviroment = $this->container->getParameter('via_guzzle.enviroment');
+    {
+        $enviroment = $this->container->getParameter('via_guzzle.blackbox.client.enviroment');
         $user = $this->userManager->findBy(array('enabled' => true, 'enviroment' => $enviroment));
         
-        Debug::dump($user);
-        
-        if ($user instanceof ViaEbayUserInterface)
-        {   
+        if ($user instanceof BlackboxUserInterface)
+        {
             $this->username = $user->getUsername();
             $this->password = $user->getPassword();
             $this->subscriptionToken = $user->getToken();
@@ -89,12 +87,10 @@ class AuthPlugin implements EventSubscriberInterface
             
             return;
         }
-        
-                
     }
     
     private function saveCookieData ($value)
-    {   
+    {
         $lifeTime = $this->container->getParameter('via_guzzle.cookie.life_time');
         
         $currentDate = new \DateTime();
@@ -114,7 +110,7 @@ class AuthPlugin implements EventSubscriberInterface
         $this->container = $container;
     }
     
-    public function setUserManager (ViaEbayUserManagerInterface $userManager)
+    public function setUserManager (BlackboxUserManagerInterface $userManager)
     {
         $this->userManager = $userManager;
     }

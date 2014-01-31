@@ -5,12 +5,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="via_guzzle.blackbox.client.service_description" type="collection"></parameter>
+		<parameter key="via_guzzle.blackbox.client.service_description.file" />
 		<parameter key="via_guzzle.blackbox.plugin.auth.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\AuthPlugin</parameter>
 		<parameter key="via_guzzle.blackbox.plugin.header.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\HeaderPlugin</parameter>
-		
+		<parameter key="via_guzzle.context.blackbox.enviroment.class">Via\Bundle\GuzzleBundle\Context\Blackbox\EnviromentContext</parameter>
 		<parameter key="via_guzzle.blackbox.event_listener.response.class">Via\Bundle\GuzzleBundle\EventListener\Blackbox\ResponseListener</parameter>
-		
+		<parameter key="via_guzzle.listener.blackbox.enviroment.class">Via\Bundle\GuzzleBundle\EventListener\Blackbox\EnviromentListener</parameter>
 		<parameter key="via_guzzle.blackbox.plugin.header.headers" type="collection" ></parameter>
 	</parameters>
 
@@ -19,10 +19,8 @@
 	         class="%guzzle.service_description.class%"
 	         factory-class="%guzzle.service_description.class%"
 	         factory-method="factory">	         
-	    	<argument></argument>
+	    	<argument>%via_guzzle.blackbox.client.service_description.file%</argument>
 		</service>
-		
-		
 		
 		<service id="via_guzzle.blackbox.plugin.header" class="%via_guzzle.blackbox.plugin.header.class%">
             <argument id="via_guzzle.plugin.blackbox.header.headers">%via_guzzle.blackbox.plugin.header.headers%</argument>
@@ -86,6 +84,17 @@
 		    
 		    <tag name="playbloom_guzzle.client" />
 		</service>
+		
+		
+		<service id="via_guzzle.context.blackbox.enviroment" class="%via_guzzle.context.blackbox.enviroment.class%">            
+            <argument type="service" id="session" />
+            <argument>%via_guzzle.blackbox.client.enviroment%</argument>
+        </service>
+        
+        <service id="via_guzzle.listener.blackbox.enviroment" class="%via_guzzle.listener.blackbox.enviroment.class%">
+            <argument type="service" id="via_guzzle.context.blackbox.enviroment" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" priority="0" />
+        </service>
 		
 	</services>
 </container>

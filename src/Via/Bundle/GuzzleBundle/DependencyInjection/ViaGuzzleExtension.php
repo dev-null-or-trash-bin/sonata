@@ -62,7 +62,7 @@ class ViaGuzzleExtension extends Extension
                 foreach($settings['service_description'] as $enviroment => $envSettings)
                 $container->setParameter($this->getAlias(). '.' .$platform. '.'.$enviroment.'.client.service_description', $envSettings);
             }
-            $container->setParameter($this->getAlias(). '.' .$platform.'.client.service_description', $settings['service_description'][$settings['enviroment']]);
+            $container->setParameter($this->getAlias(). '.' .$platform.'.client.service_description.file', $settings['service_description'][$settings['enviroment']]);
         }
     }
     

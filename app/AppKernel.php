@@ -37,12 +37,12 @@ class AppKernel extends Kernel
             new Misd\GuzzleBundle\MisdGuzzleBundle(),
 
             
+            new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
             new Via\Bundle\UserBundle\ViaUserBundle(),
             new Via\Bundle\ProductBundle\ViaProductBundle(),
             new Via\Bundle\PropertyBundle\ViaPropertyBundle(),
-            new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
             new Via\Bundle\ApiBundle\ViaApiBundle(),
-            new Via\Bundle\WebBundle\ViaWebBundle(),
+            #new Via\Bundle\WebBundle\ViaWebBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

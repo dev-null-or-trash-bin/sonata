@@ -9,7 +9,9 @@
         <parameter key="via_api.controller.blackbox.test.class">Via\Bundle\ApiBundle\Controller\Blackbox\TestController</parameter>
         <parameter key="via_api.controller.core.class">Via\Bundle\ApiBundle\Controller\CoreController</parameter>
         <parameter key="via_api.controller.service.class">Via\Bundle\ApiBundle\Controller\ServiceController</parameter>
-        <parameter key="via_api.controller.configuration.class">Via\Bundle\ApiBundle\Controller\Configuration</parameter>
+        <parameter key="via_api.controller.configuration.class">Via\Bundle\ApiBundle\Controller\Configuration</parameter>        
+        <parameter key="via_api.context.blackbox.enviroment.class">Via\Bundle\ApiBundle\Context\Blackbox\EnviromentContext</parameter>
+        <parameter key="via_api.listener.blackbox.enabled_user.class">Via\Bundle\ApiBundle\EventListener\Blackbox\EnabledUserListener</parameter>
     </parameters>
     
     <services>
@@ -37,6 +39,21 @@
 	        	<argument type="service" id="via_api.controller.configuration"/>
 	    	</call>
        </service>    	
+    	
+    	<service id="via_api.context.blackbox.enviroment" class="%via_api.context.blackbox.enviroment.class%">            
+            <argument type="service" id="session" />            
+        </service>
+    	
+    	<!-- Listener -->	
+    	
+        <service id="via_api.listener.blackbox.enabled_user" class="%via_api.listener.blackbox.enabled_user.class%">
+            <argument type="service" id="router" />
+            <argument type="service" id="service_container" />
+            <call method="setUserManager">
+	        	<argument type="service" id="via_user.manager.blackbox.user"/>
+	    	</call>
+            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="-10" />
+        </service>
     	
     </services>
     
