@@ -11,14 +11,14 @@ class EnviromentContext extends BaseEnviromentContext
         
     public function __construct(SessionInterface $session)
     {
-        print_r(__METHOD__ . '<br/>');
+        #print_r(__METHOD__ . '<br/>');
         $this->session = $session;
         parent::__construct($session, $this->getDefaultEnviroment());
     }
     
     public function getDefaultEnviroment()
     {
-        print_r(__METHOD__ . '<br/>');
+        #print_r(__METHOD__ . '<br/>');
         return parent::getDefaultEnviroment();
         #return $this->settingsManager->loadSettings('general')->get('currency');
     }

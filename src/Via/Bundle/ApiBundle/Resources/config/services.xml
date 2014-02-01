@@ -6,40 +6,24 @@
 
       
     <parameters>
-        <parameter key="via_api.controller.blackbox.test.class">Via\Bundle\ApiBundle\Controller\Blackbox\TestController</parameter>
-        <parameter key="via_api.controller.core.class">Via\Bundle\ApiBundle\Controller\CoreController</parameter>
-        <parameter key="via_api.controller.service.class">Via\Bundle\ApiBundle\Controller\ServiceController</parameter>
-        <parameter key="via_api.controller.configuration.class">Via\Bundle\ApiBundle\Controller\Configuration</parameter>        
+        <parameter key="via_api.controller.blackbox.test.class">Via\Bundle\ApiBundle\Controller\Blackbox\TestController</parameter>        
         <parameter key="via_api.context.blackbox.enviroment.class">Via\Bundle\ApiBundle\Context\Blackbox\EnviromentContext</parameter>
         <parameter key="via_api.listener.blackbox.enabled_user.class">Via\Bundle\ApiBundle\EventListener\Blackbox\EnabledUserListener</parameter>
     </parameters>
     
     <services>
-    	<!-- <service id="via_api.controller.service" class="%via_api.controller.service.class%">
-    		<argument type="service" id="templating"/>
-    		<argument type="service" id="router"/>
-       </service>
-    
-    	<service id="via_api.controller.core" class="%via_api.controller.core.class%" parent="via_api.controller.service">
-	    	<call method="setGuzzleClient">
-	        	<argument type="service" id="via_guzzle.client.via_ebay"/>
+    	<service id="via_api.controller.blackbox.test" class="%via_api.controller.blackbox.test.class%">
+            <argument>via_api</argument>
+            <argument>product</argument>
+            <argument>ViaApiBundle:Test</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setClient">
+	        	<argument type="service" id="via_guzzle.client.blackbox"/>
 	    	</call>
-       </service> -->
+        </service>
        
-       <service id="via_api.controller.configuration" class="%via_api.controller.configuration.class%" />
-       
-       <service id="via_api.controller.blackbox.test" class="%via_api.controller.blackbox.test.class%">
-       		<argument type="service" id="templating"/>
-    		<argument type="service" id="router"/>
-    		<argument type="service" id="service_container"/>
-    		<call method="setClient">
-	        	<argument type="service" id="via_guzzle.blackbox.client"/>
-	    	</call>
-	    	<call method="setConfiguration">
-	        	<argument type="service" id="via_api.controller.configuration"/>
-	    	</call>
-       </service>    	
-    	
     	<service id="via_api.context.blackbox.enviroment" class="%via_api.context.blackbox.enviroment.class%">            
             <argument type="service" id="session" />            
         </service>
@@ -51,8 +35,8 @@
             <argument type="service" id="service_container" />
             <call method="setUserManager">
 	        	<argument type="service" id="via_user.manager.blackbox.user"/>
-	    	</call>
-            <tag name="kernel.event_listener" event="kernel.controller" method="onKernelController" priority="-10" />
+	    	</call>	    	
+            <tag name="kernel.event_listener" event="via.api.client.service.initialize" method="onBeforeInitialize" priority="-10" />
         </service>
     	
     </services>

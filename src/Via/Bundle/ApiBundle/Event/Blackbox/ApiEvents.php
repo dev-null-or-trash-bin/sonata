@@ -2,7 +2,7 @@
 namespace Via\Bundle\ApiBundle\Event\Blackbox;
 
 
-final class ApiEvents
+class ApiEvents
 {
-    const USER_ENABLED = 'user.enabled';
+    const CLIENT_SERVICE_INITIALIZE = 'via.api.client.blackbox.initialize';
 }

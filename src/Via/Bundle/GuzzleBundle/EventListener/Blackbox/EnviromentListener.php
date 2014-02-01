@@ -11,13 +11,11 @@ class EnviromentListener
     
     public function __construct(EnviromentContextInterface $enviromentContext)
     {
-        print_r(__METHOD__ . '<br/>');
         $this->enviromentContext = $enviromentContext;
     }
     
     public function onKernelRequest (GetResponseEvent $event)
     {
-        print_r(__METHOD__ . '<br/>');
         $request = $event->getRequest();
         $session = $request->getSession();
         

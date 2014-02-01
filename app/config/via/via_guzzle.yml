@@ -1,14 +1,15 @@
 via_guzzle:
-    blackbox:
-        service_description: 
-            sandbox:  '%kernel.root_dir%/config/via/sandbox_webservice.json'
-            live:     '%kernel.root_dir%/config/via/live_webservice.json'
-        # custom headers
-        headers:
-            Accept:   'application/json'
-        
-        cookie:
-            life_time: 1200
+    clients:
+        blackbox:
+            service_description: 
+                sandbox:  '%kernel.root_dir%/config/via/sandbox_webservice.json'
+                live:     '%kernel.root_dir%/config/via/live_webservice.json'
+            # custom headers
+            headers:
+                Accept:   'application/json'
             
-        enviroment:   sandbox
+            cookie:
+                life_time: 1200
+                
+            enviroment:   sandbox
     

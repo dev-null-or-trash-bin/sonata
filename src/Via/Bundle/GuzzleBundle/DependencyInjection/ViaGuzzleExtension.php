@@ -7,6 +7,7 @@ use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\Config\Definition\Processor;
+use Doctrine\Common\Util\Debug;
 
 /**
  * This is the class that loads and manages your bundle configuration
@@ -28,51 +29,45 @@ class ViaGuzzleExtension extends Extension
         $configuration = new Configuration();
         $config = $processor->processConfiguration($configuration, $configs);
         
-        $this->setServiceDescription($config, $container);
-        $this->setUpHeaders($config, $container);
-        $this->setUpCookieLifeTime($config, $container);
-        $this->setEnviroment($config, $container);
-    }
-    
-    protected function setUpHeaders(array $config, ContainerBuilder $container) {
-    
-        foreach($config as $platform => $settings)
-        {
-            if ($settings['headers']) {
-                $container->setParameter($this->getAlias(). '.' .$platform.'.plugin.header.headers', $settings['headers']);
-            }
+        foreach ($config['clients'] as $client => $parameters)
+        {   
+            $this->setServiceDescription($client, $parameters, $container);
+            $this->setUpHeaders($client, $parameters, $container);
+            $this->setUpCookieLifeTime($client, $parameters, $container);
+            $this->setEnviroment($client, $parameters, $container);
         }
     }
     
-    protected function setUpCookieLifeTime(array $config, ContainerBuilder $container) {
+    protected function setUpHeaders($client, array $parameters, ContainerBuilder $container) 
+    {    
+        if (isset($parameters['headers'])) {
+                $container->setParameter($this->getAlias().'.client.' .$client.'.headers', $parameters['headers']);
+        }        
+    }
     
-        foreach($config as $platform => $settings)
-        {
-            if ($settings['cookie']['life_time']) {
-                $container->setParameter($this->getAlias(). '.' .$platform.'.cookie.life_time', $settings['cookie']['life_time']);
-            }
+    protected function setUpCookieLifeTime($client, array $parameters, ContainerBuilder $container) 
+    {
+        if (isset($parameters['cookie']['life_time'])) {
+            $container->setParameter($this->getAlias().'.client.' .$client.'.cookie.life_time', $parameters['cookie']['life_time']);
+        
         }
     }
     
-    protected function setServiceDescription(array $config, ContainerBuilder $container) {
-    
-        foreach($config as $platform => $settings)
-        {
-            if ($settings['service_description']) {
-                foreach($settings['service_description'] as $enviroment => $envSettings)
-                $container->setParameter($this->getAlias(). '.' .$platform. '.'.$enviroment.'.client.service_description', $envSettings);
+    protected function setServiceDescription($client, array $parameters, ContainerBuilder $container) 
+    {    
+        if (isset($parameters['service_description'])) {
+            foreach($parameters['service_description'] as $enviroment => $envSettings) 
+            {
+                $container->setParameter($this->getAlias().'.client' .$client.'.'.$enviroment.'.service_description', $envSettings);
             }
-            $container->setParameter($this->getAlias(). '.' .$platform.'.client.service_description.file', $settings['service_description'][$settings['enviroment']]);
+            $container->setParameter($this->getAlias().'.client.' .$client.'.service_description.file', $parameters['service_description'][$parameters['enviroment']]);
         }
     }
     
-    protected function setEnviroment(array $config, ContainerBuilder $container) {
-    
-        foreach($config as $platform => $settings)
-        {
-            if ($settings['enviroment']) {
-                $container->setParameter($this->getAlias(). '.' .$platform.'.client.enviroment', $settings['enviroment']);
-            }
+    protected function setEnviroment($client, array $parameters, ContainerBuilder $container) 
+    {    
+        if (isset($parameters['enviroment'])) {
+            $container->setParameter($this->getAlias().'.client.' .$client.'.enviroment', $parameters['enviroment']);
         }
     }
 }

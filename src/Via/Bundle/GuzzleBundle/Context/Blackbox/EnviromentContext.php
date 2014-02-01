@@ -10,7 +10,7 @@ class EnviromentContext implements EnviromentContextInterface
     
     public function __construct(SessionInterface $session, $defaultEnviroment)
     {
-        print_r(__METHOD__ . '<br/>');
+        #print_r(__METHOD__ . '<br/>');
         $this->session = $session;
         $this->defaultEnviroment = $defaultEnviroment;
     }

@@ -5,28 +5,31 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="via_guzzle.blackbox.client.service_description.file" />
-		<parameter key="via_guzzle.blackbox.plugin.auth.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\AuthPlugin</parameter>
-		<parameter key="via_guzzle.blackbox.plugin.header.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\HeaderPlugin</parameter>
+		<parameter key="via_guzzle.client.blackbox.service_description.file" />
+		<parameter key="via_guzzle.plugin.blackbox.auth.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\AuthPlugin</parameter>
+		<parameter key="via_guzzle.plugin.blackbox.header.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\HeaderPlugin</parameter>
+		<parameter key="via_guzzle.plugin.blackbox.request_param.class">Via\Bundle\GuzzleBundle\Plugin\Blackbox\RequestParamPlugin</parameter>
 		<parameter key="via_guzzle.context.blackbox.enviroment.class">Via\Bundle\GuzzleBundle\Context\Blackbox\EnviromentContext</parameter>
-		<parameter key="via_guzzle.blackbox.event_listener.response.class">Via\Bundle\GuzzleBundle\EventListener\Blackbox\ResponseListener</parameter>
+		<parameter key="via_guzzle.listener.blackbox.response.class">Via\Bundle\GuzzleBundle\EventListener\Blackbox\ResponseListener</parameter>
 		<parameter key="via_guzzle.listener.blackbox.enviroment.class">Via\Bundle\GuzzleBundle\EventListener\Blackbox\EnviromentListener</parameter>
-		<parameter key="via_guzzle.blackbox.plugin.header.headers" type="collection" ></parameter>
+		<parameter key="via_guzzle.client.blackbox.headers" type="collection" ></parameter>
 	</parameters>
 
 	<services>
-	    <service id="via_guzzle.blackbox.client.service_description"
+	    <service id="via_guzzle.client.blackbox.service_description"
 	         class="%guzzle.service_description.class%"
 	         factory-class="%guzzle.service_description.class%"
 	         factory-method="factory">	         
-	    	<argument>%via_guzzle.blackbox.client.service_description.file%</argument>
+	    	<argument>%via_guzzle.client.blackbox.service_description.file%</argument>
 		</service>
 		
-		<service id="via_guzzle.blackbox.plugin.header" class="%via_guzzle.blackbox.plugin.header.class%">
-            <argument id="via_guzzle.plugin.blackbox.header.headers">%via_guzzle.blackbox.plugin.header.headers%</argument>
+		<service id="via_guzzle.plugin.blackbox.header" class="%via_guzzle.plugin.blackbox.header.class%">
+            <argument id="via_guzzle.client.blackbox.headers">%via_guzzle.client.blackbox.headers%</argument>
         </service>
 		
-		<service id="via_guzzle.blackbox.plugin.auth" class="%via_guzzle.blackbox.plugin.auth.class%">
+		<service id="via_guzzle.plugin.blackbox.request_param" class="%via_guzzle.plugin.blackbox.request_param.class%" />
+		
+		<service id="via_guzzle.plugin.blackbox.auth" class="%via_guzzle.plugin.blackbox.auth.class%">
 			
 			<call method="setServiceContainer">
 		        <argument type="service" id="service_container"/>
@@ -37,18 +40,22 @@
 		    
 		</service>
 		
-		<service id="via_guzzle.blackbox.client" class="%guzzle.client.class%">
+		<service id="via_guzzle.client.blackbox" class="%guzzle.client.class%">
 	    
 	    	<call method="setDescription">
-	        	<argument type="service" id="via_guzzle.blackbox.client.service_description"/>
+	        	<argument type="service" id="via_guzzle.client.blackbox.service_description"/>
 	    	</call>
 	    	
 	    	<call method="addSubscriber">
-		        <argument type="service" id="via_guzzle.blackbox.plugin.auth"/>
+		        <argument type="service" id="via_guzzle.plugin.blackbox.auth"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
-		        <argument type="service" id="via_guzzle.blackbox.plugin.header"/>
+		        <argument type="service" id="via_guzzle.plugin.blackbox.header"/>
+		    </call>
+		    
+		    <call method="addSubscriber">
+		        <argument type="service" id="via_guzzle.plugin.blackbox.request_param"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
@@ -63,14 +70,14 @@
 		    <tag name="playbloom_guzzle.client" />
 		</service>
 		
-		<service id="via_guzzle.blackbox.client.auth" class="%guzzle.client.class%">
+		<service id="via_guzzle.client.blackbox.auth" class="%guzzle.client.class%">
 	    
 	    	<call method="setDescription">
-	        	<argument type="service" id="via_guzzle.blackbox.client.service_description"/>
+	        	<argument type="service" id="via_guzzle.client.blackbox.service_description"/>
 	    	</call>
 	    	
 	    	<call method="addSubscriber">
-		        <argument type="service" id="via_guzzle.blackbox.plugin.header"/>
+		        <argument type="service" id="via_guzzle.plugin.blackbox.header"/>
 		    </call>
 		    
 		    <call method="addSubscriber">
@@ -88,7 +95,7 @@
 		
 		<service id="via_guzzle.context.blackbox.enviroment" class="%via_guzzle.context.blackbox.enviroment.class%">            
             <argument type="service" id="session" />
-            <argument>%via_guzzle.blackbox.client.enviroment%</argument>
+            <argument></argument>
         </service>
         
         <service id="via_guzzle.listener.blackbox.enviroment" class="%via_guzzle.listener.blackbox.enviroment.class%">

@@ -1,7 +1,6 @@
 <?php
 namespace Via\Bundle\ApiBundle\EventListener\Blackbox;
 
-use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RouterInterface;
 use Via\Bundle\UserBundle\Model\BlackboxUserManagerInterface;
@@ -9,6 +8,8 @@ use Doctrine\Common\Util\Debug;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Via\Bundle\UserBundle\Model\BlackboxUserInterface;
 use Symfony\Component\HttpKernel\Event\FilterControllerEvent;
+use Symfony\Component\EventDispatcher\GenericEvent;
+use Via\Bundle\ApiBundle\Event\Blackbox\ResourceEvent;
 
 class EnabledUserListener
 {
@@ -21,29 +22,22 @@ class EnabledUserListener
         $this->container = $container;
     }
     
-    public function onKernelRequest(GetResponseEvent $event)
+    public function onBeforeInitialize(ResourceEvent $event)
     {
         if (!$this->enabledUserExists())
         {
-            $request = $event->getRequest();
-            $referer = $request->headers->get('referer');
+            $subject = $event->getSubject();
+            $subject->getConfig()->set('request.params', array(
+                'redirect.disable' => true
+            ));
+            #Debug::dump($subject, 4);
+            #$request = $event->getRequest();
+            #$referer = $request->headers->get('referer');
             
-            $event->setResponse(new RedirectResponse($referer));
+            #$event->setResponse(new RedirectResponse('sonata_admin_dashboard'));
         }
     }
     
-    public function onKernelController(FilterControllerEvent $event)
-    {
-        Debug::dump($event, 6); die();
-        
-        if (!$this->enabledUserExists())
-        {
-            $request = $event->getRequest();
-            $referer = $request->headers->get('referer');
-        
-            $event->setResponse(new RedirectResponse($referer));
-        }
-    }
     
     protected function enabledUserExists()
     {

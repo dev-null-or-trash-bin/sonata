@@ -12,17 +12,20 @@ use Doctrine\Common\Util\Debug;
  */
 class Configuration
 {
+    protected $bundlePrefix;
+    protected $resourceName;
+    protected $templateNamespace;
+    protected $templatingEngine;    
     protected $parameters;
 
-    /**
-     * Current request.
-     *
-     * @var Request
-     */
-    protected $request;
-
-    public function __construct()
+    public function __construct($bundlePrefix, $resourceName, $templateNamespace, $templatingEngine = 'twig')
     {
+
+        $this->bundlePrefix = $bundlePrefix;
+        $this->resourceName = $resourceName;
+        $this->templateNamespace = $templateNamespace;
+        $this->templatingEngine = $templatingEngine;
+
         $this->parameters = array();
     }
 
@@ -36,6 +39,41 @@ class Configuration
         $parameters = $parser->parse($parameters, $request);
 
         $this->parameters = $parameters;
+    }
+    
+    public function getBundlePrefix()
+    {
+        return $this->bundlePrefix;
+    }
+    
+    public function getResourceName()
+    {
+        return $this->resourceName;
+    }
+    
+    public function getPluralResourceName()
+    {
+        return Inflector::pluralize($this->resourceName);
+    }
+    
+    public function getServiceName($service)
+    {
+        return sprintf('%s.%s.%s', $this->bundlePrefix, $service, $this->resourceName);
+    }
+
+    public function getEventName($event)
+    {
+        return sprintf('%s.%s.%s', $this->bundlePrefix, $this->resourceName, $event);
+    }
+    
+    public function getTemplateName($name)
+    {   
+        return sprintf('%s:%s.%s', $this->templateNamespace ? : ':', $name, $this->templatingEngine);
+    }
+    
+    public function getTemplate($name)
+    {
+        return $this->get('template', $this->getTemplateName($name));
     }
 
     public function isApiRequest()
