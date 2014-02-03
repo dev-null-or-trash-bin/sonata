@@ -1,13 +1,12 @@
 <?php
-namespace Via\Bundle\UserBundle\Controller;
+namespace Via\Bundle\BlackboxBundle\Controller;
 
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Response;
 use Sonata\AdminBundle\Controller\CRUDController as Controller;
-use Doctrine\Common\Util\Debug;
-use Via\Bundle\UserBundle\Entity\EnviromentTypes;
+use Via\Bundle\BlackboxBundle\Entity\EnviromentTypes;
 
-class BlackboxUserAdminController extends Controller
+class UserAdminController extends Controller
 {
     /**
      * {@inheritdoc}

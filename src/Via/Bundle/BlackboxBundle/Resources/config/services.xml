@@ -1,0 +1,52 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+
+	<parameters>
+		<parameter key="sonata.admin.blackbox.user.class">Via\Bundle\BlackboxBundle\Admin\UserAdmin</parameter>		      
+		<parameter key="sonata.admin.extension.blackbox.user.class">Via\Bundle\BlackboxBundle\Admin\UserAdminExtension</parameter>
+		<parameter key="via.entity.blackbox.user.class">Via\Bundle\BlackboxBundle\Entity\User</parameter>
+		<parameter key="via.repository.blackbox.user.class">Via\Bundle\BlackboxBundle\Repository\UserRepository</parameter>
+	</parameters>
+	
+	<services>
+		<service id="sonata.admin.blackbox.user" class="%sonata.admin.blackbox.user.class%">
+	      <tag name="sonata.admin" 
+	      		manager_type="orm"
+	      		group="Blackbox" 
+	      		label="sonata.admin.dashboard.blackbox.user"
+	      		show_in_dashboard="true"	      		
+	      />
+	      <argument />
+	      <argument>%via.entity.blackbox.user.class%</argument>
+	      <argument>ViaBlackboxBundle:UserAdmin</argument>	
+	  	</service>	
+	  	
+	  	<service id="sonata.admin.extension.blackbox.user" class="%sonata.admin.extension.blackbox.user.class%">
+	  		<tag name="sonata.admin.extension" 
+	      		target="sonata.admin.blackbox.user"      		
+	      />
+	      	<argument type="service" id="event_dispatcher" />
+	  	</service>
+	  	
+	
+		<service id="via.manager.blackbox.user" alias="doctrine.orm.entity_manager" />
+        <service id="via.repository.blackbox.user" class="%via.repository.blackbox.user.class%">
+            <argument type="service" id="via.manager.blackbox.user" />
+            <argument type="service">
+                <service
+                    factory-service="via.manager.blackbox.user"
+                    factory-method="getClassMetadata"
+                    class="Doctrine\ORM\Mapping\ClassMetadata"
+                >
+                    <argument>%via.entity.blackbox.user.class%</argument>
+                </service>
+            </argument>
+        </service>
+	
+	</services>
+    
+</container>

@@ -1,16 +1,16 @@
 <?php
-namespace Via\Bundle\UserBundle\Admin;
+namespace Via\Bundle\BlackboxBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Show\ShowMapper;
-use Via\Bundle\UserBundle\Entity\EnviromentTypes;
+use Via\Bundle\BlackboxBundle\Entity\EnviromentTypes;
 
-class BlackboxUserAdmin extends Admin
+class UserAdmin extends Admin
 {
-    protected $baseRoutePattern = 'via-blackbox-user';
+    protected $baseRoutePattern = 'via/blackbox/user';
     
     public function configureFormFields(FormMapper $formMapper)
     {

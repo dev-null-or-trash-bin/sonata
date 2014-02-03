@@ -1,17 +1,17 @@
 <?php
-namespace Via\Bundle\UserBundle\Entity;
+namespace Via\Bundle\BlackboxBundle\Repository;
 
 use Via\Bundle\ResourceBundle\Model\EntityRepository;
 
-class BlackboxUserRepository extends EntityRepository
+class UserRepository extends EntityRepository
 {
     public function findEnabledUser ($user)
     {
         $queryBuilder = $this->getCollectionQueryBuilder();
         
         $queryBuilder
-            ->Where('via_user.id != :id')
-            ->andWhere('via_user.enviroment = :enviroment')
+            ->Where('user.id != :id')
+            ->andWhere('user.enviroment = :enviroment')
             ->setParameter('id', $user->getId())
             ->setParameter('enviroment', $user->getEnviroment());
         ;
@@ -24,7 +24,7 @@ class BlackboxUserRepository extends EntityRepository
 	 */
 	protected function getAlias()
 	{
-	    return 'via_user';
+	    return 'user';
 	}
 
 }
