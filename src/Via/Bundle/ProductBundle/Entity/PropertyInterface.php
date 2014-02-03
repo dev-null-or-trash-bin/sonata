@@ -1,9 +1,9 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Entity;
+namespace Via\Bundle\ProductBundle\Entity;
 
 
 interface PropertyInterface
-{   
+{
     /**
      * Get internal name.
      * It's used when editing product.

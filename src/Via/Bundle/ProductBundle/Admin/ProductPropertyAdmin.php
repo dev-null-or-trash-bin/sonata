@@ -9,14 +9,14 @@ use Sonata\AdminBundle\Route\RouteCollection;
 
 class ProductPropertyAdmin extends Admin
 {
-    protected $baseRoutePattern = 'via-product-property';
+    protected $baseRoutePattern = 'via/product-property';
     
     protected function configureFormFields(FormMapper $formMapper)
     {
         $formMapper->add('property', 'entity', array(
-                'class' => 'ViaPropertyBundle:Property',
+                'class' => 'ViaProductBundle:Property',
                 'property' => 'presentation',
-                'label' => 'via.form.label.product_property.property',            
+                'label' => 'via.form.label.product_property.property',
         ), array(
             'edit' => 'inline',
             'inline' => 'table',
@@ -24,48 +24,12 @@ class ProductPropertyAdmin extends Admin
             'allow_delete' => true,
         ))
         ->add('value', 'text', array(
-            'label' => 'via.form.label.product_property.value'
+            'label' => 'via.form.label.product_property.value',
+            'required' => true,
         ))
-        ;
-
-        // hide in Product Entity form
-        if (!$this->isChild() && !$this->hasParentFieldDescription()) {
-            $formMapper->add('product', 'entity', array(
-                'class' => 'ViaProductBundle:Product',
-                'property' => 'name',
-                'label' => 'via.form.label.product_property.product'
-            ));
-        }
-        
-        $formMapper
-        ->add('property', 'sonata_type_model_list', array(), array(
-            'link_parameters' => array('context' => 'default')
-        ))
-        ->add('value', 'text', array(
-            'label' => 'via.form.product_property.value'
-        )) 
-
-        /* $formMapper->add('property', 'sonata_type_admin', array(
-            'required' => false,
-        ), array(
-            'edit' => 'inline',
-            'inline' => 'table',
-        ), array(
-        
-        )) */
-        
         ;
     }
-    
-    /* protected function configureRoutes(RouteCollection $routes)
-    {
-        parent::configureRoutes($routes);
-    
-        if($this->hasParentFieldDescription())
-        {
-            $routes->remove('create');
-        }
-    } */
+        
     
     // Fields to be shown on filter forms
     protected function configureDatagridFilters(DatagridMapper $datagridMapper)

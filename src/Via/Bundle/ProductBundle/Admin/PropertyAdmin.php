@@ -1,15 +1,15 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Admin;
+namespace Via\Bundle\ProductBundle\Admin;
 
 use Sonata\AdminBundle\Admin\Admin;
 use Sonata\AdminBundle\Datagrid\ListMapper;
 use Sonata\AdminBundle\Datagrid\DatagridMapper;
 use Sonata\AdminBundle\Form\FormMapper;
-use Via\Bundle\PropertyBundle\Entity\PropertyTypes;
+use Via\Bundle\ProductBundle\Entity\PropertyTypes;
 
 class PropertyAdmin extends Admin
 {
-    protected $baseRoutePattern = 'via-property';
+    protected $baseRoutePattern = 'via/property';
     
     // Fields to be shown on create/edit forms
     protected function configureFormFields(FormMapper $formMapper)

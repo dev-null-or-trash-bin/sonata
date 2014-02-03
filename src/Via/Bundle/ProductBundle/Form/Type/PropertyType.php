@@ -1,10 +1,10 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Form\Type;
+namespace Via\Bundle\ProductBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-use Via\Bundle\PropertyBundle\Entity\PropertyTypes;
+use Via\Bundle\ProductBundle\Entity\PropertyTypes;
 
 class PropertyType extends AbstractType
 {

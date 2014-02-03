@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Entity;
+namespace Via\Bundle\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -10,10 +10,10 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="property")
- * @ORM\Entity(repositoryClass="Via\Bundle\PropertyBundle\Entity\Repository\Property")
+ * @ORM\Entity(repositoryClass="Via\Bundle\ProductBundle\Repository\PropertyRepository")
  */
 class Property implements PropertyInterface
-{   
+{
     use ORMBehaviors\Translatable\Translatable,
         ORMBehaviors\Timestampable\Timestampable;
     /**
@@ -39,7 +39,7 @@ class Property implements PropertyInterface
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\OneToMany(targetEntity="Via\Bundle\ProductBundle\Entity\ProductProperty", mappedBy="property")
+     * @ORM\OneToMany(targetEntity="ProductProperty", mappedBy="property")
      */
     protected $products;
     

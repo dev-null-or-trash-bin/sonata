@@ -9,7 +9,7 @@ use Sonata\AdminBundle\Show\ShowMapper;
 
 class ProductAdmin extends Admin
 {
-    protected $baseRoutePattern = 'via-product';
+    protected $baseRoutePattern = 'via/product';
     
     // protected $translationDomain = 'messages'; // default is 'messages'
     // Fields to be shown on create/edit forms

@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Entity;
+namespace Via\Bundle\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
