@@ -10,6 +10,7 @@
 		<parameter key="sonata.admin.extension.blackbox.user.class">Via\Bundle\BlackboxBundle\Admin\UserAdminExtension</parameter>
 		<parameter key="via.entity.blackbox.user.class">Via\Bundle\BlackboxBundle\Entity\User</parameter>
 		<parameter key="via.repository.blackbox.user.class">Via\Bundle\BlackboxBundle\Repository\UserRepository</parameter>
+		<parameter key="via.listener.blackbox.user_update.class">Via\Bundle\BlackboxBundle\EventListener\UserUpdateListener</parameter>
 	</parameters>
 	
 	<services>
@@ -47,6 +48,13 @@
             </argument>
         </service>
 	
+		<service id="via.listener.blackbox.user_update" class="%via.listener.blackbox.user_update.class%">            
+            <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_persist" method="processUser" />
+            <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_update" method="processUser" />
+            <tag name="kernel.event_listener" event="sonata.admin.event.persistence.pre_remove" method="processUser" />
+            <argument type="service" id="via.repository.blackbox.user" />
+        </service>
+        
 	</services>
     
 </container>

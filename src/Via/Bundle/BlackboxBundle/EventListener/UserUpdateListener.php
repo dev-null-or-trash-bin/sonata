@@ -1,32 +1,35 @@
 <?php
-namespace Via\Bundle\UserBundle\EventListener\Blackbox;
+namespace Via\Bundle\BlackboxBundle\EventListener;
 
-use Symfony\Component\EventDispatcher\Event;
-use Doctrine\Common\Util\Debug;
-use Via\Bundle\UserBundle\Model\BlackboxUserInterface;
-use Via\Bundle\UserBundle\Model\BlackboxUserManagerInterface;
+use Doctrine\Common\Persistence\ObjectRepository;
+use Via\Bundle\BlackboxBundle\Entity\UserInterface;
+use Sonata\AdminBundle\Event\PersistenceEvent;
 
 class UserUpdateListener
 {
-    protected $userManager;
+    /**
+     * Blackbox User repository.
+     *
+     * @var ObjectRepository
+     */
+    protected $repository;
     
-    public function processUser(Event $event)
+    public function __construct(ObjectRepository $repository)
     {
-        $admin = $event->getAdmin();
+        $this->repository = $repository;
+    }
+    
+    public function processUser(PersistenceEvent $event)
+    {
         $user = $event->getObject();
         
-        if (!$user instanceof BlackboxUserInterface)
+        if (!$user instanceof UserInterface)
         {
             throw new \InvalidArgumentException(
-                'User update listener requires event subject to be instance of "Via\Bundle\UserBundle\Model\BlackboxUserInterface".'
+                'User update listener requires event subject to be instance of "Via\Bundle\BlackboxBundle\Entity\UserInterface".'
             );
         }
         
-        $this->userManager->disableUsers($user);
-    }
-    
-    public function setUserManager (BlackboxUserManagerInterface $userManager)
-    {
-        $this->userManager = $userManager;
+        
     }
 }
