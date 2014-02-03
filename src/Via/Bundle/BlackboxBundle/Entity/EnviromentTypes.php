@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\UserBundle\Entity;
+namespace Via\Bundle\BlackboxBundle\Entity;
 
 final class EnviromentTypes
 {

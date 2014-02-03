@@ -28,7 +28,7 @@
 		</service -->
 		
 		<service id="via.manager.product" alias="doctrine.orm.entity_manager" />
-        <service id="via.repository.order" class="%via.repository.product.class%">
+        <service id="via.repository.product" class="%via.repository.product.class%">
             <argument type="service" id="via.manager.product" />
             <argument type="service">
                 <service

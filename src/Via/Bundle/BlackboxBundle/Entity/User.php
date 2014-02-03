@@ -1,15 +1,14 @@
 <?php
-namespace Via\Bundle\UserBundle\Entity;
+namespace Via\Bundle\BlackboxBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Via\Bundle\UserBundle\Entity\User;
-use Via\Bundle\UserBundle\Model\BlackboxUser as AbstractBlackboxUser ;
-use Via\Bundle\UserBundle\Model\BlackboxUserInterface;
+
+use Via\Bundle\BlackboxBundle\Entity\UserInterface;
 /**
- * @ORM\Entity(repositoryClass="BlackboxUserRepository")
- * @ORM\Table(name="viaebay_user")
+ * @ORM\Entity(repositoryClass="UserRepository")
+ * @ORM\Table(name="blackbox_user")
  */
-class BlackboxUser implements BlackboxUserInterface
+class User implements UserInterface
 {
     /**
      * @ORM\Id
