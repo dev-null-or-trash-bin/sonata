@@ -28,6 +28,11 @@ monolog:
         #chromephp:
         #    type:   chromephp
         #    level:  info
+        guzzle:
+            type: stream
+            path: %kernel.logs_dir%/%kernel.environment%.guzzle.log
+            level: debug
+            channels: [guzzle]
 
 assetic:
     use_controller: true

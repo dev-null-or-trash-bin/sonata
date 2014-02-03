@@ -9,7 +9,7 @@ class TestController extends ContainerAware
 {
     public function indexAction($name = null)
     {        
-        $client = $this->container->get('via_guzzle.client.via_ebay');
+        $client = $this->container->get('guzzle.client');
         $response = new StreamedResponse();
         
         $command = $client->getCommand('GetProducts');

@@ -13,6 +13,13 @@ class UserAdminController extends Controller
      */
     public function listAction()
     {
+        
+        $client = $this->container->get('guzzle.client');
+        #$loggerPlugin = $this->container->get('playbloom_guzzle.client.plugin.logger');
+        #$client->addSubscriber($loggerPlugin);
+        $request = $client->get('http://www.afterbuy.de');
+        $response = $request->send();
+        
         $datagrid = $this->admin->getDatagrid();
         $users = $datagrid->getResults();
         

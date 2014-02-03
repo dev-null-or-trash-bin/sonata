@@ -23,3 +23,8 @@ monolog:
             level: debug
         console:
             type:  console
+        guzzle:
+            type: stream
+            path: %kernel.logs_dir%/%kernel.environment%.guzzle_%%datetime%%.log
+            level: debug
+            channels: [guzzle]
