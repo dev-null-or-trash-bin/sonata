@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Form\Type;
+namespace Via\Bundle\ProductBundle\Form\Type;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;

@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\PropertyBundle\Entity;
+namespace Via\Bundle\ProductBundle\Entity;
 
 class PropertyTypes
 {

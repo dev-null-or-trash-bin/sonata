@@ -1,7 +1,7 @@
 <?php
 namespace Via\Bundle\UserBundle\Entity;
 
-use Via\Bundle\UserBundle\Entity\EntityRepository;
+use Via\Bundle\ResourceBundle\Model\EntityRepository;
 
 class BlackboxUserRepository extends EntityRepository
 {

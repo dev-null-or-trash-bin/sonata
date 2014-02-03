@@ -10,7 +10,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Entity
  * @ORM\HasLifecycleCallbacks
  * @ORM\Table(name="product")
- * @ORM\Entity(repositoryClass="Via\Bundle\ProductBundle\Entity\Repository\Product")
+ * @ORM\Entity(repositoryClass="Via\Bundle\ProductBundle\Repository\ProductRepository")
  */
 
 class Product implements ProductInterface

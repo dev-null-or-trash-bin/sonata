@@ -2,8 +2,6 @@
 namespace Via\Bundle\ProductBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use Via\Bundle\PropertyBundle\Entity\Property;
-use Via\Bundle\PropertyBundle\Entity\PropertyTypes;
 
 /**
  * @ORM\Entity
@@ -33,7 +31,7 @@ class ProductProperty implements ProductPropertyInterface
     /**
      * @var \Property
      *
-     * @ORM\ManyToOne(targetEntity="Via\Bundle\PropertyBundle\Entity\Property", inversedBy="products")
+     * @ORM\ManyToOne(targetEntity="Property", inversedBy="products")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="property_id", referencedColumnName="id")
      * })

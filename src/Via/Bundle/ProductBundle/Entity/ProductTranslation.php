@@ -8,7 +8,7 @@ use Knp\DoctrineBehaviors\Model as ORMBehaviors;
  * @ORM\Entity
  * @ORM\Table(name="product_translation")
  */
-class ProductTranslation
+class ProductTranslation implements ProductTranslationInterface
 {
     use ORMBehaviors\Translatable\Translation;
     
@@ -65,5 +65,5 @@ class ProductTranslation
     {
         $this->shortDescription = $shortDescription;
         return $this;
-    }    
+    }
 }
