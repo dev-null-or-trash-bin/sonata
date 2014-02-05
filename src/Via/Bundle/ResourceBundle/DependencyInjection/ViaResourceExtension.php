@@ -32,13 +32,13 @@ class ViaResourceExtension extends Extension
         
         $classes = $config['classes'];
 
-        $container->setParameter('via.controller.cart.class', $classes['cart']['controller']);
+        #$container->setParameter('via.controller.cart.class', $classes['cart']['controller']);
 
-        $container->setParameter('via.controller.cart_item.class', $classes['item']['controller']);
-        $container->setParameter('via.form.type.cart_item.class', $classes['item']['form']);
+        #$container->setParameter('via.controller.cart_item.class', $classes['item']['controller']);
+        #$container->setParameter('via.form.type.cart_item.class', $classes['item']['form']);
 
-        $container->setParameter('via.validation_group.cart', $config['validation_groups']['cart']);
-        $container->setParameter('via.validation_group.cart_item', $config['validation_groups']['item']);
+        #$container->setParameter('via.validation_group.cart', $config['validation_groups']['cart']);
+        #$container->setParameter('via.validation_group.cart_item', $config['validation_groups']['item']);
     }
     
     public function configure(array $config, ConfigurationInterface $configuration, ContainerBuilder $container)
@@ -52,7 +52,32 @@ class ViaResourceExtension extends Extension
             $loader->load($filename.'.xml');
         }
         
+        $classes = isset($config['classes']) ? $config['classes'] : array();
+        
+        $this->mapClassParameters($classes, $container);
+        
+        if ($container->hasParameter('via.config.classes')) {
+            $classes = array_merge($classes, $container->getParameter('via.config.classes'));
+        }
+
+        $container->setParameter('via.config.classes', $classes);
+        
         return array($config, $loader);
+    }
+    
+    /**
+     * Remap class parameters.
+     *
+     * @param array            $classes
+     * @param ContainerBuilder $container
+     */
+    protected function mapClassParameters(array $classes, ContainerBuilder $container)
+    {
+        foreach ($classes as $model => $serviceClasses) {
+            foreach ($serviceClasses as $service => $class) {
+                $container->setParameter(sprintf('via.%s.%s.class', $service === 'form' ? 'form.type' : $service, $model), $class);
+            }
+        }
     }
     
     /**

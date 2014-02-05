@@ -84,8 +84,31 @@ swiftmailer:
 
    
 
-  
+via_product:
+    classes:
+        product:
+            entity: Via\Bundle\ProductBundle\Entity\Product
+            controller: Via\Bundle\ProductBundle\Controller\ProductController
+            repository: Via\Bundle\ProductBundle\Repository\ProductRepository
+
+via_variable_product:
+    classes:
+        variant:
+            entity: Via\Bundle\CoreBundle\Entity\Variant
+            form: Via\Bundle\CoreBundle\Form\Type\VariantType           
     
+via_resource:
+    resources:
+        Via.user:
+            driver: doctrine/orm
+            classes:
+                model: Via\Bundle\CoreBundle\Model\User
+                controller: Via\Bundle\CoreBundle\Controller\UserController
+                repository: Via\Bundle\CoreBundle\Repository\UserRepository
+        Via.group:
+            driver: doctrine/orm
+            classes:
+                model: Via\Bundle\CoreBundle\Model\Group
 
     
     

@@ -1,5 +1,5 @@
 <?php
-namespace Via\Bundle\CoreBundle\Entities;
+namespace Via\Bundle\CoreBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;

@@ -3,52 +3,40 @@ namespace Via\Bundle\VariableProductBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
+/**
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="option")
+ * @ORM\Entity(repositoryClass="Via\Bundle\VariableProductBundle\Repository\OptionRepository")
+ */
 class Option implements OptionInterface
 {
+    use ORMBehaviors\Translatable\Translatable,
+        ORMBehaviors\Timestampable\Timestampable;
     /**
-     * Property id.
-     *
-     * @var mixed
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
-    /**
-     * Internal name.
-     * See description in interface.
-     *
+     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255, nullable=false)
      */
     protected $name;
 
     /**
-     * Presentation.
-     * Displayed to user.
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @var string
-     */
-    protected $presentation;
-
-    /**
-     * Values that option can have.
-     *
-     * @var OptionValueInterface[]
+     * @ORM\OneToMany(targetEntity="OptionValue", mappedBy="option")
      */
     protected $values;
-
-    /**
-     * Creation time.
-     *
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * Last update time.
-     *
-     * @var \DateTime
-     */
-    protected $updatedAt;
+    
 
     /**
      * Constructor.
@@ -56,7 +44,7 @@ class Option implements OptionInterface
     public function __construct()
     {
         $this->values = new ArrayCollection();
-        $this->createdAt = new \DateTime();
+        //$this->createdAt = new \DateTime();
     }
 
     /**
@@ -96,18 +84,29 @@ class Option implements OptionInterface
     /**
      * {@inheritdoc}
      */
-    public function getPresentation()
-    {
-        return $this->presentation;
-    }
+//     public function getPresentation()
+//     {
+//         return $this->presentation;
+//     }
 
     /**
      * {@inheritdoc}
      */
+//     public function setPresentation($presentation)
+//     {
+//         $this->presentation = $presentation;
+
+//         return $this;
+//     }
+
+    public function getPresentation()
+    {
+        return $this->translate()->getPresentation();
+    }
+    
     public function setPresentation($presentation)
     {
-        $this->presentation = $presentation;
-
+        $this->translate()->setPresentation($presentation);
         return $this;
     }
 
@@ -161,41 +160,5 @@ class Option implements OptionInterface
     public function hasValue(OptionValueInterface $value)
     {
         return $this->values->contains($value);
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
     }
 }

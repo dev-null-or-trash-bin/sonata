@@ -7,8 +7,7 @@ use Doctrine\Common\Collections\Collection;
 use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 /**
- * @ORM\Entity
- * @ORM\HasLifecycleCallbacks
+ * @ORM\MappedSuperclass
  * @ORM\Table(name="product")
  * @ORM\Entity(repositoryClass="Via\Bundle\ProductBundle\Repository\ProductRepository")
  */

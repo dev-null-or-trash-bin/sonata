@@ -2,7 +2,7 @@
 namespace Via\Bundle\VariableProductBundle\Entity;
 
 use Doctrine\Common\Collections\Collection;
-use Via\Bundle\ResourceBundle\Entity\TimestampableInterface;
+use Via\Bundle\ResourceBundle\Model\TimestampableInterface;
 
 interface OptionInterface extends TimestampableInterface
 {

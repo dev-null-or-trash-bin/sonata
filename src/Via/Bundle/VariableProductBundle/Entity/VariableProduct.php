@@ -3,21 +3,30 @@ namespace Via\Bundle\VariableProductBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\ORM\Mapping as ORM;
 use Via\Bundle\ProductBundle\Entity\Product;
 
+/**
+ * @ORM\MappedSuperclass
+ * @ORM\Table(name="product")
+ */
 class VariableProduct extends Product implements VariableProductInterface
 {
     /**
-     * Product variants.
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @var VariantInterface[]
+     * @ORM\OneToMany(targetEntity="OptionValueInterface", mappedBy="product")
      */
     protected $variants;
 
     /**
-     * Product options.
+     * @var \Doctrine\Common\Collections\Collection
      *
-     * @var OptionInterface[]
+     * @ORM\ManyToMany(targetEntity="OptionInterface")
+     * @ORM\JoinTable(name="product_option",
+     *      joinColumns={@JoinColumn(name="product_id", referencedColumnName="id")},
+     *          inverseJoinColumns={@JoinColumn(name="option_id", referencedColumnName="id")}
+     *      )
      */
     protected $options;
 

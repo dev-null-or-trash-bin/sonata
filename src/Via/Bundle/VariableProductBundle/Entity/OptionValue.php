@@ -1,26 +1,37 @@
 <?php
 namespace Via\Bundle\VariableProductBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model as ORMBehaviors;
+/**
+ * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks
+ * @ORM\Table(name="option_value")
+ * @ORM\Entity(repositoryClass="Via\Bundle\VariableProductBundle\Repository\OptionValueRepository")
+ */
 class OptionValue implements OptionValueInterface
 {
     /**
-     * Option value id.
-     *
-     * @var mixed
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
 
     /**
-     * Value.
-     *
      * @var string
+     *
+     * @ORM\Column(name="value", type="string", length=255, nullable=false)
      */
     protected $value;
 
     /**
-     * Option.
+     * @var \Property
      *
-     * @var OptionInterface
+     * @ORM\ManyToOne(targetEntity="Option", inversedBy="values")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="option_id", referencedColumnName="id")
+     * })
      */
     protected $option;
 
