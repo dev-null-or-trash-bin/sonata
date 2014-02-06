@@ -5,12 +5,12 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
 	<parameters>
-		<parameter key="sonata.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>		      
+		<parameter key="via.sonata.admin.user.class">Via\Bundle\UserBundle\Admin\UserAdmin</parameter>		      
 		<parameter key="via.entity.user.class">Via\Bundle\UserBundle\Entity\User</parameter>
 	</parameters>
 	
 	<services>
-		<service id="sonata.admin.user" class="%sonata.admin.user.class%">
+		<service id="via.sonata.admin.user" class="%via.sonata.admin.user.class%">
 	      <tag name="sonata.admin" 
 	      		manager_type="orm"	      		  
 	      		target="sonata.user.admin.user"

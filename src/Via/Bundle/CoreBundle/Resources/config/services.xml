@@ -4,17 +4,26 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <!--
-    <parameters>
-        <parameter key="via_core.example.class">Via\Bundle\CoreBundle\Example</parameter>
-    </parameters>
-
-    <services>
-        <service id="via_core.example" class="%via_core.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
-    </services>
-    -->
+	<!-- parameters>
+		<parameter key="via.admin.user.class">Via\Bundle\CoreBundle\Admin\UserAdmin</parameter>		      
+		<parameter key="via.model.user.class">Via\Bundle\CoreBundle\Model\User</parameter>
+	</parameters>
+	
+	<services>
+		<service id="via.admin.user" class="%via.admin.user.class%">
+	      <tag name="sonata.admin" 
+	      		manager_type="orm"	      		  
+	      		target="sonata.user.admin.user"
+	      		show_in_dashboard="false"	      		
+	      />
+	      <argument />
+	      <argument>%via.model.user.class%</argument>
+	      <argument>SonataAdminBundle:CRUD</argument>
+	      <call method="setUserManager">
+	      		<argument type="service" id="fos_user.user_manager" />
+          </call>
+	  	</service>
+	  	
+	</services -->
+	
 </container>

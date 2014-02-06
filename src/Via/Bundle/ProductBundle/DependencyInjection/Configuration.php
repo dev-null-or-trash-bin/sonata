@@ -21,9 +21,12 @@ class Configuration implements ConfigurationInterface
         $treeBuilder = new TreeBuilder();
         $rootNode = $treeBuilder->root('via_product');
 
-        // Here you should define the parameters that are allowed to
-        // configure your bundle. See the documentation linked above for
-        // more information on that topic.
+        $rootNode
+            ->addDefaultsIfNotSet()
+            ->children()
+                ->scalarNode('driver')->isRequired()->cannotBeEmpty()->end()
+            ->end()
+        ;
         $this->addClassesSection($rootNode);
         
         return $treeBuilder;
@@ -45,7 +48,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('product')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
+                                ->scalarNode('model')->isRequired()->cannotBeEmpty()->end()
                                 ->scalarNode('controller')->defaultValue('Via\\Bundle\\ResourceBundle\\Controller\\ResourceController')->end()
                                 ->scalarNode('repository')->cannotBeEmpty()->end()
                                 ->scalarNode('form')->defaultValue('Via\\Bundle\\ProductBundle\\Form\\Type\\ProductType')->end()
@@ -54,7 +57,7 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('property')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('entity')->defaultValue('Via\\Bundle\\ProductBundle\\Model\\Property')->end()
+                                ->scalarNode('model')->defaultValue('Via\\Bundle\\ProductBundle\\Model\\Property')->end()
                                 ->scalarNode('controller')->defaultValue('Via\\Bundle\\ResourceBundle\\Controller\\ResourceController')->end()
                                 ->scalarNode('repository')->cannotBeEmpty()->end()
                                 ->scalarNode('form')->defaultValue('Via\\Bundle\\ProductBundle\\Form\\Type\\PropertyType')->end()
@@ -63,19 +66,10 @@ class Configuration implements ConfigurationInterface
                         ->arrayNode('product_property')
                             ->addDefaultsIfNotSet()
                             ->children()
-                                ->scalarNode('entity')->defaultValue('Via\\Bundle\\ProductBundle\\Model\\ProductProperty')->end()
+                                ->scalarNode('model')->defaultValue('Via\\Bundle\\ProductBundle\\Model\\ProductProperty')->end()
                                 ->scalarNode('form')->defaultValue('Via\\Bundle\\ProductBundle\\Form\\Type\\ProductPropertyType')->end()
                             ->end()
-                        ->end()
-                        ->arrayNode('prototype')
-                            ->addDefaultsIfNotSet()
-                            ->children()
-                                ->scalarNode('entity')->defaultValue('Via\\Bundle\\ProductBundle\\Model\\Prototype')->end()
-                                ->scalarNode('controller')->defaultValue('Via\\Bundle\\ProductBundle\\Controller\\PrototypeController')->end()
-                                ->scalarNode('repository')->cannotBeEmpty()->end()
-                                ->scalarNode('form')->defaultValue('Via\\Bundle\\ProductBundle\\Form\\Type\\PrototypeType')->end()
-                            ->end()
-                        ->end()
+                        ->end()                        
                     ->end()
                 ->end()
             ->end()

@@ -33,7 +33,7 @@ class ViaVariableProductExtension extends ViaResourceExtension implements Prepen
         #$loader->load('services.xml');
         
         $this->configDir = __DIR__.'/../Resources/config';
-        $this->configure($configs, new Configuration(), $container);
+        $this->configure($configs, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
     }
     
     /**
@@ -48,7 +48,7 @@ class ViaVariableProductExtension extends ViaResourceExtension implements Prepen
         $container->prependExtensionConfig('via_product', array(
             'classes' => array(
                 'product' => array(
-                    'entity' => 'Via\Bundle\VariableProductBundle\Entity\VariableProduct',
+                    'model' => 'Via\Bundle\VariableProductBundle\Model\VariableProduct',
                     'form'  => 'Via\Bundle\VariableProductBundle\Form\Type\VariableProductType'
                 ),
             ))

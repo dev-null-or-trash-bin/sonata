@@ -29,6 +29,6 @@ class ViaProductExtension extends ViaResourceExtension
     {
         $this->configDir = __DIR__.'/../Resources/config';
     
-        $this->configure($config, new Configuration(), $container);
+        $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
     }
 }

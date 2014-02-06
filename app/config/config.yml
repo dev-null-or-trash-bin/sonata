@@ -82,14 +82,15 @@ swiftmailer:
     password:  "%mailer_password%"
     spool:     { type: memory }
 
-   
+via_core:
+    driver: doctrine/orm
 
-#via_product:
-#    classes:
-#        product:
-#            entity: Via\Bundle\ProductBundle\Entity\Product
-#            controller: Via\Bundle\ProductBundle\Controller\ProductController
-#            repository: Via\Bundle\ProductBundle\Repository\ProductRepository
+via_product:
+    classes:
+        product:
+            model: Via\Bundle\CoreBundle\Model\Product
+            controller: Via\Bundle\CoreBundle\Controller\ProductController
+            repository: Via\Bundle\CoreBundle\Repository\ProductRepository
 
 #via_variable_product:
 #    classes:
@@ -99,16 +100,18 @@ swiftmailer:
     
 via_resource:
     resources:
-        Via.user:
+        via.user:
+           driver: doctrine/orm
+           classes:
+                model: Via\Bundle\UserBundle\Entity\User
+                #entity: Via\Bundle\CoreBundle\Entity\User
+                controller: Via\Bundle\UserBundle\Controller\UserController
+                repository: Via\Bundle\UserBundle\Repository\UserRepository
+        via.group:
             driver: doctrine/orm
             classes:
-                model: Via\Bundle\CoreBundle\Model\User
-                controller: Via\Bundle\CoreBundle\Controller\UserController
-                repository: Via\Bundle\CoreBundle\Repository\UserRepository
-        Via.group:
-            driver: doctrine/orm
-            classes:
-                model: Via\Bundle\CoreBundle\Model\Group
+                #entity: Via\Bundle\CoreBundle\Entity\Group
+                model: Via\Bundle\UserBundle\Entity\Group
 
     
     

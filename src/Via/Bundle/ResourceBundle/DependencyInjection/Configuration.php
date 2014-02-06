@@ -46,6 +46,7 @@ class Configuration implements ConfigurationInterface
                             ->scalarNode('templates')->cannotBeEmpty()->end()
                             ->arrayNode('classes')
                                 ->children()
+                                    #->scalarNode('entity')->isRequired()->cannotBeEmpty()->end()
                                     ->scalarNode('model')->isRequired()->cannotBeEmpty()->end()
                                     ->scalarNode('controller')->defaultValue('Via\Bundle\ResourceBundle\Controller\ResourceController')->end()
                                     ->scalarNode('repository')->end()

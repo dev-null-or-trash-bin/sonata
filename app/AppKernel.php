@@ -39,7 +39,7 @@ class AppKernel extends Kernel
             
             #new Via\Bundle\GuzzleBundle\ViaGuzzleBundle(),
             new Via\Bundle\UserBundle\ViaUserBundle(),
-            #new Via\Bundle\ProductBundle\ViaProductBundle(),
+            new Via\Bundle\ProductBundle\ViaProductBundle(),
             #new Via\Bundle\VariableProductBundle\ViaVariableProductBundle(),
             #new Via\Bundle\BlackboxBundle\ViaBlackboxBundle(),
             #new Via\Bundle\PropertyBundle\ViaPropertyBundle(),

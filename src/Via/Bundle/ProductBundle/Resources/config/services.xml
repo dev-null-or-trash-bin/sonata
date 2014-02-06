@@ -6,28 +6,28 @@
 
 	<parameters>
 		<!-- parameter key="via.form.type.product_property.class">Via\Bundle\ProductBundle\Form\Type\ProductPropertyType</parameter>
-		<parameter key="via.form.type.property_choice.class">Via\Bundle\ProductBundle\Form\Type\PropertyEntityChoiceType</parameter>
+		<parameter key="via.form.type.property_choice.class">Via\Bundle\ProductBundle\Form\Type\PropertyModelChoiceType</parameter>
 		<parameter key="via.form.type.property.class">Via\Bundle\ProductBundle\Form\Type\PropertyType</parameter -->
-		<parameter key="via.entity.product.class">Via\Bundle\ProductBundle\Entity\Product</parameter>
-		<parameter key="via.entity.product_translation.class">Via\Bundle\ProductBundle\Entity\ProductTranslation</parameter>		
-		<parameter key="via.entity.product_property.class">Via\Bundle\ProductBundle\Entity\ProductProperty</parameter>
-		<parameter key="via.entity.property.class">Via\Bundle\ProductBundle\Entity\Property</parameter>
-		<parameter key="via.repository.product.class">Via\Bundle\ProductBundle\Entity\ProductRepository</parameter>
-		<parameter key="via.repository.property.class">Via\Bundle\ProductBundle\Entity\PropertyRepository</parameter>
-		<parameter key="sonata.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>
-		<parameter key="sonata.admin.extension.product.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>		
-		<parameter key="sonata.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>		
-		<parameter key="sonata.admin.property.class">Via\Bundle\ProductBundle\Admin\PropertyAdmin</parameter>
+		<!-- parameter key="via.model.product.class">Via\Bundle\ProductBundle\Model\Product</parameter>
+		<parameter key="via.model.product_translation.class">Via\Bundle\ProductBundle\Model\ProductTranslation</parameter>		
+		<parameter key="via.model.product_property.class">Via\Bundle\ProductBundle\Model\ProductProperty</parameter>
+		<parameter key="via.model.property.class">Via\Bundle\ProductBundle\Model\Property</parameter -->
+		<parameter key="via.repository.product.class">Via\Bundle\ProductBundle\Model\ProductRepository</parameter>
+		<parameter key="via.repository.property.class">Via\Bundle\ProductBundle\Model\PropertyRepository</parameter>
+		<parameter key="via.sonata.admin.product.class">Via\Bundle\ProductBundle\Admin\ProductAdmin</parameter>
+		<parameter key="via.sonata.admin.extension.product.event.class">Via\Bundle\ProductBundle\Admin\Extension\Event\ProductAdminExtension</parameter>		
+		<parameter key="via.sonata.admin.product_property.class">Via\Bundle\ProductBundle\Admin\ProductPropertyAdmin</parameter>		
+		<parameter key="via.sonata.admin.property.class">Via\Bundle\ProductBundle\Admin\PropertyAdmin</parameter>
 	</parameters>
 
 
 	<services>
 		<!-- service id="via.form.type.product_property" class="%via.form.type.product_property.class%">
-			<argument>%via.entity.product_property.class%</argument>
+			<argument>%via.model.product_property.class%</argument>
 			<tag name="form.type" alias="via_product_property" />
 		</service -->
 		
-		<service id="via.manager.product" alias="doctrine.orm.entity_manager" />
+		<service id="via.manager.product" alias="doctrine.orm.model_manager" />
         <service id="via.repository.product" class="%via.repository.product.class%">
             <argument type="service" id="via.manager.product" />
             <argument type="service">
@@ -36,12 +36,12 @@
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata"
                 >
-                    <argument>%via.entity.product.class%</argument>
+                    <argument>%via.model.product.class%</argument>
                 </service>
             </argument>
         </service>
         
-        <service id="via.manager.property" alias="doctrine.orm.entity_manager" />
+        <service id="via.manager.property" alias="doctrine.orm.model_manager" />
         <service id="via.repository.property" class="%via.repository.property.class%">
             <argument type="service" id="via.manager.product" />
             <argument type="service">
@@ -50,21 +50,21 @@
                     factory-method="getClassMetadata"
                     class="Doctrine\ORM\Mapping\ClassMetadata"
                 >
-                    <argument>%via.entity.property.class%</argument>
+                    <argument>%via.model.property.class%</argument>
                 </service>
             </argument>
         </service>
 
 		<!-- service id="via.repository.product" class="%via.repository.product.class%"
-			factory-service="doctrine.orm.entity_manager" factory-method="getRepository">
-			<argument>%via.entity.product.class%</argument>
+			factory-service="doctrine.orm.model_manager" factory-method="getRepository">
+			<argument>%via.model.product.class%</argument>
 		</service -->
 
-		<service id="sonata.admin.product" class="%sonata.admin.product.class%">
+		<service id="via.sonata.admin.product" class="%via.sonata.admin.product.class%">
 			<tag name="sonata.admin" manager_type="orm" group="Content"
 				label="via.admin.dashboard.product" label_translator_strategy="sonata.admin.label.strategy.noop" />
 			<argument />
-			<argument>%via.entity.product.class%</argument>
+			<argument>%via.model.product.class%</argument>
 			<argument>SonataAdminBundle:CRUD</argument>
 			<argument type="service" id="service_container" />
 			<call method="setTranslationDomain">
@@ -72,24 +72,24 @@
 			</call>
 		</service>
 
-		<service id="sonata.admin.product_property" class="%sonata.admin.product_property.class%">
+		<service id="via.sonata.admin.product_property" class="%via.sonata.admin.product_property.class%">
 			<tag name="sonata.admin" manager_type="orm" group="Content"
 				label="via.admin.dashboard.product_property"
 				label_translator_strategy="sonata.admin.label.strategy.noop"
 				show_in_dashboard="false" />
 			<argument />
-			<argument>%via.entity.product_property.class%</argument>
+			<argument>%via.model.product_property.class%</argument>
 			<argument />
 			<call method="setTranslationDomain">
 				<argument>messages</argument>
 			</call>
 		</service>
 
-		<service id="sonata.admin.property" class="%sonata.admin.property.class%">
+		<service id="via.sonata.admin.property" class="%via.sonata.admin.property.class%">
 			<tag name="sonata.admin" manager_type="orm" group="Content"
 				label="via.admin.dashboard.property" />
 			<argument />
-			<argument>%via.entity.property.class%</argument>
+			<argument>%via.model.property.class%</argument>
 			<argument />
 			<call method="setTranslationDomain">
 				<argument>messages</argument>
