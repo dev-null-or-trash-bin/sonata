@@ -17,6 +17,9 @@ doctrine:
                     FOSUserBundle: ~
                     ViaUserBundle: ~
                     SonataUserBundle: ~
+                    ViaCoreBundle: ~
+                    ViaProductBundle: ~
+                    ViaVariableProductBundle: ~
 
 sonata_user:
     security_acl:             false

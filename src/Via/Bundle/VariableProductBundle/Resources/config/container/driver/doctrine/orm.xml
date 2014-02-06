@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Via package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="via.repository.variant.class">Via\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="via.repository.option.class">Via\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+        <parameter key="via.repository.option_value.class">Via\Bundle\ResourceBundle\Doctrine\ORM\EntityRepository</parameter>
+
+        <parameter key="via.form.type.option_choice.class">Via\Bundle\VariableProductBundle\Form\Type\OptionEntityChoiceType</parameter>
+    </parameters>
+
+    <services>
+
+        <service id="via.manager.option" alias="doctrine.orm.entity_manager" />
+        <service id="via.repository.option" class="%via.repository.option.class%">
+            <argument type="service" id="via.manager.option" />
+            <argument type="service">
+                <service
+                        factory-service="doctrine.orm.default_entity_manager"
+                        factory-method="getClassMetadata"
+                        class="Doctrine\ORM\Mapping\ClassMetadata"
+                        >
+                    <argument>%via.model.option.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <service id="via.manager.variant" alias="doctrine.orm.entity_manager" />
+        <service id="via.repository.variant" class="%via.repository.variant.class%">
+            <argument type="service" id="via.manager.variant" />
+            <argument type="service">
+                <service
+                        factory-service="doctrine.orm.default_entity_manager"
+                        factory-method="getClassMetadata"
+                        class="Doctrine\ORM\Mapping\ClassMetadata"
+                        >
+                    <argument>%via.model.variant.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+        <service id="via.manager.option_value" alias="doctrine.orm.entity_manager" />
+        <service id="via.repository.option_value" class="%via.repository.option_value.class%">
+            <argument type="service" id="via.manager.option_value" />
+            <argument type="service">
+                <service
+                        factory-service="doctrine.orm.default_entity_manager"
+                        factory-method="getClassMetadata"
+                        class="Doctrine\ORM\Mapping\ClassMetadata"
+                        >
+                    <argument>%via.model.option_value.class%</argument>
+                </service>
+            </argument>
+        </service>
+
+    </services>
+
+</container>

@@ -92,11 +92,11 @@ via_product:
             controller: Via\Bundle\CoreBundle\Controller\ProductController
             repository: Via\Bundle\CoreBundle\Repository\ProductRepository
 
-#via_variable_product:
-#    classes:
-#        variant:
-#            entity: Via\Bundle\CoreBundle\Entity\Variant
-#            form: Via\Bundle\CoreBundle\Form\Type\VariantType           
+via_variable_product:
+    classes:
+        variant:
+            model: Via\Bundle\CoreBundle\Entity\Variant
+            form: Via\Bundle\CoreBundle\Form\Type\VariantType           
     
 via_resource:
     resources:

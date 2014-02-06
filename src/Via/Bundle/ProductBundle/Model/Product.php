@@ -3,12 +3,9 @@ namespace Via\Bundle\ProductBundle\Model;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Knp\DoctrineBehaviors\Model as ORMBehaviors;
 
 class Product implements ProductInterface
 {
-    use ORMBehaviors\Translatable\Translatable,
-        ORMBehaviors\Timestampable\Timestampable;
     /**
      * Product id.
      *
@@ -65,27 +62,6 @@ class Product implements ProductInterface
      * @var ProductPropertyInterface[]
      */
     protected $properties;
-
-    /**
-     * Creation time.
-     *
-     * @var \DateTime
-     */
-    protected $createdAt;
-
-    /**
-     * Last update time.
-     *
-     * @var \DateTime
-     */
-    protected $updatedAt;
-
-    /**
-     * Deletion time.
-     *
-     * @var \DateTime
-     */
-    protected $deletedAt;
 
     /**
      * Constructor.
@@ -247,68 +223,6 @@ class Product implements ProductInterface
         }
 
         return null;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getCreatedAt()
-    {
-        return $this->createdAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setCreatedAt(\DateTime $createdAt)
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getUpdatedAt()
-    {
-        return $this->updatedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setUpdatedAt(\DateTime $updatedAt)
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function isDeleted()
-    {
-        return null !== $this->deletedAt && new \DateTime() >= $this->deletedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function getDeletedAt()
-    {
-        return $this->deletedAt;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function setDeletedAt(\DateTime $deletedAt)
-    {
-        $this->deletedAt = $deletedAt;
-
-        return $this;
     }
 
     public function getName()

@@ -148,24 +148,5 @@ class ViaResourceExtension extends Extension
         }
     }
     
-    /**
-     * {@inheritdoc}
-     */
-    public function prepend(ContainerBuilder $container)
-    {
-        if (!$container->hasExtension('via_order')) {
-            return;
-        }
     
-        $container->prependExtensionConfig('via_order', array(
-            'classes' => array(
-                'order_item' => array(
-                    'model' => 'Via\Bundle\CartBundle\Model\CartItem'
-                ),
-                'order' => array(
-                    'model' => 'Via\Bundle\CartBundle\Model\Cart'
-                )
-            ))
-        );
-    }
 }

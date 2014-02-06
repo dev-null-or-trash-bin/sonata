@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+
+ This file is part of the Via package.
+
+ (c) Paweł Jędrzejewski
+
+ For the full copyright and license information, please view the LICENSE
+ file that was distributed with this source code.
+
+-->
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services
+                               http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="via.generator.variant.class">Via\Bundle\VariableProductBundle\Generator\VariantGenerator</parameter>
+
+        <parameter key="via.validator.variant.unique.class">Via\Bundle\VariableProductBundle\Validator\VariantUniqueValidator</parameter>
+        <parameter key="via.validator.variant.combination.class">Via\Bundle\VariableProductBundle\Validator\VariantCombinationValidator</parameter>
+
+        <parameter key="via.form.type.variant.class">Via\Bundle\VariableProductBundle\Form\Type\VariantType</parameter>
+        <parameter key="via.form.type.variant_choice.class">Via\Bundle\VariableProductBundle\Form\Type\VariantChoiceType</parameter>
+        <parameter key="via.form.type.variant_match.class">Via\Bundle\VariableProductBundle\Form\Type\VariantMatchType</parameter>
+        <parameter key="via.form.type.variant_to_identifier.class">Via\Bundle\VariableProductBundle\Form\Type\VariantToIdentifierType</parameter>
+
+        <parameter key="via.controller.variant.class">Via\Bundle\VariableProductBundle\Controller\VariantController</parameter>
+    </parameters>
+
+    <services>
+        <service id="via.generator.variant" class="%via.generator.variant.class%">
+            <argument type="service" id="validator" />
+            <argument type="service" id="via.repository.variant"/>
+        </service>
+
+        <!-- service id="via.validator.variant.unique" class="%via.validator.variant.unique.class%">
+            <argument type="service" id="via.repository.variant" />
+            <tag name="validator.constraint_validator" alias="via.validator.variant.unique" />
+        </service>
+        <service id="via.validator.variant.combination" class="%via.validator.variant.combination.class%">
+            <tag name="validator.constraint_validator" alias="via.validator.variant.combination" />
+        </service>
+
+        <service id="via.form.type.variant" class="%via.form.type.variant.class%">
+            <argument>%via.model.variant.class%</argument>
+            <argument>%via.validation_group.variant%</argument>
+            <tag name="form.type" alias="via_variant" />
+        </service>
+        <service id="via.form.type.variant_choice" class="%via.form.type.variant_choice.class%">
+            <tag name="form.type" alias="via_variant_choice" />
+        </service>
+        <service id="via.form.type.variant_match" class="%via.form.type.variant_match.class%">
+            <tag name="form.type" alias="via_variant_match" />
+        </service>
+        <service id="via.form.type.variant_to_identifier" class="%via.form.type.variant_to_identifier.class%">
+            <argument type="service" id="via.repository.variant" />
+            <tag name="form.type" alias="via_variant_to_identifier" />
+        </service -->
+
+        <service id="via.controller.variant" class="%via.controller.variant.class%">
+            <argument>via</argument>
+            <argument>variant</argument>
+            <argument>ViaVariableProductBundle:Variant</argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+    </services>
+
+</container>

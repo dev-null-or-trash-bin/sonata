@@ -17,14 +17,14 @@ use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 class ViaVariableProductExtension extends ViaResourceExtension implements PrependExtensionInterface
 {
     protected $configFiles = array(
-        #'options',
-        #'variants',
+        'options',
+        'variants',
         
     );
     /**
      * {@inheritDoc}
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $config, ContainerBuilder $container)
     {
         #$configuration = new Configuration();
         #$config = $this->processConfiguration($configuration, $configs);
@@ -32,8 +32,11 @@ class ViaVariableProductExtension extends ViaResourceExtension implements Prepen
         #$loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         #$loader->load('services.xml');
         
-        $this->configDir = __DIR__.'/../Resources/config';
-        $this->configure($configs, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
+        $this->configDir = __DIR__.'/../Resources/config/container';
+        
+        $config[0]['driver'] = $container->getParameter('via_product.driver');
+        
+        $this->configure($config, new Configuration(), $container, self::CONFIGURE_LOADER | self::CONFIGURE_DATABASE | self::CONFIGURE_PARAMETERS | self::CONFIGURE_VALIDATORS);
     }
     
     /**
